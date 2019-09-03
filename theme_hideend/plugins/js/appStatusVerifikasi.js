@@ -10,7 +10,7 @@ Vue.component('vue-multiselect', window.VueMultiselect.default)
 //dynamic url
 let myUrl = window.location.origin+"/";
 
-if(url.includes("localhost")){
+if(myUrl.includes("localhost")){
   var pathArray = window.location.pathname.split( '/' );
   myUrl += pathArray [1] + "/";
 }
