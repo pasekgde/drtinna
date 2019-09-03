@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/";  
+$config['base_url'] =  "http://".$_SERVER['HTTP_HOST']."/"; 
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ $config['index_page'] = '';
 |
 */
 
-$config['cookieprefix'] = "bosssignalfx";
+$config['cookieprefix'] = "topglobalinvest";
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +65,6 @@ $config['cookieprefix'] = "bosssignalfx";
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
 $config['uri_protocol']	= 'REQUEST_URI';
-//$config['uri_protocol']	= 'AUTO'; 
 
 /*
 |--------------------------------------------------------------------------
@@ -231,8 +230,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-//$config['log_threshold'] = 0;
-$config['log_threshold'] = 2;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -444,7 +442,7 @@ $config['standardize_newlines'] = FALSE;
 |          for backwards compatibility purposes!
 |
 */
-$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -464,8 +462,9 @@ $config['csrf_protection'] = false;
 $config['csrf_token_name'] = 'cs_number';
 $config['csrf_cookie_name'] = 'cs_cookie';
 $config['csrf_expire'] = 7200;
-$config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array('hideend/registrasit','hideend/invoice/view', 'hideend/IPN/processDode','hideend/Ipn/process2', 'hideend/funds','hideend/midtrans/vtdirect/vtdirect_cc_charge','hideend/midtrans/vtweb/vtweb_checkout','hideend/callback/notif','pembayaran/manual_notif','hookbot','join/kirim_email','hideend/content/upload');
+$config['csrf_regenerate'] = true;
+$config['csrf_exclude_uris'] = array('hideend/registrasit', 'hideend/invoice/view', 'hideend/IPN/processDode','hideend/IPN/process2', 'hideend/funds');
+
 
 /*
 |--------------------------------------------------------------------------
