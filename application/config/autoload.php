@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','template','templatefront','settings','user','common','lib_filter', 'CurrencyConverter','Telegramlib');
+$autoload['libraries'] = array('database','session','template','templatefront','settings','user','common','lib_filter', 'CurrencyConverter');
 
 /*
 | -------------------------------------------------------------------
