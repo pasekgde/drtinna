@@ -1,0 +1,65 @@
+[
+	{
+		"title" : "Doctor Consultation<br>with English Speaking",
+		"lead" : "Our well trained, english speaking medical doctors are always ready to give you a comprehensive medical consultation. Because your health and comfort is our priority, we provide 24 hours consultation",
+		"desc" : "",
+		"icon" : "service-2.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Doctor On-Call<br>Home Visit",
+		"lead" : "Your condition is not fit to visit a health care provider, clinic or hospital, the best choice is Doctor On Call/Home Visit. Our team of doctors, nurses and paramedic are ready to provide you with a simple and accurate medical assistance right at your homestay, villa or hotel within Ubud ",
+		"desc" : "",
+		"icon" : "service-3.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Simple to Moderate<br>Wound Care",
+		"lead" : "Wounds if not cleaned cleanly and correctly will cause infection. If the wound infection severe, the wound healing process will be long",
+		"desc" : "",
+		"icon" : "service-8.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Homecare Services",
+		"lead" : "Our Home Care team provide complete medical consultation, evaluation and treatment for you at your home: post hospitalization, terminal illness, elderly patient care, routine wound care, or even a personal nurse standing by at your side for a whole day",
+		"desc" : "",
+		"icon" : "service-7.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Laboratory Services",
+		"lead" : "Laboratory tests are very helpful in establishing a patient's diagnosis, especially in patients with symptom fever and diarhea.",
+		"desc" : "",
+		"icon" : "service-9.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Vaccination",
+		"lead" : "Vaccines are products that protect people against serious and potentially deadly diseases. Unlike most medicines that treat or cure diseases, vaccines prevent them",
+		"desc" : "",
+		"icon" : "service-10.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Medical Check Up",
+		"lead" : "Come to Asia and Tropic Area, then you feel uncomfortable with your body, medical check up is solution. Medical check up for disease prevention and treatment",
+		"desc" : "",
+		"icon" : "service-11.png",
+		"pic" : ""
+	},
+
+	{
+		"title" : "Patient Pick Up Services",
+		"lead" : "We commit to giving youo best service so we offer patient pick up service without extra charge and total free (Ubud area)",
+		"desc" : "",
+		"icon" : "service-12.png",
+		"pic" : ""
+	}
+]

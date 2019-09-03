@@ -1,0 +1,20 @@
+[
+	{
+		"name": "dr. I Made Tomik Nurya Wardana, S. Ked",
+		"position": "Doctor",
+		"description": "dr. Tomik is graduated from Udayana University in 2013. Currently, he take a role as Head of Outpatient Departement, Ganesha Hospital, Bali. He also being doctor in Emergency Departement Ganesha Hospital.",
+		"img": "tomik.jpg"
+	},
+	{
+		"name": "dr. Putu Nandika Wintari, S. Ked",
+		"position": "Doctor",
+		"description": "dr. Nandika is graduated from Udayana University in 2018. She actively participate in several national or international medical seminars and workshops.",
+		"img": "nandika.jpg"
+	},	
+	{
+		"name": "dr. I Kadek Septiawan, S. Ked",
+		"position": "Doctor",
+		"description": "dr. Septiawan is graduated from Udayana University in 2013. He also being emergency and outpatient doctor in Premagana Hospital, Bali.",
+		"img": "kadek.jpg"
+	}
+]

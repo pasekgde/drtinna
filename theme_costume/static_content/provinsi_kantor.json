@@ -1,0 +1,87 @@
+[
+        {
+          "provinsi": "Papua (Jayapura)",
+          "kantor": "KPKNL Jayapura",
+          "kode": "02",
+          "alamat": "Komplek Papua Trade Center (PTC), Jalan Raya Abepura, Kelapa Dua, Entrop, Jayapura, Papua - 99224.",
+          "kabupaten": [
+                        {"name":"Asmat"},
+                        {"name":"Boven Digoel"},
+                        {"name":"Kab. Jayapura"},
+                        {"name":"Jayawijaya"},
+                        {"name":"Keerom"},
+                        {"name":"Lanny Jaya"},
+                        {"name":"Mamberamo Raya"},
+                        {"name":"Mamberamo Tengah"},
+                        {"name":"Mappi"},
+                        {"name":"Merauke"},
+                        {"name":"Mimika"},
+                        {"name":"Nduga"},
+                        {"name":"Pegunungan Bintang"},
+                        {"name":"Puncak Jaya"},
+                        {"name":"Puncak"},
+                        {"name":"Sarmi"},
+                        {"name":"Tolikara"},
+                        {"name":"Yahukimo"},
+                        {"name":"Yalimo"},
+                        {"name":"Kota Jayapura"}
+                      ]
+        },
+        {
+          "provinsi": "Papua (Biak)",
+          "kantor": "KPKNL Biak",
+          "kode": "04",
+          "alamat": "Jalan Majapahit No. 1, Biak, Papua. Telp. (0981) 26111",
+          "kabupaten": [
+                      {"name":"Biak Numfor"},
+                      {"name":"Supiori"},
+                      {"name":"Kepulauan Yapen"},
+                      {"name":"Waropen"},
+                      {"name":"Nabire"},
+                      {"name":"Paniai"},
+                      {"name":"Dogiyai"},
+                      {"name":"Deiyai"},
+                      {"name":"Intan Jaya"}
+                ]
+        },
+        {
+          "provinsi": "Papua Barat",
+          "kantor": "KPKNL Sorong",
+          "kode": "03",
+          "alamat": "Gedung Keuangan Negara Sorong, Jalan Basuki Rahmat Km. 7, Kota Sorong, Papua Barat - 98414. Telp. (0951) 324868",
+          "kabupaten": [
+                      {"name":"Fakfak"},
+                      {"name":"Kaimana"},
+                      {"name":"Manokwari Selatan"},
+                      {"name":"Manokwari"},
+                      {"name":"Maybrat"},
+                      {"name":"Pegunungan Arfak"},
+                      {"name":"Raja Ampat"},
+                      {"name":"Sorong Selatan"},
+                      {"name":"Kab. Sorong"},
+                      {"name":"Tambrauw"},
+                      {"name":"Teluk Bintuni"},
+                      {"name":"Teluk Wondama"},
+                      {"name":"Kota Sorong"}
+                ]
+        },
+        {
+          "provinsi": "Maluku",
+          "kantor": "KPKNL Ambon",
+          "kode": "01",
+          "alamat": "Gedung Keuangan Negara Lt. IV Ambon, Jalan Raya Patimura No. 18 , Ambon, Maluku - 97124, Kotak Pos 1023. Telp. (0911) 344360",
+          "kabupaten": [
+                      {"name":"Buru"},
+                      {"name":"Buru Selatan"},
+                      {"name":"Kepulauan Aru"},
+                      {"name":"Maluku Barat Daya"},
+                      {"name":"Maluku Tengah"},
+                      {"name":"Maluku Tenggara"},
+                      {"name":"Maluku Tenggara Barat"},
+                      {"name":"Seram Bagian Barat"},
+                      {"name":"Seram Bagian Timur"},
+                      {"name":"Ambon"},
+                      {"name":"Tual"}
+                ]
+        }
+]

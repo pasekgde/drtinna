@@ -1,0 +1,43 @@
+[
+	{
+		"day" : "MON",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "TUE",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "WED",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "THU",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "FRI",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "SAT",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	},
+
+	{
+		"day" : "SUN",
+		"start" : "08.00 AM",
+		"end" : "10.00 PM"
+	}
+]

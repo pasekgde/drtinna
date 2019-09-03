@@ -1,0 +1,50 @@
+{
+	"1": {
+		"name": "Kintamani Cycling Tour",
+		"img": "cycling.jpg",
+		"category": "Full/Half Day",
+		"link" : "/home/tour/1"
+	},
+	"2": {
+		"name": "Electric Bike",
+		"img": "electric.jpg",
+		"category": "Half Day",
+		"link" : "/home/tour/2"
+	},
+	"3": {
+		"name": "Classic Adventure Bike",
+		"img": "classic.jpg",
+		"category": "Full/Half Day",
+		"link" : "/home/tour/1"
+	},
+	"4": {
+		"name": "Combo Bike & ATV Tour",
+		"img": "BATV.jpg",
+		"category": "Full Day",
+		"link" : "/home/tour/3"
+	},
+	"5": {
+		"name": "Combo Bike & Rafting Tour",
+		"img": "BRAFTING.jpg",
+		"category": "Full Day",
+		"link" : "/home/tour/4"
+	},
+	"6": {
+		"name": "Sunrise Trekking",
+		"img": "sunrise.jpg",
+		"category": "Half Day",
+		"link" : "/home/tour/5"
+	},
+	"7": {
+		"name": "Ubud Trekking",
+		"img": "greentrek.jpg",
+		"category": "Half Day",
+		"link" : "/home/tour/6"
+	},
+	"8": {
+		"name": "Tamblingan Trekking",
+		"img": "tamblingan.jpg",
+		"category": "Full Day",
+		"link" : "/home/tour/1"
+	}
+}

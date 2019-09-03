@@ -1,0 +1,36 @@
+{
+    "jabatan_kepala_seksi": [
+        {
+            "no": "1",
+            "jabatan": "Kepala Seksi PKN KPKNL Jayapura",
+            "kantor": "KPKNL Jayapura",
+            "status": "definitif",
+            "nip": "19750129 199602 1 001",          
+            "nama": "Muhammad Irfan Fathoni Khosasih"          
+        },
+        {
+            "no": "2",
+            "jabatan": "Kepala Seksi PKN KPKNL Sorong",
+            "kantor": "KPKNL Sorong",
+            "status": "definitif",
+            "nip": "19770519 199903 1 002",
+            "nama": "Ersandy Rumansjah"
+        },
+        {
+            "no": "3",
+            "jabatan": "Kepala Seksi PKN KPKNL Ambon",
+            "kantor": "KPKNL Ambon",
+            "status": "definitif",
+            "nip": "19750430 199602 1 001",
+            "nama": "Rachmat Sudarmono"
+        },
+        {
+            "no": "4",
+            "jabatan": "Kepala Seksi PKN KPKNL Biak",
+            "kantor": "KPKNL Biak",
+            "status": "definitif",
+            "nip": "19720818 199402 1 001",
+            "nama": "Gusnadi"
+        }
+    ]
+}

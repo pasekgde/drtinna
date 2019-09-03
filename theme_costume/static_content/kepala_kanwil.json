@@ -1,0 +1,11 @@
+{
+    "jabatan_kepala_kanwil": [
+                        {   
+                            "no": "1",        
+                            "jabatan" : "Kepala KANWIL PKN",
+                            "status" : "plt_plh",
+                            "nip" : "19770205 200212 1 003",          
+                            "nama" : "Hermanu Joko Nugroho" 
+                        }
+    ]
+}

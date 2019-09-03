@@ -1,0 +1,224 @@
+{
+	"1":
+		{	
+			"name" : "Kintamani Downhill Cycling Tour",
+			"img-background" : "cycling/cycling.jpg",
+			"category" : "Full/Half Day",
+			"promo" : "10% Off for Repeater",
+			"startprice" : "Rp 550.000",
+			"link" : "dode.jpg",
+			"pickup":	{	
+							"1" :{	"area" :"Ubud",
+									"price" : "0"	
+								 },
+							"2" :{	"area" :"Nusa Dua / Jimbaran",
+									"price" : "100000"	
+								 },
+							"3" :{	"area" :"Kuta / Seminyak Area",
+									"price" : "100000"	
+								 }
+						},
+			"package":	{	
+							"1" :{	"name" :"Morning Tour",
+									"minimum":"1",
+									"price" :{	
+												"1" :{	"type" :"Infant",
+														"price" :"100000"	
+								 					 },
+								 				"2" :{	"type" :"Child",
+														"price" :"400000"	
+								 					 },
+								 				"3" :{	"type" :"Adult",
+														"price" :"550000"	
+								 					 }
+								             }
+						        },
+						    "2" :{	"name" :"Afternoon Tour",
+						    		"minimum":"4",
+									"price" :{	
+												"1" :{	"type" :"Infant",
+														"price" :"100000"	
+								 					 },
+								 				"2" :{	"type" :"Child",
+														"price" :"400000"	
+								 					 },
+								 				"3" :{	"type" :"Adult",
+														"price" :"550000"	
+								 					 }
+								             }
+						        },
+							
+						},
+			"photos":	{	
+							"1" : "cycling/c1.jpg",
+							"2" : "cycling/c2.jpg",
+							"3" : "cycling/c3.jpg",
+							"4" : "cycling/c4.jpg",
+							"5" : "cycling/c5.jpg",
+							"6" : "cycling/c6.jpg",
+							"7" : "cycling/c7.png",
+							"8" : "cycling/c8.jpg",
+							"9" : "cycling/c9.jpg",
+							"10" : "cycling/c10.jpg",
+							"11" : "cycling/c11.jpg",
+							"12" : "cycling/c12.jpg"
+						}
+		},	
+
+		"2":
+			{	
+				"name" : "Explore Ubud – with Electric Bike Bali",
+				"img-background" : "electric/e1.jpg",
+				"category" : "Half Day",
+				"promo" : "Special Price",
+				"startprice" : "Rp 550.000",
+				"link" : "dode.jpg",
+				"pickup":	{	
+							"1" :{	"area" :"Ubud",
+									"price" : "0"	
+								 },
+							"2" :{	"area" :"Nusa Dua / Jimbaran",
+									"price" : "100000"	
+								 },
+							"3" :{	"area" :"Kuta / Seminyak Area",
+									"price" : "100000"	
+								 }
+							},
+				"package":	{	
+								"1" :{	"name" :"Electric Tour",
+							    		"minimum":"1",
+										"price" :{	
+													"1" :{	"type" :"Infant",
+															"price" :"100000"	
+									 					 },
+									 				"2" :{	"type" :"Child",
+															"price" :"400000"	
+									 					 },
+									 				"3" :{	"type" :"Adult",
+															"price" :"550000"	
+									 					 }
+									             }
+							        },
+								
+							},
+				"photos":	{	"1" : "electric/e1.jpg",
+								"2" : "electric/e2.jpg",
+								"3" : "electric/e3.jpg",
+								"4" : "electric/e4.jpg",
+								"5" : "electric/e5.jpg",
+								"6" : "electric/e6.jpg",
+								"7" : "electric/e7.png",
+								"8" : "electric/e8.jpg",
+								"9" : "electric/e9.jpg",
+								"10" : "electric/e10.jpg",
+								"11" : "electric/e11.jpg",
+								"12" : "electric/e12.jpg"
+							}
+			},	
+
+		"3":
+			{	
+				"name" : "Best Bali Tour – Cycling with ATV",
+				"img-background" : "comboATV/ca1.jpg",
+				"category" : "Half Day",
+				"promo" : "Special Price",
+				"startprice" : "Rp 1.450.000",
+				"link" : "dode.jpg",
+				"pickup":	{	
+							"1" :{	"area" :"Ubud",
+									"price" : "0"	
+								 },
+							"2" :{	"area" :"Nusa Dua / Jimbaran",
+									"price" : "100000"	
+								 },
+							"3" :{	"area" :"Kuta / Seminyak Area",
+									"price" : "100000"	
+								 }
+							},
+				"package":	{	
+								"1" :{	"name" :"Combo ATV",
+										"minimum":"1",
+										"price" :{	
+													"1" :{	"type" :"Infant",
+															"price" :"1450000"	
+									 					 },
+									 				"2" :{	"type" :"Child",
+															"price" :"1450000"	
+									 					 },
+									 				"3" :{	"type" :"Adult",
+															"price" :"1450000"	
+									 					 }
+									             }
+							        }
+								
+							},
+				"photos":	{	"1" : "comboATV/ca1.jpg",
+								"2" : "comboATV/ca2.jpg",
+								"3" : "comboATV/ca3.jpg",
+								"4" : "comboATV/ca4.jpg",
+								"5" : "comboATV/ca5.jpg",
+								"6" : "comboATV/ca6.jpg",
+								"7" : "comboATV/ca7.png",
+								"8" : "comboATV/ca8.jpg",
+								"9" : "comboATV/ca9.jpg",
+								"10" : "comboATV/ca10.jpg",
+								"11" : "comboATV/ca11.jpg",
+								"12" : "comboATV/ca12.jpg"
+							}
+			},	
+			"4":
+				{	
+					"name" : "Best Bali Tour – Cycling with Rafting",
+					"img-background" : "comboRafting/ra1.png",
+					"category" : "Full Day",
+					"promo" : "Special Price",
+					"startprice" : "Rp 1.200.000",
+					"link" : "dode.jpg",
+					"photos":	{	"1" : "comboRafting/ra1.png",
+									"2" : "comboRafting/ra2.jpg",
+									"3" : "comboRafting/ra3.jpg",
+									"4" : "comboRafting/ra4.jpg",
+									"5" : "comboRafting/ra5.jpg",
+									"6" : "comboRafting/ra6.jpg",
+									"7" : "comboRafting/ra7.jpg"
+								}
+				},	
+			"5":
+				{	
+					"name" : "Bali Sunrise Trekking – Mount Batur Trekking",
+					"img-background" : "sunrise/su4.jpg",
+					"category" : "Full Day",
+					"promo" : "Special Price",
+					"startprice" : "Rp 770.000",
+					"link" : "dode.jpg",
+					"photos":	{	"1" : "sunrise/su1.jpg",
+									"2" : "sunrise/su2.jpg",
+									"3" : "sunrise/su3.jpg",
+									"4" : "sunrise/su4.jpg",
+									"5" : "sunrise/su5.jpg",
+									"6" : "sunrise/su6.jpg",
+									"7" : "sunrise/su7.jpg",
+									"8" : "sunrise/su8.jpg",
+									"9" : "sunrise/su9.jpg",
+									"10" : "sunrise/su10.jpg",
+									"11" : "sunrise/su11.jpg",
+									"12" : "sunrise/su12.jpg"
+								}
+				},	
+			"6":
+				{	
+					"name" : "Ubud Trekking",
+					"img-background" : "greentrek/gt2.jpg",
+					"category" : "Full Day",
+					"promo" : "Special Price",
+					"startprice" : "Rp 450.000",
+					"link" : "dode.jpg",
+					"photos":	{	"1" : "greentrek/gt1.jpg",
+									"2" : "greentrek/gt2.jpg",
+									"3" : "greentrek/gt3.jpg",
+									"4" : "greentrek/gt4.jpg",
+									"5" : "greentrek/gt5.png"
+								}
+				}
+}
+	

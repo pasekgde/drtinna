@@ -1,0 +1,25 @@
+[
+	{
+		"img" : "iv-2.jpg",
+		"name" : "IV, Non-IV Hangover Cure<br>and Vitamin Therapy",
+		"desc" : "Drinking alcohol, especially too much, can be accompanied by various side effects. A hangover is the most common one. We are the only one who use different saline with complete electrolytes and high quality of IV vitamin for hangover.",
+		"link" : "#",
+		"delay" : 0
+	},
+
+	{
+		"img" : "iv-4.jpg",
+		"name" : "Bali Belly Cure",
+		"desc" : "Bali Belly is just a quirky name for traveler’s diarrhea and stomach pain suffered by tourists in Bali. It is technically an acute case of gastroenteritis, or gastro for short, and is almost always caused by eating contaminated food or water. If you are experiencing abdominal bloating, cramps and pain, nausea and/or vomiting and diarrhea this treatment is for you.",
+		"link" : "#",
+		"delay" : 300
+	},
+
+	{
+		"img" : "iv-3.jpg",
+		"name" : "Vitamin<br>and Hydration Therapy",
+		"desc" : "Too much time in the sun, as well as alcohol intake can deplete your vitamin stores and lead to low energy levels, fatigue, depressed mood, and higher likelihood of getting sick. The use of vitamins to prevent or cure disease. Many physicians are now recognizing the beneficial uses of anti-oxidant and other vitamins for a wide variety of conditions.",
+		"link" : "#",
+		"delay" : 600
+	}
+]

@@ -1,0 +1,25 @@
+{
+    "jabatan_kepala_seksi": [
+        {
+            "no": "1",
+            "jabatan": "Kepala Seksi PKN I",
+            "status": "definitif",
+            "nip": "19731113 199403 1 002",          
+            "nama": "Hamza Novi Ibrahim"          
+        },
+        {
+            "no": "2",
+            "jabatan": "Kepala Seksi PKN II",
+            "status": "definitif",
+            "nip": "19850522 200901 1 005",
+            "nama": "Agus Budiartha"
+        },
+        {
+            "no": "3",
+            "jabatan": "Kepala Seksi PKN III",
+            "status": "definitif",
+            "nip": "199760212 199703 1 002",
+            "nama": "Evendi Antogia"
+        }
+    ]
+}

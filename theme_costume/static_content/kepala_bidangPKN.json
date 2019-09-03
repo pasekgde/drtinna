@@ -1,0 +1,36 @@
+{
+    "jabatan_kepala_bidang": [
+        {
+            "no": "1",
+            "jabatan": "Kepala Bidang PKN KPKNL Jayapura",
+            "kantor": "KPKNL Jayapura",
+            "status": "definitif",
+            "nip": "19740619 199903 1 002",          
+            "nama": "Widiyantoro"          
+        },
+        {
+            "no": "2",
+            "jabatan": "Kepala Bidang PKN KPKNL Sorong",
+            "kantor": "KPKNL Sorong",
+            "status": "definitif",
+            "nip": "19740619 199903 1 002",
+            "nama": "Indra Eka Putra"
+        },
+        {
+            "no": "3",
+            "jabatan": "Kepala Bidang PKN KPKNL Ambon",
+            "kantor": "KPKNL Ambon",
+            "status": "definitif",
+            "nip": "19760216 200212 1 001",
+            "nama": "Yoshua Wisnungkara"
+        },
+        {
+            "no": "4",
+            "jabatan": "Kepala Bidang PKN KPKNL Biak",
+            "kantor": "KPKNL Biak",
+            "status": "definitif",
+            "nip": "19740619 199903 1 002",
+            "nama": "Muthoharul Janan"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+[
+	{
+		"idx" : "01",
+		"mainTitle" : "CHECK OUR SERVICE",
+		"mainDesc" : "We have many choices of service you might need",
+		"subTitle" : "CHECK OUR SERVICE",
+		"subDesc" : "If you're interested you can check the detail of services offered",
+		"btnLink" : "#",
+		"btnText" : "OUR SERVICES",
+		"img" : "step-1.jpg"
+	},
+
+	{
+		"idx" : "02",
+		"mainTitle" : "BOOKING",
+		"mainDesc" : "Book our service easily through web, email, or direct phone call",
+		"subTitle" : "BOOKING",
+		"subDesc" : "Interested to book ? Directly click below link for web booking",
+		"btnLink" : "#",
+		"btnText" : "BOOK NOW",
+		"img" : "step-2.jpg"
+	},
+
+	{
+		"idx" : "03",
+		"mainTitle" : "THERAPY",
+		"mainDesc" : "Enjoy excellent quality and trustworthy service",
+		"subTitle" : "THERAPY",
+		"subDesc" : "We will directly visit your location for therapy. Less hassle for you !",
+		"btnLink" : "#",
+		"btnText" : "CUSTOMER REVIEW",
+		"img" : "step-3.jpg"
+	}
+]

@@ -1,0 +1,399 @@
+{
+    "nama_kemeterian_lembaga": [
+        {
+            "no": "1",
+            "kode_KL": "1",
+            "nama_KL": "\r\nMAJELIS PERMUSYAWARATAN RAKYAT"
+        },
+        {
+            "no": "2",
+            "kode_KL": "2",
+            "nama_KL": "DEWAN PERWAKILAN RAKYAT"
+        },
+        {
+            "no": "3",
+            "kode_KL": "4",
+            "nama_KL": "BADAN PEMERIKSA KEUANGAN"
+        },
+        {
+            "no": "4",
+            "kode_KL": "5",
+            "nama_KL": "MAHKAMAH AGUNG"
+        },
+        {
+            "no": "5",
+            "kode_KL": "6",
+            "nama_KL": "KEJAKSAAN REPUBLIK INDONESIA"
+        },
+        {
+            "no": "6",
+            "kode_KL": "7",
+            "nama_KL": "KEMENTERIAN SEKRETARIAT NEGARA"
+        },
+        {
+            "no": "7",
+            "kode_KL": "10",
+            "nama_KL": "KEMENTERIAN DALAM  NEGERI"
+        },
+        {
+            "no": "8",
+            "kode_KL": "11",
+            "nama_KL": "KEMENTERIAN LUAR NEGERI"
+        },
+        {
+            "no": "9",
+            "kode_KL": "12",
+            "nama_KL": "KEMENTERIAN PERTAHANAN"
+        },
+        {
+            "no": "10",
+            "kode_KL": "13",
+            "nama_KL": "KEMENTERIAN HUKUM DAN HAK ASASI MANUSIA"
+        },
+        {
+            "no": "11",
+            "kode_KL": "15",
+            "nama_KL": "KEMENTERIAN KEUANGAN"
+        },
+        {
+            "no": "12",
+            "kode_KL": "18",
+            "nama_KL": "KEMENTERIAN PERTANIAN"
+        },
+        {
+            "no": "13",
+            "kode_KL": "19",
+            "nama_KL": "KEMENTERIAN PERINDUSTRIAN"
+        },
+        {
+            "no": "14",
+            "kode_KL": "20",
+            "nama_KL": "KEMENTERIAN ENERGI  DAN SUMBER DAYA MINERAL"
+        },
+        {
+            "no": "15",
+            "kode_KL": "22",
+            "nama_KL": "KEMENTERIAN PERHUBUNGAN"
+        },
+        {
+            "no": "16",
+            "kode_KL": "23",
+            "nama_KL": "KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN"
+        },
+        {
+            "no": "17",
+            "kode_KL": "24",
+            "nama_KL": "KEMENTERIAN KESEHATAN"
+        },
+        {
+            "no": "18",
+            "kode_KL": "25",
+            "nama_KL": "KEMENTERIAN AGAMA"
+        },
+        {
+            "no": "19",
+            "kode_KL": "26",
+            "nama_KL": "KEMENTERIAN KETENAGAKERJAAN"
+        },
+        {
+            "no": "20",
+            "kode_KL": "27",
+            "nama_KL": "KEMENTERIAN SOSIAL"
+        },
+        {
+            "no": "21",
+            "kode_KL": "29",
+            "nama_KL": "KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN"
+        },
+        {
+            "no": "22",
+            "kode_KL": "32",
+            "nama_KL": "KEMENTERIAN KELAUTAN DAN PERIKANAN"
+        },
+        {
+            "no": "23",
+            "kode_KL": "33",
+            "nama_KL": "KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT"
+        },
+        {
+            "no": "24",
+            "kode_KL": "34",
+            "nama_KL": "KEMENTERIAN KOORDINATOR  BIDANG POLITIK, HUKUM, DAN KEAMANAN"
+        },
+        {
+            "no": "25",
+            "kode_KL": "35",
+            "nama_KL": "KEMENTERIAN KOORDINATOR  BIDANG PEREKOnoMIAN"
+        },
+        {
+            "no": "26",
+            "kode_KL": "36",
+            "nama_KL": "KEMENTERIAN KOORDINATOR BIDANG PEMBANGUNAN MANUSIA DAN KEBUDAYAAN"
+        },
+        {
+            "no": "27",
+            "kode_KL": "40",
+            "nama_KL": "KEMENTERIAN PARIWISATA"
+        },
+        {
+            "no": "28",
+            "kode_KL": "41",
+            "nama_KL": "KEMENTERIAN BADAN USAHA MILIK NEGARA"
+        },
+        {
+            "no": "29",
+            "kode_KL": "42",
+            "nama_KL": "KEMENTERIAN RISET DAN TEKnoLOGI DAN PENDIDIKAN TINGGI"
+        },
+        {
+            "no": "30",
+            "kode_KL": "43",
+            "nama_KL": "KEMENTERIAN LINGKUNGAN HIDUP"
+        },
+        {
+            "no": "31",
+            "kode_KL": "44",
+            "nama_KL": "KEMENTERIAN KOPERASI  DAN PENGUSAHA KECIL DAN MENENGAH"
+        },
+        {
+            "no": "32",
+            "kode_KL": "47",
+            "nama_KL": "KEMENTERIAN PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN  ANAK"
+        },
+        {
+            "no": "33",
+            "kode_KL": "48",
+            "nama_KL": "KEMENTERIAN PENDAYAGUNAAN APARATUR NEGARA DAN REFORMASI  BIRO"
+        },
+        {
+            "no": "34",
+            "kode_KL": "50",
+            "nama_KL": "BADAN INTELIJEN  NEGARA"
+        },
+        {
+            "no": "35",
+            "kode_KL": "51",
+            "nama_KL": "LEMBAGA SANDI NEGARA"
+        },
+        {
+            "no": "36",
+            "kode_KL": "52",
+            "nama_KL": "DEWAN KETAHANAN NASIONAL"
+        },
+        {
+            "no": "37",
+            "kode_KL": "54",
+            "nama_KL": "BADAN PUSAT STATISTIK"
+        },
+        {
+            "no": "38",
+            "kode_KL": "55",
+            "nama_KL": "KEMENTERIAN PERENCANAAN PEMBANGUNAN NASIONAL"
+        },
+        {
+            "no": "39",
+            "kode_KL": "56",
+            "nama_KL": "BADAN PERTANAHAN NASIONAL"
+        },
+        {
+            "no": "40",
+            "kode_KL": "57",
+            "nama_KL": "PERPUSTAKAAN NASIONAL REPUBLIK INDONESIA"
+        },
+        {
+            "no": "41",
+            "kode_KL": "59",
+            "nama_KL": "KEMENTERIAN KOMUNIKASI DAN INFORMATIKA"
+        },
+        {
+            "no": "42",
+            "kode_KL": "60",
+            "nama_KL": "KEPOLISIAN  NEGARA REPUBLIK INDONESIA"
+        },
+        {
+            "no": "43",
+            "kode_KL": "63",
+            "nama_KL": "BADAN PENGAWAS  OBAT DAN MAKANAN"
+        },
+        {
+            "no": "44",
+            "kode_KL": "64",
+            "nama_KL": "LEMBAGA KETAHANAN NASIONAL"
+        },
+        {
+            "no": "45",
+            "kode_KL": "65",
+            "nama_KL": "BADAN KOORDINASI  PENANAMAN MODAL"
+        },
+        {
+            "no": "46",
+            "kode_KL": "66",
+            "nama_KL": "BADAN NARKOTIKA NASIONAL"
+        },
+        {
+            "no": "47",
+            "kode_KL": "67",
+            "nama_KL": "KEMENTERIAN PEMBANGUNAN DAERAH TERTINGGAL"
+        },
+        {
+            "no": "48",
+            "kode_KL": "68",
+            "nama_KL": "BADAN KOORDINASI  KELUARGA BERENCANA NASIONAL XXXX"
+        },
+        {
+            "no": "49",
+            "kode_KL": "74",
+            "nama_KL": "KOMISI NASIONAL HAK ASASI MANUSIA"
+        },
+        {
+            "no": "50",
+            "kode_KL": "75",
+            "nama_KL": "BADAN METEOROLOGI, KLIMATOLOGI DAN GEOFISIKA "
+        },
+        {
+            "no": "51",
+            "kode_KL": "76",
+            "nama_KL": "KOMISI PEMILIHAN UMUM"
+        },
+        {
+            "no": "52",
+            "kode_KL": "77",
+            "nama_KL": "MAHKAMAH KONSTITUSI RI"
+        },
+        {
+            "no": "53",
+            "kode_KL": "78",
+            "nama_KL": "PUSAT PELAPORAN DAN ANALISIS TRANSAKSI KEUANGAN "
+        },
+        {
+            "no": "54",
+            "kode_KL": "79",
+            "nama_KL": "LEMBAGA ILMU PENGETAHUAN INDONESIA"
+        },
+        {
+            "no": "55",
+            "kode_KL": "80",
+            "nama_KL": "BADAN TENAGA NUKLIR NASIONAL"
+        },
+        {
+            "no": "56",
+            "kode_KL": "81",
+            "nama_KL": "BADAN PENGKAJIAN DAN PENERAPAN TEKnoLOGI "
+        },
+        {
+            "no": "57",
+            "kode_KL": "82",
+            "nama_KL": "LEMBAGA PENERBANGAN  DAN ANTARIKSA NASIONAL "
+        },
+        {
+            "no": "58",
+            "kode_KL": "83",
+            "nama_KL": "BADAN KOORDINASI  SURVEI DAN PEMETAAN NASIONAL "
+        },
+        {
+            "no": "59",
+            "kode_KL": "84",
+            "nama_KL": "BADAN STANDARISASI  NASIONAL"
+        },
+        {
+            "no": "60",
+            "kode_KL": "85",
+            "nama_KL": "BADAN PENGAWAS  TENAGA NUKLIR "
+        },
+        {
+            "no": "61",
+            "kode_KL": "86",
+            "nama_KL": "LEMBAGA ADMINISTRASI NEGARA"
+        },
+        {
+            "no": "62",
+            "kode_KL": "87",
+            "nama_KL": "ARSIP NASIONAL REPUBLIK INDONESIA "
+        },
+        {
+            "no": "63",
+            "kode_KL": "88",
+            "nama_KL": "BADAN KEPEGAWAIAN NEGARA"
+        },
+        {
+            "no": "64",
+            "kode_KL": "89",
+            "nama_KL": "BADAN PENGAWASAN   KEUANGAN DAN PEMBANGUNAN "
+        },
+        {
+            "no": "65",
+            "kode_KL": "90",
+            "nama_KL": "KEMENTERIAN PERDAGANGAN"
+        },
+        {
+            "no": "66",
+            "kode_KL": "91",
+            "nama_KL": "KEMENTERIAN PERUMAHAN RAKYAT "
+        },
+        {
+            "no": "67",
+            "kode_KL": "92",
+            "nama_KL": "KEMENTERIAN PEMUDA DAN OLAH RAGA "
+        },
+        {
+            "no": "68",
+            "kode_KL": "93",
+            "nama_KL": "KOMISI PEMBERANTASAN KORUPSI "
+        },
+        {
+            "no": "69",
+            "kode_KL": "95",
+            "nama_KL": "DEWAN PERWAKILAN DAERAH (DPD)"
+        },
+        {
+            "no": "70",
+            "kode_KL": "100",
+            "nama_KL": "KOMISI YUDISIAL RI"
+        },
+        {
+            "no": "71",
+            "kode_KL": "103",
+            "nama_KL": "BADAN NASIONAL PENANGGULANGAN BENCANA"
+        },
+        {
+            "no": "72",
+            "kode_KL": "104",
+            "nama_KL": "BADAN NASIONAL PENEMPATAN DAN PERLINDUNGAN  TENAGA KERJA INDO "
+        },
+        {
+            "no": "73",
+            "kode_KL": "105",
+            "nama_KL": "BADAN PENANGGULANGAN LUMPUR SIDOARJO  (BPLS)"
+        },
+        {
+            "no": "74",
+            "kode_KL": "106",
+            "nama_KL": "LEMBAGA KEBIJAKAN PENGADAAN BARANG/JASA PEMERINTAH "
+        },
+        {
+            "no": "75",
+            "kode_KL": "107",
+            "nama_KL": "BADAN SAR NASIONAL"
+        },
+        {
+            "no": "76",
+            "kode_KL": "108",
+            "nama_KL": "KOMISI PENGAWAS PERSAINGAN USAHA "
+        },
+        {
+            "no": "77",
+            "kode_KL": "109",
+            "nama_KL": "BADAN PENGEMBANGAN WILAYAH SURAMADU "
+        },
+        {
+            "no": "78",
+            "kode_KL": "110",
+            "nama_KL": "OMBUDSMAN REPUBLIK INDONESIA"
+        },
+        {
+            "no": "79",
+            "kode_KL": "111",
+            "nama_KL": "BADAN NASIONAL PENGELOLA PERBATASAN"
+        }
+    ]
+}
