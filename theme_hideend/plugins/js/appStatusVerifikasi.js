@@ -1159,7 +1159,7 @@ Vue.component('table-verifikasi-pspbmn', {
             template: '#pspTableVerifikasiWizard',
             data() {
                  return {
-                    url: 'http://localhost/pspbmn',
+                    url: myUrl,
                     pengajuan:[],
                     emptyResult: false,
                     successMSG: '',
@@ -1258,7 +1258,7 @@ Vue.component('table-verifikasi-pspbmn', {
 var v = new Vue({
     el: '#app',
     data: {
-        url: 'http://localhost/pspbmn',
+        url: myUrl,
         verifikasi:{},
         jenisForm:{
                         'verifikasi':false,
