@@ -504,7 +504,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
             props: ['datapengajuan','tipepengajuan','jenisform'],
             data() {
                  return {
-                    url: 'http://localhost/pspbmn',
+                    url: myUrl,
                     choosePengajuan:this.datapengajuan,
                     verifikasi:{
                         id: '',
