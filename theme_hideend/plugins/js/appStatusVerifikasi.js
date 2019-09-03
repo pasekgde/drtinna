@@ -7,13 +7,21 @@ Vue.use(VueTheMask)
 Vue.use(VueMultiselect)
 Vue.component('vue-multiselect', window.VueMultiselect.default)
 
+//dynamic url
+let myUrl = window.location.origin+"/";
+
+if(url.includes("localhost")){
+  var pathArray = window.location.pathname.split( '/' );
+  myUrl += pathArray [1] + "/";
+}
+
 
 Vue.component('verifikasi-pspbmn-kpknl', {
             template: '#pspVerifikasiWizardFormKPKNL',
             props: ['datapengajuan','tipepengajuan','jenisform'],
             data() {
                  return {
-                    url: 'http://localhost/pspbmn',
+                    url: myUrl,
                     choosePengajuan:this.datapengajuan,
                     verifikasi:{
                         id: '',

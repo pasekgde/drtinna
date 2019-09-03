@@ -7,12 +7,20 @@ Vue.use(VMoney)
 Vue.use(VueMultiselect)
 Vue.component('vue-multiselect', window.VueMultiselect.default)
 
+//dynamic url
+let myUrl = window.location.origin+"/";
+
+if(url.includes("localhost")){
+  var pathArray = window.location.pathname.split( '/' );
+  myUrl += pathArray [1] + "/";
+}
+
 
 Vue.component('pengajuan-pspbmn', {
             template: '#pspPengajuanWizardForm',
             data() {
                 return {
-                    url: 'http://localhost/pspbmn/',
+                    url: myUrl,
                     emptyResult: false,
                     successMSG: '',
                     tpBtn: 0,
