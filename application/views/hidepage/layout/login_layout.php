@@ -27,10 +27,10 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="<?=site_url("hideend/hideend/login") ?>"><b><?php echo $this->settings->info->site_name ?></b> Login</a>
+<body class="hold-transition login-page" style="background-image: url('../uploads/papua.jpg');background-repeat: no-repeat;background-size: cover;">
+<div class="login-box" style="background: #3C8DBC!important">
+  <div class="login-logo" style="padding:10px">
+    <a href="<?=site_url("hideend/hideend/login") ?>" style="color:white"><b>PSP BMN SYSTEM</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
