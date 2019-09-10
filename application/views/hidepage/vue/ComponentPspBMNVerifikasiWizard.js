@@ -18,17 +18,17 @@
                                 <div class="form-horizontal">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Petugas</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Verifikator</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Nama" v-validate="'required'" name="nama_petugas" v-model="verifikasi.nama_petugas" data-vv-scope="step1">
-                                                <span class="text-red">{{ errors.first('step1.nama_petugas') }}</span>
+                                                <input type="text" class="form-control" placeholder="Nama" v-validate="'required'" name="nama_verifikator" v-model="verifikasi.nama_verifikator" data-vv-scope="step1">
+                                                <span class="text-red">{{ errors.first('step1.nama_verifikator') }}</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Petugas</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Verifikator</label>
                                             <div class="col-sm-5">
-                                                <the-mask type="text" mask="######## ###### # ###" class="form-control" v-validate="'required'" name="nip_petugas" v-model="verifikasi.nip_petugas" placeholder="Masukkan NIP Petugas" data-vv-scope="step1"> </the-mask>
-                                                <span class="text-red">{{ errors.first('step1.nip_petugas') }}</span>
+                                                <the-mask type="text" mask="######## ###### # ###" class="form-control" v-validate="'required'" name="nip_verifikator" v-model="verifikasi.nip_verifikator" placeholder="Masukkan NIP Verifikator" data-vv-scope="step1"> </the-mask>
+                                                <span class="text-red">{{ errors.first('step1.nip_verifikator') }}</span>
                                             </div>
                                         </div>
 
@@ -265,7 +265,7 @@
 
                         </tab-content>
 
-                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.verifikasi" :before-change="beforeTab2SwitchKANWIL" >
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.verifikasi" :before-change="beforeTab3SwitchKANWIL" >
 
                             <div class="box box-primary">
                                 <div class="box-header with-border">
@@ -341,10 +341,11 @@
                                                 <button class="btn" :class="{'active btn-success':(verifikasi.check_sk_delegasi === 'tidak ada')}" @click.prevent="checklistVerifikasi('check_sk_delegasi','tidak ada')">Tidak Ada</button>
                                             </div>
                                         </div>
-                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label"></label>
+                                         <div class="form-group" style="background-color:green;padding:30px">
+                                            <label for="exampleInputEmail1" class="col-sm-4 control-label" style="color:white">Input Peraturan Pemerintah Pendelegasian Wewenang</label>
                                             <div class="col-sm-8">
-                                               <input type="text" class="form-control" placeholder="Contoh. Peratuan Contoh Pasal 1" v-model="verifikasi.rencana_survey">
+                                                <input type="text" class="form-control" placeholder="ex. Peraturan Pemerintah Pasal 1" v-validate="'required'" name="peraturan_pendelegasian_wewenang" v-model="verifikasi.peraturan_pendelegasian_wewenang_KL" data-vv-scope="step3">
+                                                <span class="text-red">{{ errors.first('step3.peraturan_pendelegasian_wewenang') }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -405,7 +406,7 @@
                             </div>
                         </tab-content>
 
-                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" :before-change="beforeTab3SwitchKANWIL" v-if="jenisForm.verifikasi">
+                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" :before-change="beforeTab4SwitchKANWIL" v-if="jenisForm.verifikasi">
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon btn-flat margin">Hasil Verifikasi Dokumen</h3>
                             </div>
@@ -429,7 +430,7 @@
                                         <div class="col-sm-4">
                                             <div class="box-body2">
                                                 <button class="btn btn-warning" @click="butuhSurveyLapangan" >
-                                                    <i class="fa fa-question"></i> Butuh Survei Lapangan 
+                                                    <i class="fa fa-question"></i> Butuh Survei Lapangan  
                                                 </button>
                                             </div>
                                         </div>
@@ -459,12 +460,15 @@
                                                <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.cp_survey">
                                             </div>
                                         </div>
-                                         <div class="form-group">
+
+
+
+                                        <div class="form-group">
                                                 <div class="col-sm-12 ">
-                                                    <button class="btn active btn-success col-sm-12" @click.prevent="saveDataSurveyLapangan();">Save Survey Data</button>                                                    
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="btnDataSurveyLapangan();showDocumentSurveyFinal=true">Generate Survey Document</button>                                                    
                                                 </div>
                                         </div> 
-                                        <div class="form-group" >
+                                        <div class="form-group" v-if="showDocumentSurveyFinal" >
                                                 <div class="col-sm-12 ">
                                                    <div class="box box-widget widget-user-2">
                                                         <div class="widget-user-header bg-yellow">
@@ -473,7 +477,9 @@
                                                         <div class="box-footer no-padding">
                                                           <ul class="nav nav-stacked">
                                                             <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                          
+                                                            <li ><a :href="hreffileNDSSurveyLapangan" download><i class="fa fa-download"></i> Download Hasil File Survey Lapangan <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                          </ul>
+                                    
                                                           </ul>
                                                         </div>
                                                       </div>
@@ -488,10 +494,10 @@
                                         <div v-for="(row, index) in daftarKekuranganData" >
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="col-sm-3 control-label">Kekurangan File {{index+1}}</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-8" style="padding-right:0px">
                                                     <input type="text" class="form-control" placeholder="Masukkan Nama Data yang kurang" v-model="row.nama">
                                                 </div>
-                                                <div class="col-sm-1">     
+                                                <div class="col-sm-1" style="padding-left:0px">     
                                                         <button class="btn btn-danger" @click.prevent="deleteRowKurangData(index)">X</button>
                                                 </div>
                                             </div>
@@ -506,11 +512,11 @@
 
                                         <div class="form-group">
                                                 <div class="col-sm-12 ">
-                                                    <button class="btn active btn-success col-sm-12" @click.prevent="saveKelengkapanData();">Generate Kekurangan Data</button>                                                    
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="btnGenerateKelengkapanDoc();showDocumentKekuranganFinal=true">Generate Kekurangan Data</button>                                                    
                                                 </div>
                                         </div> 
 
-                                        <div class="form-group" >
+                                        <div class="form-group" v-if="showDocumentKekuranganFinal" >
                                                 <div class="col-sm-12 ">
                                                    <div class="box box-widget widget-user-2">
                                                         <div class="widget-user-header bg-yellow">
@@ -534,11 +540,11 @@
                                 <div class="box-body">
                                         <div v-for="(row, index) in daftarTembusan" >
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="col-sm-3 control-label">Nama Tembusan {{index+1}}</label>
-                                                <div class="col-sm-8">
+                                                <label for="exampleInputEmail1" class="col-sm-3 control-label" >Nama Tembusan {{index+1}}</label>
+                                                <div class="col-sm-8" style="padding-right:0px">
                                                     <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="row.nama">
                                                 </div>
-                                                <div class="col-sm-1">     
+                                                <div class="col-sm-1" style="padding-left:0px">     
                                                         <button class="btn btn-danger" @click.prevent="deleteRow(index)">X</button>
                                                 </div>
                                             </div>
@@ -584,13 +590,11 @@
                                                         </div>
                                                         <div class="box-footer no-padding">
                                                           <ul class="nav nav-stacked">
-                                                            <li ><a :href="hreffileNDSPersetujuan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                             <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSPersetujuan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                             <li ><a :href="hreffileKMK" download><i class="fa fa-download"></i> Download Dokumen KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                             <li ><a :href="hreffileSalinanKMK" download><i class="fa fa-download"></i> Download Salinan KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                             <li ><a :href="hreffileNDSSurveyLapangan" download><i class="fa fa-download"></i> Download Salinan Lampiran KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            
-                                                          </ul>
+                                                            </ul>
                                                         </div>
                                                       </div>
 
@@ -602,88 +606,53 @@
 
                         </tab-content>
 
-                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhkelengkapan" >
+                                               <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhkelengkapan" :before-change="beforeTabHasilVerifikasi" >
 
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title btn bg-maroon btn-flat margin">BUTUH KELENGKAPAN DOKUMEN</h3>
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN BUTUH KELENGKAPAN DATA OKE</h3>
                                 </div>
-
-                                <div class="form-horizontal">
-                                <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Data 01</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Rencana" v-model="verifikasi.rencana_survey">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Data 02</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.nama_survey">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Data 02</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.cp_survey">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" >
-                                                <div class="col-sm-12 ">
-                                                   <div class="box box-widget widget-user-2">
-                                                        <div class="widget-user-header bg-green">
-                                                          <h3 class="widget-user-username">Silakan Download Kelengkapan yang dilampirkan</h3>
-                                                        </div>
-                                                        <div class="box-footer no-padding">
-                                                          <ul class="nav nav-stacked">
-                                                            <li ><a :href="hreffileNDSPermintaanKelengkapan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            
-                                                          </ul>
-                                                        </div>
-                                                      </div>
-                                                </div>
-                                        </div>
-
-                                </div>
-
-                                </div>
-                            </div>
-                        </tab-content>
-
-                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhsurvey" >
-
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title btn bg-maroon btn-flat margin">PERLU SURVEY</h3>
-                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
                                 <div class="form-horizontal">
                                     <div class="box-body">
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Permintaan Kelengkapan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSPermintaanKelengkapanfinal" ref="suratNDSPermintaanKelengkapanfinal" v-validate="'required'" name="suratNDSPermintaanKelengkapanfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSPermintaanKelengkapanfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>    
                                         
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Rencana Survei Lapangan?</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Rencana" v-model="verifikasi.rencana_survey">
+                                         <div class="form-group" v-if="successUpload">
+                                            
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
                                             </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Nama CP Survei</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.nama_survey">
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
                                             </div>
-                                        </div>
+                                            
+                                        </div> 
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Kontak CP Survei</label>
-                                            <div class="col-sm-9">
-                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.cp_survey">
-                                            </div>
-                                        </div>
-
+                                        <div class="form-group" v-if="!successUpload" >
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileKelengkapan();">Upload Semua File!</button>                                                    
+                                                </div>
+                                        </div> 
 
                                     </div>
 
@@ -691,74 +660,121 @@
                             </div>
                         </tab-content>
 
-                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.uploaddokumen" >
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhsurvey" :before-change="beforeTabHasilVerifikasi" >
+
 
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI</h3>
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN SURVEY OKE </h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
                                 <div class="form-horizontal">
                                     <div class="box-body">
-                                        
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Persetujuan KANWIL</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileSuratPermohon" ref="suratNDSPersetujuanKANWIL" v-validate="'required'" name="suratNDSPersetujuanKANWIL" data-vv-scope="step2">
-                                                <span class="text-red">{{ errors.first('step2.suratNDSPersetujuanKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Surat ND S Survey Lapangan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSSurveyLapanganfinal" ref="suratNDSSurveyLapanganfinal" v-validate="'required'" name="suratNDSSurveyLapanganfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSSurveyLapangan') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi KANWIL</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileDaftarRincian" ref="suratHasilVerifikasiKANWIL" v-validate="'required'" name="suratHasilVerifikasiKANWIL" data-vv-scope="step2">
-                                                <span class="text-red">{{ errors.first('step2.suratHasilVerifikasiKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                            </div>
+                                         <div class="form-group" v-if="successUpload">
                                             
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload File Dokumen Kelengkapan Nama</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileDokumenKelengkapan" ref="suratKMKKANWIL" v-validate="'required'" name="suratKMKKANWIL" data-vv-scope="step2">
-                                                <span class="text-red">{{ errors.first('step2.suratKMKKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
                                             </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Salinan KMK KANWIL</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileUploadBackupSimak" ref="suratSalinanKMKKANWIL" v-validate="'required'" name="suratSalinanKMKKANWIL" data-vv-scope="step2" v-on:change="">
-                                                <span class="text-red">{{ errors.first('step2.suratSalinanKMKKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Permintaan Kelengkapan KANWIL</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileUploadBackupSimak" ref="suratNDSPermintaanKelengkapanKANWIL" v-validate="'required'" name="suratNDSPermintaanKelengkapanKANWIL" data-vv-scope="step2" v-on:change="">
-                                                <span class="text-red">{{ errors.first('step2.suratNDSPermintaanKelengkapanKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-4 control-label">Surat ND S Survey Lapangan KANWIL</label>
-                                            <div class="col-sm-8">
-                                                <input type="file" id="fileUploadBackupSimak" ref="suratNDSSurveyLapanganKANWIL" v-validate="'required'" name="suratNDSSurveyLapanganKANWIL" data-vv-scope="step2" v-on:change="">
-                                                <span class="text-red">{{ errors.first('step2.suratNDSSurveyLapanganKANWIL') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
                                             </div>
                                             
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group" v-if="!successUpload">
                                                 <div class="col-sm-12 ">
-                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFile();">Upload Semua File!</button>                                                    
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileSurvey();">Upload Semua File!</button>                                                    
+                                                </div>
+                                        </div> 
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.uploaddokumen" :before-change="beforeTabHasilVerifikasi">
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINAL OKE</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Persetujuan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSPersetujuanfinal" ref="suratNDSPersetujuanfinal" v-validate="'required'" name="suratNDSPersetujuanfinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSPersetujuanfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Dokumen Kelengkapan Nama</label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratKMKfinal" ref="suratKMKfinal" v-validate="'required'" name="suratKMKfinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratKMKfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Salinan KMK </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratSalinanKMKfinal" ref="suratSalinanKMKfinal" v-validate="'required'" name="suratSalinanKMKfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratSalinanKMKfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>    
+                                        <div class="form-group" v-if="successUpload">
+                                            
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
+                                            </div>
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" v-if="!successUpload">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileComplete();">Upload Semua File!</button>                                                    
                                                 </div>
                                         </div> 
 
@@ -791,13 +807,13 @@
 
 
 <script type="text/x-template" id="pspVerifikasiWizardFormKPKNL">
-    <div>
+             <div>
                 <div class="nav-tabs-custom">
                     <form-wizard>
                         <wizard-step slot-scope="props" slot="step" :tab="props.tab" :transition="props.transition" :index="props.index">
                         </wizard-step>
                         <h3 slot="title"></h3>
-                        <tab-content title="Inital Input" icon="fa fa-user" :before-change="beforeTab1SwitchKPKNL">
+                        <tab-content title="Inital Input" icon="fa fa-user" :before-change="beforeTab1SwitchKPKNL" v-if="jenisForm.verifikasi">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
                                     <h3 class="box-title btn bg-maroon margin">IDENTITAS PETUGAS KPKNL</h3>
@@ -807,17 +823,17 @@
                                 <div class="form-horizontal">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Petugas</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Verifikator</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Nama" v-validate="'required'" name="nama_petugas" v-model="verifikasi.nama_petugas" data-vv-scope="step1">
-                                                <span class="text-red">{{ errors.first('step1.nama_petugas') }}</span>
+                                                <input type="text" class="form-control" placeholder="Nama" v-validate="'required'" name="nama_verifikator" v-model="verifikasi.nama_verifikator" data-vv-scope="step1">
+                                                <span class="text-red">{{ errors.first('step1.nama_verifikator') }}</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Petugas</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Verifikator</label>
                                             <div class="col-sm-5">
-                                                <the-mask type="text" mask="######## ###### # ###" class="form-control" v-validate="'required'" name="nip_petugas" v-model="verifikasi.nip_petugas" placeholder="Masukkan NIP Petugas" data-vv-scope="step1"> </the-mask>
-                                                <span class="text-red">{{ errors.first('step1.nip_petugas') }}</span>
+                                                <the-mask type="text" mask="######## ###### # ###" class="form-control" v-validate="'required'" name="nip_verifikator" v-model="verifikasi.nip_verifikator" placeholder="Masukkan NIP Verifikator" data-vv-scope="step1"> </the-mask>
+                                                <span class="text-red">{{ errors.first('step1.nip_verifikator') }}</span>
                                             </div>
                                         </div>
 
@@ -944,7 +960,7 @@
 
                             </div>
                         </tab-content>
-                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate">
+                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" v-if="jenisForm.verifikasi">
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon btn-flat margin">PROSES PENGECEKAN DOKUMEN</h3>
                             </div>
@@ -978,7 +994,7 @@
 
                         </tab-content>
 
-                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="true" :before-change="beforeTab2SwitchKPKNL" >
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" :before-change="beforeTab2SwitchKPKNL" v-if="jenisForm.verifikasi">
 
                             <div class="box box-primary">
                                 <div class="box-header with-border">
@@ -1055,6 +1071,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group" style="background-color:green;padding:30px">
+                                            <label for="exampleInputEmail1" class="col-sm-4 control-label" style="color:white">Input Peraturan Pemerintah Pendelegasian Wewenang</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="ex. Peraturan Pemerintah Pasal 1" v-validate="'required'" name="peraturan_pendelegasian_wewenang" v-model="verifikasi.peraturan_pendelegasian_wewenang_KL" data-vv-scope="step2">
+                                                <span class="text-red">{{ errors.first('step2.peraturan_pendelegasian_wewenang') }}</span>
+                                            </div>
+                                        </div>
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-4 control-label">Dokumen Kepemilikan</label>
@@ -1102,7 +1125,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="col-sm-4 control-label">Catatan Khusus </label>
                                                 <div class="col-sm-8">
-                                                    <textarea width="100%" v-model='verifikasi.noteDokumen'></textarea>
+                                                    <textarea cols="50" rows="5" charswidth="23" v-model='verifikasi.noteDokumen'></textarea>
                                                 </div>
                                             </div>
                                         </div> 
@@ -1112,7 +1135,7 @@
                             </div>
                         </tab-content>
 
-                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" :before-change="beforeTab3SwitchKPKNL" >
+                        <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" :before-change="beforeTab3SwitchKPKNL" v-if="jenisForm.verifikasi" >
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon btn-flat margin">Hasil Verifikasi Dokumen</h3>
                             </div>
@@ -1121,21 +1144,21 @@
                                     <div class="form-group">
                                         <div class="col-sm-4">
                                             <div class="box-body2">
-                                                <button class="btn btn-success">
+                                                <button class="btn btn-success" @click="generateKMKDoc">
                                                     <i class="fa fa-check"></i> Terbitkan KMK
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="box-body2">
-                                                <button class="btn btn-danger" >
+                                                <button class="btn btn-danger" @click="butuhKelengkapanData" >
                                                     <i class="fa fa-ban"></i> Butuh Kelengkapan Data 
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="box-body2">
-                                                <button class="btn btn-warning" >
+                                                <button class="btn btn-warning" @click="butuhSurveyLapangan" >
                                                     <i class="fa fa-question"></i> Butuh Survei Lapangan 
                                                 </button>
                                             </div>
@@ -1167,6 +1190,31 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="form-group">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="btnDataSurveyLapangan();showDocumentSurveyFinal=true">Generate Survey Document</button>                                                    
+                                                </div>
+                                        </div> 
+                                        <div class="form-group" v-if="showDocumentSurveyFinal" >
+                                                <div class="col-sm-12 ">
+                                                   <div class="box box-widget widget-user-2">
+                                                        <div class="widget-user-header bg-yellow">
+                                                          <h3 class="widget-user-username">Silakan Download ND Survey Lapangan</h3>
+                                                        </div>
+                                                        <div class="box-footer no-padding">
+                                                          <ul class="nav nav-stacked">
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSSurveyLapangan" download><i class="fa fa-download"></i> Download Hasil File Survey Lapangan <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                          </ul>
+                                    
+                                                          </ul>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                        </div>
+
+
                                 </div>
                             </div>                                 
 
@@ -1175,10 +1223,10 @@
                                         <div v-for="(row, index) in daftarKekuranganData" >
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="col-sm-3 control-label">Kekurangan File {{index+1}}</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-8" style="padding-right:0px">
                                                     <input type="text" class="form-control" placeholder="Masukkan Nama Data yang kurang" v-model="row.nama">
                                                 </div>
-                                                <div class="col-sm-1">     
+                                                <div class="col-sm-1" style="padding-left:0px">     
                                                         <button class="btn btn-danger" @click.prevent="deleteRowKurangData(index)">X</button>
                                                 </div>
                                             </div>
@@ -1190,15 +1238,23 @@
                                                 </div>
                                         </div>
 
-                                        <div class="form-group" >
+
+                                        <div class="form-group">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="btnGenerateKelengkapanDoc();showDocumentKekuranganFinal=true">Generate Kekurangan Data</button>                                                    
+                                                </div>
+                                        </div> 
+
+                                        <div class="form-group" v-if="showDocumentKekuranganFinal" >
                                                 <div class="col-sm-12 ">
                                                    <div class="box box-widget widget-user-2">
-                                                        <div class="widget-user-header bg-green">
-                                                          <h3 class="widget-user-username">Silakan Download Kelengkapan yang dilampirkan</h3>
+                                                        <div class="widget-user-header bg-yellow">
+                                                          <h3 class="widget-user-username">Silakan Download ND Surat Kelengkapan Data</h3>
                                                         </div>
                                                         <div class="box-footer no-padding">
                                                           <ul class="nav nav-stacked">
-                                                            <li ><a :href="hreffileNDSPermintaanKelengkapan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSPermintaanKelengkapan" download><i class="fa fa-download"></i> Download ND dan Surat Kelengkapan Data <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                             
                                                           </ul>
                                                         </div>
@@ -1210,16 +1266,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-horizontal" >
+                            <div class="form-horizontal" v-if="isGenerateKMKDoc" >
                                 <div class="box-body">
                                         <div v-for="(row, index) in daftarTembusan" >
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="col-sm-3 control-label">Nama Tembusan {{index+1}}</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-8" style="padding-right:0px">
                                                     <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="row.nama">
                                                 </div>
-
-                                                <div class="col-sm-1">     
+                                                <div class="col-sm-1" style="padding-left:0px">     
                                                         <button class="btn btn-danger" @click.prevent="deleteRow(index)">X</button>
                                                 </div>
                                             </div>
@@ -1252,9 +1307,210 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="btnGenerateKMKDoc();showDocumentVerifikasiFinal=true">Generate KMK Document</button>                                                    
+                                                </div>
+                                        </div>                   
+                                        <div class="form-group" v-if="showDocumentVerifikasiFinal">
+                                                <div class="col-sm-12 ">
+                                                   <div class="box box-widget widget-user-2">
+                                                        <div class="widget-user-header bg-yellow">
+                                                          <h3 class="widget-user-username">Silakan Download Dokumen Verifikasi Dibawah Ini</h3>
+                                                        </div>
+                                                        <div class="box-footer no-padding">
+                                                          <ul class="nav nav-stacked">
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSPersetujuan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileKMK" download><i class="fa fa-download"></i> Download Dokumen KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileSalinanKMK" download><i class="fa fa-download"></i> Download Salinan KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                      </div>
+
+                                                </div>
+                                        </div>
+
                                 </div>
                             </div>
 
+                        </tab-content>
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhkelengkapan" :before-change="beforeTabHasilVerifikasi" >
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN BUTUH KELENGKAPAN DATA OKE</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Permintaan Kelengkapan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSPermintaanKelengkapanfinal" ref="suratNDSPermintaanKelengkapanfinal" v-validate="'required'" name="suratNDSPermintaanKelengkapanfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSPermintaanKelengkapanfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>    
+                                        
+                                         <div class="form-group" v-if="successUpload">
+                                            
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
+                                            </div>
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
+                                            </div>
+                                            
+                                        </div> 
+
+                                        <div class="form-group" v-if="!successUpload" >
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileKelengkapan();">Upload Semua File!</button>                                                    
+                                                </div>
+                                        </div> 
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhsurvey" :before-change="beforeTabHasilVerifikasi" >
+
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN SURVEY OKE </h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Surat ND S Survey Lapangan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSSurveyLapanganfinal" ref="suratNDSSurveyLapanganfinal" v-validate="'required'" name="suratNDSSurveyLapanganfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSSurveyLapangan') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                         <div class="form-group" v-if="successUpload">
+                                            
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
+                                            </div>
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" v-if="!successUpload">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileSurvey();">Upload Semua File!</button>                                                    
+                                                </div>
+                                        </div> 
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.uploaddokumen" :before-change="beforeTabHasilVerifikasi">
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINAL OKE</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        <div v-if="!successUpload">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Persetujuan </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratNDSPersetujuanfinal" ref="suratNDSPersetujuanfinal" v-validate="'required'" name="suratNDSPersetujuanfinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratNDSPersetujuanfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Dokumen Kelengkapan Nama</label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratKMKfinal" ref="suratKMKfinal" v-validate="'required'" name="suratKMKfinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratKMKfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Salinan KMK </label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" id="suratSalinanKMKfinal" ref="suratSalinanKMKfinal" v-validate="'required'" name="suratSalinanKMKfinal" data-vv-scope="step2" v-on:change="">
+                                                    <span class="text-red">{{ errors.first('step2.suratSalinanKMKfinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>    
+                                        <div class="form-group" v-if="successUpload">
+                                            
+                                            <div class="col-sm-12">
+                                                 <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" /> 
+                                            </div>
+                                            <div class="col-sm-12">
+                                                 <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2> 
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div class="form-group" v-if="!successUpload">
+                                                <div class="col-sm-12 ">
+                                                    <button class="btn active btn-success col-sm-12" @click="uploadFileComplete();">Upload Semua File!</button>                                                    
+                                                </div>
+                                        </div> 
+
+                                    </div>
+
+                                </div>
+                            </div>
                         </tab-content>
                         <tab-content title="Last step" icon="fa fa-check-circle" >
                             <div class="callout callout-success">
@@ -1308,13 +1564,26 @@
                                         <td>
                                             <div v-if="data.hasil_verifikasi!==null">
                                                 <button type="button" 
-                                                        class="btn btn-success" >
-
+                                                        class="btn" 
+                                                        :class="{'btn-success':(data.hasil_verifikasi === 'Terbitkan KMK Dokumen')}" 
+                                                        v-if="data.hasil_verifikasi === 'Terbitkan KMK Dokumen'">
+                                                   {{data.hasil_verifikasi}}
+                                                </button>
+                                                <button type="button" 
+                                                        class="btn" 
+                                                        :class="{'btn-danger':(data.hasil_verifikasi === 'Butuh Kelengkapan Data')}" 
+                                                        v-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
+                                                   {{data.hasil_verifikasi}}
+                                                </button>
+                                                <button type="button" 
+                                                        class="btn" 
+                                                        :class="{'btn-warning':(data.hasil_verifikasi === 'Butuh Survey Lapangan')}" 
+                                                        v-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
                                                    {{data.hasil_verifikasi}}
                                                 </button>
                                             </div>
                                             <div v-else>
-                                                Belum Ada
+                                                Belum Verifikasi
                                             </div>
 
                                         </td>
@@ -1328,9 +1597,9 @@
                                             </button>
 
                                             <button type="button" 
-                                                    class="btn btn-warning" 
+                                                    class="btn btn-info" 
                                                     @click=
-                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm('butuhkelengkapan');getJenisForm()">
+                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm(data.hasil_verifikasi);getJenisForm()">
 
                                                 Cek Hasil
                                             </button>

@@ -6,7 +6,7 @@
                         </wizard-step>
                         <h3 slot="title"></h3>
                         <tab-content title="Inital Input" icon="fa fa-user" :before-change="beforeTab1Switch">
-                                                        <div class="box box-primary">
+                         <div class="box box-primary">
 
                                 <div class="box-header with-border">
                                     <h3 class="box-title btn bg-maroon margin">IDENTITAS PETUGAS</h3>
@@ -346,5 +346,241 @@
                         </template>
                     </form-wizard>
                 </div>
+    </div>
+</script>
+
+
+
+<script type="text/x-template" id="pspTablePengajuan">
+    <div>
+                  <div class="box-body">
+                            <table class="table is-bordered is-hoverable">
+                                <thead class="text-white bg-dark">
+                                    <th class="text-white">ID</th>
+                                    <th class="text-white">No Surat</th>
+                                    <th class="text-white">Tanggal Surat</th>
+                                    <th class="text-white">Tgl Input</th>
+                                    <th class="text-white">Kementrian Lembaga</th>
+                                    <th class="text-white">Satuan Kerja</th>
+                                    <th class="text-white">Status Pengajuan</th>
+                                    <th class="text-white">Hasil Verifikasi</th>
+                                    <th class="text-white">Action</th>
+                                </thead>
+                                <tbody class="table-light">
+                                    <tr v-for="data in pengajuan" class="table-default">
+                                        <td>{{data.id}}</td>
+                                        <td>{{data.noSurat_pemohon}}</td>
+                                        <td>{{data.tglSurat_pemohon}}</td>
+                                        <td>{{data.submitdate}}</td>
+                                        <td>{{data.kementerian_lembaga}}</td>
+                                        <td>{{data.satuan_kerja}}</td>
+                                        <td>{{data.status_pengajuan}} 
+                                        </td>
+                                        <td>
+                                            <div v-if="data.hasil_verifikasi!==null">
+                                                <button type="button" 
+                                                        class="btn" 
+                                                        :class="{'btn-success':(data.hasil_verifikasi === 'Terbitkan KMK Dokumen')}" 
+                                                        v-if="data.hasil_verifikasi === 'Terbitkan KMK Dokumen'">
+                                                   {{data.hasil_verifikasi}}
+                                                </button>
+                                                <button type="button" 
+                                                        class="btn" 
+                                                        :class="{'btn-danger':(data.hasil_verifikasi === 'Butuh Kelengkapan Data')}" 
+                                                        v-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
+                                                   {{data.hasil_verifikasi}}
+                                                </button>
+                                                <button type="button" 
+                                                        class="btn" 
+                                                        :class="{'btn-warning':(data.hasil_verifikasi === 'Butuh Survey Lapangan')}" 
+                                                        v-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
+                                                   {{data.hasil_verifikasi}}
+                                                </button>
+                                            </div>
+                                            <div v-else>
+                                                Belum Verifikasi
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <button type="button" 
+                                                    class="btn btn-info" 
+                                                    @click=
+                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm(data.hasil_verifikasi);getJenisForm()">
+
+                                                Cek Hasil
+                                            </button>
+
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr v-if="emptyResult">
+                                        <td colspan="9" rowspan="4" class="text-center h1">No Record Found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <pagination :current_page="currentPage" :row_count_page="rowCountPage" @page-update="pageUpdate" :total_users="totalData" :page_range="pageRange"></pagination>
+    </div>
+</script>
+
+
+<script type="text/x-template" id="pspHasilPengajuanFormKANWIL">
+    <div>
+                <div class="nav-tabs-custom">
+                    <form-wizard>
+                        <wizard-step slot-scope="props" slot="step" :tab="props.tab" :transition="props.transition" :index="props.index">
+                        </wizard-step>
+                        <h3 slot="title"></h3>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhkelengkapan" >
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">SILAKAN Cek Kekurangan File dibawah ini Edit</h3>
+                                </div>
+
+
+
+                                <div class="form-horizontal">
+                                <div class="box-body">
+                                        <div v-for="(row, index) in daftarKekuranganData" >
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-3 control-label">Kekurangan File {{index+1}}</label>
+                                                <div class="col-sm-9">
+                                                    <input disabled type="text" class="form-control" placeholder="Masukkan Nama Data yang kurang" v-model="row.nama">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" >
+                                                <div class="col-sm-12 ">
+                                                   <div class="box box-widget widget-user-2">
+                                                        <div class="widget-user-header bg-yellow" v-if="!isEmptyDokumenKelengkapanFinal()">
+                                                          <h3 class="widget-user-username">Silakan Download Dokumen Kurang Lengkap Data</h3>
+                                                        </div>
+                                                        <div class="widget-user-header bg-red" v-else>
+                                                          <h3 class="widget-user-username" >Verifikastor Belum Upload Dokumen</h3>
+                                                        </div>
+                                                        <div class="box-footer no-padding">
+                                                          <ul class="nav nav-stacked" v-if="!isEmptyDokumenKelengkapanFinal()">
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSPermintaanKelengkapan" download><i class="fa fa-download"></i> Download Dokumen Kurang Lekap Final<span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                          </ul>
+                                                        </div>
+
+                                                      </div>
+                                                </div>
+                                        </div>
+
+                                </div>
+
+                                </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhsurvey" >
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">PERLU SURVEY</h3>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Rencana Survei Lapangan?</label>
+                                            <div class="col-sm-9">
+                                               <input disabled type="text" class="form-control" placeholder="Masukkan Rencana" v-model="choosePengajuan.rencana_survey">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Nama CP Survei</label>
+                                            <div class="col-sm-9">
+                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="choosePengajuan.nama_survey">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Kontak CP Survei</label>
+                                            <div class="col-sm-9">
+                                               <input disabled type="text" class="form-control" placeholder="Masukkan Nama" v-model="choosePengajuan.cp_survey">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group"  >
+                                                <div class="col-sm-12 ">
+                                                   <div class="box box-widget widget-user-2">
+                                                        <div class="widget-user-header bg-yellow" v-if="!isEmptyDokumenSurveyFinal()">
+                                                          <h3 class="widget-user-username">Silakan Download ND Survey Lapangan</h3>
+                                                        </div>
+                                                        <div class="widget-user-header bg-red" v-else>
+                                                          <h3 class="widget-user-username" >Verifikastor Belum Upload Dokumen</h3>
+                                                        </div>
+                                                        <div class="box-footer no-padding">
+                                                          <ul class="nav nav-stacked" v-if="!isEmptyDokumenSurveyFinal()">
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSSurveyLapangan" download><i class="fa fa-download"></i> Download Hasil File Survey Lapangan <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                          </ul>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.uploaddokumen" >
+
+                            <div class="box box-primary">
+                                <div class="form-group">
+                                                <div class="col-sm-12 ">
+                                                   <div class="box box-widget widget-user-2">
+                                                        <div class="widget-user-header bg-green" v-if="!isEmptyDokumenCompleteFinal()">
+                                                          <h3 class="widget-user-username">Silakan Download Dokumen Verifikasi Dibawah Ini</h3>
+                                                        </div>
+                                                        <div class="widget-user-header bg-red" v-else>
+                                                          <h3 class="widget-user-username">Verifikastor Belum Upload Dokumen</h3>
+                                                        </div>
+
+                                                        <div class="box-footer no-padding" v-if="!isEmptyDokumenCompleteFinal()">
+                                                          <ul class="nav nav-stacked">
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileNDSPersetujuan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileKMK" download><i class="fa fa-download"></i> Download Dokumen KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileSalinanKMK" download><i class="fa fa-download"></i> Download Salinan KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                      </div>
+
+                                                </div>
+                                        </div>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Last step" icon="fa fa-check-circle" >
+                            <div class="callout callout-success">
+                                <h4>Terima Kasih</h4>
+                                <h4>Permohonan Verifikasi Dokumen Telah Selesai dilakukan. Terima kasih sudah menggunakan sistem PSP BMN</h4>
+                            </div>
+                        </tab-content>
+
+                        <template slot="footer" slot-scope="props">
+                            <div class="wizard-footer-right2">
+                                <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Save & Next</wizard-button>
+                                <wizard-button v-else @click.native="finishVerifikasiProses" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done' : 'Next'}}</wizard-button>
+
+                                <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" class="btn btn-warning" :style="props.fillButtonStyle">Back</wizard-button>
+                            </div>
+                        </template>
+                    </form-wizard>
+                </div>
+
     </div>
 </script>

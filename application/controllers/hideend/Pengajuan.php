@@ -52,6 +52,7 @@ class Pengajuan extends CI_Controller
 	{
 		$this->template->loadData("activeLink",
 			array("content" => array("general" => 1)));
+		$vueComponent = $this->load->view("hidepage/vue/ComponentPspBMNPengajuanWizardForm.js",'',true);
 
 		$this->template->loadExternal(
 			'<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">'.
@@ -62,11 +63,13 @@ class Pengajuan extends CI_Controller
 		$this->template->loadExternalJs(
 			'<script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>'.
 			'<script src="https://cdn.jsdelivr.net/npm/vue-the-mask@0.11.1/dist/vue-the-mask.min.js"></script>'.
-			'<script src="https://unpkg.com/vee-validate@latest"></script>'.
-			'<script src="https://unpkg.com/vue-multiselect@latest"></script>'.
+			'<script src="https://unpkg.com/vee-validate@2.0.0-rc.21/dist/vee-validate.js"></script>'.
+			'<script src="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.js"></script>'.
+			'<script src="https://unpkg.com/v-money@0.8.1/dist/v-money.js"></script>'.
 			'<script src="'.$this->common->theme_hideend().'plugins/js/vue-airbnb-style-datepicker.min.js"></script>'.
 			'<script src="'.$this->common->theme_hideend().'plugins/js/date_fns.js"></script>'.
-			'<script src="'.$this->common->theme_hideend().'plugins/js/appStatusVerifikasi.js"></script>'
+			$vueComponent.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/appPengajuanPSP.js"></script>'
 			);
 		$this->template->loadContent("hidepage/pengajuan/status.php", array(
 			)

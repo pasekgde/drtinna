@@ -130,7 +130,6 @@ Vue.component('pengajuan-pspbmn', {
                 formattedDates = dateFns.format(dateOne, this.dateFormat)
             }
             return formattedDates
-
         },
         onClosed: function() {
             var datesStr = this.formatDates(this.pengajuan.tglSurat_pemohon)
@@ -386,12 +385,486 @@ Vue.component('pengajuan-pspbmn', {
             }
         })
 
+
+// Table
+Vue.component('table-status-pengajuan-pspbmn', {
+            template: '#pspTablePengajuan',
+            data() {
+                 return {
+                    url: myUrl,
+                    pengajuan:[],
+                    emptyResult: false,
+                    successMSG: '',
+                    totalData:0,
+                    currentPage: 0,
+                    rowCountPage: 5,
+                    pageRange: 2,
+                    choosePengajuan:{},
+                    jenisForm:{
+                        'verifikasi':false,
+                        'uploaddokumen':false,
+                        'butuhsurvey':false,
+                        'butuhkelengkapan':false,
+                    },
+                    
+                 }
+
+            },
+            created(){
+                this.showAll()
+            },
+            methods:{
+
+                    
+                    refresh(){
+                        this.showAll(); //for preventing
+                    },
+
+                    showAll(){ 
+                        let self = this
+                        axios.post(this.url+"/hideend/pengajuan/showAll").then(function(response){
+                                 if(response.data.pengajuan == null){
+                                        self.noResult()
+                                    }else{
+                                        self.getData(response.data.pengajuan);
+                                    }
+                        })
+                    },
+                    getData(pengajuan){
+                        this.emptyResult = false; // become false if has a record
+                        this.totalData = pengajuan.length //get total of user
+                        this.pengajuan = pengajuan.slice(this.currentPage * this.rowCountPage, (this.currentPage * this.rowCountPage) + this.rowCountPage); //slice the result for pagination
+                        
+                         // if the record is empty, go back a page
+                        if(this.pengajuan.length == 0 && this.currentPage > 0){ 
+                            this.pageUpdate(self.currentPage - 1)
+                            this.clearAll();  
+                        }
+                    },
+                    pageUpdate(pageNumber){
+                        this.currentPage = pageNumber; //receive currentPage number came from pagination template
+                        this.refresh()  
+                    },
+                    selectPengajuan(data){
+                        this.choosePengajuan = data
+                    },
+                    selectJenisForm(jenisForm){
+                        if(jenisForm==='verifikasi'){
+                            this.jenisForm.verifikasi = true
+                            this.jenisForm.uploaddokumen = false
+                            this.jenisForm.butuhsurvey = false
+                            this.jenisForm.butuhkelengkapan = false
+                        }else if(jenisForm==='Terbitkan KMK Dokumen'){
+                            this.jenisForm.verifikasi = false
+                            this.jenisForm.uploaddokumen = true
+                            this.jenisForm.butuhsurvey = false
+                            this.jenisForm.butuhkelengkapan = false
+                        }else if(jenisForm==='Butuh Survey Lapangan'){
+                            this.jenisForm.verifikasi = false
+                            this.jenisForm.uploaddokumen = false
+                            this.jenisForm.butuhsurvey = true
+                            this.jenisForm.butuhkelengkapan = false
+                        }else if(jenisForm==='Butuh Kelengkapan Data'){
+                            this.jenisForm.verifikasi = false
+                            this.jenisForm.uploaddokumen = false
+                            this.jenisForm.butuhsurvey = false
+                            this.jenisForm.butuhkelengkapan = true
+                        }
+
+                    },
+                    getDataChoosePengajuan(){
+                         this.$emit('send-data', this.choosePengajuan)
+                    },
+                    getJenisForm(){
+                         this.$emit('send-jenisform', this.jenisForm)
+                    }
+
+        },
+        })
+
+
+Vue.component('hasil-pengajuan-pspbmn-kanwil', {
+            template: '#pspHasilPengajuanFormKANWIL',
+            props: ['datapengajuan','tipepengajuan','jenisform'],
+            data() {
+                 return {
+                    url: myUrl,
+                    choosePengajuan:this.datapengajuan,          
+                    showDocumentVerifikasiFinal:false,         
+                    showDocumentKekuranganFinal:false,         
+                    showDocumentSurveyFinal:false,         
+                    daftarTembusan:[
+                                    { nama:''}
+                                    ],          
+                    daftarKekuranganData:(this.datapengajuan.daftarKekuranganData==="null"||this.datapengajuan.daftarKekuranganData==="")?"":JSON.parse(this.datapengajuan.daftarKekuranganData),
+                    option_data_kepala_seksi_kanwil:[],
+                    option_data_kepala_bidang_kanwil:[],
+                    option_data_kepala_kanwil:[],
+                    temp_data_kepala_seksi_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                    temp_data_kepala_bidang_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                    temp_data_kepala_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                      data_kepala_seksi_kanwil:null,
+                      data_kepala_bidang_kanwil:null,
+                      data_kepala_kanwil:null,
+                      showStatusJabatanKasi:false,
+                      showStatusJabatanKabid:false,
+                      showStatusJabatanKanwil:false,
+                      isAdaDokumenKepemilikan: true,
+                      showButtonhasilVerifikasi: true,
+                      isGenerateKMKDoc : false,
+                      isButuhKelengkapanData : false,
+                      isButuhSurveyLapangan : false,
+                      isShowLast: false,
+                      isShowUploadWizardForm: false,
+                      isShowVerifikasiForm: true,
+                      jenisForm: this.jenisform,
+                        generateHasilVerifikasiKANWIL : false
+                }
+
+            },
+            created(){
+            },
+            computed: {
+
+                // a computed getter
+                hreffileHasilVerifikasi: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratHasilVerifikasifinal
+                    //return this.url
+                },
+
+                 // a computed getter
+                hreffileNDSPersetujuan: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratNDSPersetujuanfinal
+                    // return this.url
+                },
+
+
+
+                // a computed getter
+                hreffileKMK: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratKMKfinal
+                    //return this.url
+                },
+
+
+               // a computed getter
+                hreffileSalinanKMK: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratSalinanKMKfinal
+                    //return this.url
+                },
+                // a computed getter
+                hreffileNDSPermintaanKelengkapan: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratNDSPermintaanKelengkapanfinal
+                    //return this.url
+                },
+                // a computed getter
+                hreffileNDSSurveyLapangan: function () {
+                    // `this` points to the vm instance
+                    return this.url+this.choosePengajuan.suratNDSSurveyLapanganfinal
+                    //return this.url
+                }
+            },
+            methods:{
+
+                isEmptyDokumenCompleteFinal:function(){
+                     console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                isEmptyDokumenKelengkapanFinal:function(){
+
+                     console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                isEmptyDokumenSurveyFinal:function(){
+
+                     console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                finishVerifikasiProses(){
+                    this.isShowUploadWizardForm = false;
+                    this.isShowVerifikasiForm = false;
+                    let valueHide ={
+                                    isShowFormKANWIL : false                                    
+                                }
+                    this.$emit('send-data', valueHide)
+                },
+
+        }
+    })
+Vue.component('hasil-pengajuan-pspbmn-kpknl', {
+            template: '#pspHasilPengajuanFormKANWIL',
+            props: ['datapengajuan','tipepengajuan','jenisform'],
+            data() {
+                 return {
+                    url: myUrl,
+                    choosePengajuan:this.datapengajuan,          
+                    showDocumentVerifikasiFinal:false,         
+                    showDocumentKekuranganFinal:false,         
+                    showDocumentSurveyFinal:false,         
+                    daftarTembusan:[
+                                    { nama:''}
+                                    ],          
+                    daftarKekuranganData:(this.datapengajuan.daftarKekuranganData==="null"||this.datapengajuan.daftarKekuranganData==="")?"":JSON.parse(this.datapengajuan.daftarKekuranganData),
+                    option_data_kepala_seksi_kanwil:[],
+                    option_data_kepala_bidang_kanwil:[],
+                    option_data_kepala_kanwil:[],
+                    temp_data_kepala_seksi_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                    temp_data_kepala_bidang_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                    temp_data_kepala_kanwil:{
+                                              jabatan : '',
+                                              status : '',
+                                              nip : '',          
+                                              nama : '' 
+                                            },
+                      data_kepala_seksi_kanwil:null,
+                      data_kepala_bidang_kanwil:null,
+                      data_kepala_kanwil:null,
+                      showStatusJabatanKasi:false,
+                      showStatusJabatanKabid:false,
+                      showStatusJabatanKanwil:false,
+                      isAdaDokumenKepemilikan: true,
+                      showButtonhasilVerifikasi: true,
+                      isGenerateKMKDoc : false,
+                      isButuhKelengkapanData : false,
+                      isButuhSurveyLapangan : false,
+                      isShowLast: false,
+                      isShowUploadWizardForm: false,
+                      isShowVerifikasiForm: true,
+                      jenisForm: this.jenisform,
+                        generateHasilVerifikasiKANWIL : false
+                }
+
+            },
+            created(){
+            },
+            computed: {
+
+                // a computed getter
+                hreffileHasilVerifikasi: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")?"":(this.url+this.choosePengajuan.suratHasilVerifikasifinal)
+                    //return this.url
+                },
+
+                 // a computed getter
+                hreffileNDSPersetujuan: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratNDSPersetujuanfinal==="null"||this.choosePengajuan.suratNDSPersetujuanfinal==="")?"":(this.url+this.choosePengajuan.suratNDSPersetujuanfinal)
+                    // return this.url
+                },
+
+
+
+                // a computed getter
+                hreffileKMK: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratKMKfinal==="null"||this.choosePengajuan.suratKMKfinal==="")?"":(this.url+this.choosePengajuan.suratKMKfinal)
+                    //return this.url
+                },
+
+
+               // a computed getter
+                hreffileSalinanKMK: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratSalinanKMKfinal==="null"||this.choosePengajuan.suratSalinanKMKfinal==="")?"":(this.url+this.choosePengajuan.suratSalinanKMKfinal)
+                    //return this.url
+                },
+                // a computed getter
+                hreffileNDSPermintaanKelengkapan: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratNDSPermintaanKelengkapanfinal==="null"||this.choosePengajuan.suratNDSPermintaanKelengkapanfinal==="")?"":(this.url+this.choosePengajuan.suratNDSPermintaanKelengkapanfinal)
+                    //return this.url
+                },
+                // a computed getter
+                hreffileNDSSurveyLapangan: function () {
+                    // `this` points to the vm instance
+                    return (this.choosePengajuan.suratNDSSurveyLapanganfinal==="null"||this.choosePengajuan.suratNDSSurveyLapanganfinal==="")?"":(this.url+this.choosePengajuan.suratNDSSurveyLapanganfinal)
+                    //return this.url
+                }
+            },
+            methods:{
+                isEmptyDokumenCompleteFinal:function(){
+
+                     console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                isEmptyDokumenKelengkapanFinal:function(){
+                    console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                isEmptyDokumenSurveyFinal:function(){
+                    
+                     console.log(this.choosePengajuan.suratHasilVerifikasifinal)
+                    console.log((this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal===""))
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")
+                },
+                finishVerifikasiProses(){
+                    this.isShowUploadWizardForm = false;
+                    this.isShowVerifikasiForm = false;
+                    let valueHide ={
+                                    isShowFormKANWIL : false                                    
+                                }
+                    this.$emit('send-data', valueHide)
+                },
+                beforeTab4SwitchKANWIL: function() {
+                    return true
+                }
+
+        },
+    })
+
+
+
+
+
 var v = new Vue({
     el: '#app',
     data: {
-        
+        url: myUrl,
+        verifikasi:{},
+        jenisForm:{
+                        'verifikasi':false,
+                        'uploaddokumen':false,
+                        'butuhsurvey':false,
+                        'butuhkelengkapan':false,
+                    },
+
+        isShowFormKANWIL: false,
+        isShowFormKPKNL: false,           
+
+        choosePengajuan:{},
+        emptyResult: false,
+        successMSG: '',
+        totalData:0,
+        tpBtn: 0,
+        isDisabled: 1,
+        enableEnquiry: false,
+        inputDateOne: '',
+        inputDateTwo: '',
+        sundayFirst: false,
+        alignRight: false,
+        trigger: false,
+        showVerifikasiWizardForm:false,
+        showTablePengajuan:true,
+        areaProsesText: '',
+        statusFirstSelect:false,
+        jenisProses: '',
+        isAdaDokumenKepemilikan: true,
+        showVerifikasiWizardTable: true,
+        showButtonhasilVerifikasi: true,
+            daftarTembusan:[{
+                            nama:''
+                        }]
+    },
+    created() {
+
+    },
+    computed: {
+        // a computed getter
+        hrefFileSuratPermohon: function () {
+            // `this` points to the vm instance
+            return this.url+'/uploads/'+this.choosePengajuan.fileSuratPermohon
+        },
+        // a computed getter
+        hrefFileDaftarRincian: function () {
+            // `this` points to the vm instance
+            return this.url+'/uploads/'+this.choosePengajuan.fileDaftarRincian
+        },
+        // a computed getter
+        hrefFileDokumenKelengkapan: function () {
+            // `this` points to the vm instance
+            return this.url+'/uploads/'+this.choosePengajuan.fileDokumenKelengkapan
+        }
     },
     methods: {
+
+        finishProsesVerifikasi(value) {
+            if(this.jenisProses=="KANWIL"){
+                //hide FORM KANWIL
+                this.isShowFormKANWIL = value.isShowFormKANWIL
+            }            
+
+            if(this.jenisProses=="KPKNL"){
+                //hide FORM KPKNL
+                this.isShowFormKPKNL = value.isShowFormKPKNL
+            }
+            this.showVerifikasiWizardForm = false
+            this.showVerifikasiWizardTable = true
+        },
+        getJenisForm(value) {
+            this.jenisForm = value
+        },
+        getDataChoosePengajuan(value) {
+            this.choosePengajuan = value
+
+            this.showVerifikasiWizardTable = false
+            this.showVerifikasiWizardForm = true
+            this.pspTableVerifikasiWizard = false
+            let str = this.choosePengajuan.status_proses 
+            this.getDataVerifikasi()
+            if(str.includes("KPKNL")){
+                 this.showVerifikasiWizardForm = true
+                 this.isShowFormKPKNL = true
+                 this.jenisProses = "KPKNL"
+            }
+
+            if(str.includes("KANWIL")){
+                 this.showVerifikasiWizardForm = true
+                 this.isShowFormKANWIL = true
+                 this.jenisProses = "KANWIL"
+            }           
+        },
+       
+        getDataVerifikasi:function(){
+            axios.post(this.url + "/hideend/verifikasi/checkDocumentVerifikasi/"+this.choosePengajuan.id).then(function(response) {
+                 
+                    if (response.data.dokumen) {
+                        v.verifikasi =  response.data.dokumen[0]
+                    
+                    }
+                })  
+        },
+
+
+
+
+
+
 
     }
 })

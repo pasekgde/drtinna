@@ -21,11 +21,25 @@ class Pengajuan_Model extends CI_Model
 	}
 
 	public function showAll(){
-		$status = array('DJKN Pusat', 'PKNSI');
+		    $status = array('DJKN Pusat', 'PKNSI');
       	$query = $this->db
+              ->select('p.*,
+                        v.hasil_verifikasi,
+                        v.suratNDSPersetujuanfinal,
+                        v.suratHasilVerifikasifinal,
+                        v.suratKMKfinal,
+                        v.suratSalinanKMKfinal,
+                        v.suratNDSSurveyLapanganfinal,
+                        v.suratNDSPermintaanKelengkapanfinal,
+                        v.daftarKekuranganData,
+                        v.rencana_survey,
+                        v.nama_survey,
+                        v.cp_survey')
        				->where_not_in('status_proses',$status)
        				->order_by('id', 'DESC')
-       				->get('pengajuan_pspbmn');
+              ->from('pengajuan_pspbmn p')
+              ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')
+       				->get();
         if($query->num_rows() > 0){
             return $query->result();
         }else{

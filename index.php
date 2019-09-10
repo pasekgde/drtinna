@@ -76,6 +76,7 @@ $dev_machines = [
 	'localhost'
 ];
 
+// echo "<pre>"; print_r(in_array($_SERVER['HTTP_HOST'], $dev_machines));die;
 $env = 'production';
 if (in_array($_SERVER['HTTP_HOST'], $dev_machines)) $env = 'development';
 define('ENVIRONMENT', $env);
@@ -88,16 +89,18 @@ define('ENVIRONMENT', $env);
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+
+
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(E_ALL);
+		error_reporting(-1);
 		ini_set('display_errors', 1);
 	break;	
 	
 	case 'production':
 		error_reporting(-1);
-		ini_set('display_errors', 1);
+		ini_set('display_errors', 0);
 	break;
 
 	case 'testing':

@@ -131,7 +131,6 @@
                 <!-- Custom Tabs -->
                 
                 <verifikasi-pspbmn-kanwil 
-                
                         :jenisform="jenisForm"
                         :tipepengajuan="jenisProses" 
                         :datapengajuan="choosePengajuan"
