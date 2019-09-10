@@ -21,19 +21,6 @@
         <!-- /.col -->
       </div>
     <?php echo form_close() ?>
-    <?php if(!$this->settings->info->disable_social_login) : ?> 
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="<?php echo site_url("hideend/login/twitter_login") ?>" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-twitter"></i> Sign in using
-        Twitter</a>     
-
-      <a href="<?php echo site_url("hideend/login/facebook_login") ?>" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="<?php echo site_url("hideend/login/google_login") ?>" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    <!-- /.social-auth-links -->
-      <?php endif; ?>
     <a href="<?php echo site_url("hideend/login/forgotpw") ?>">I forgot my password</a><br>
     <a href="<?php echo site_url("hideend/register") ?>" class="text-center">Register a new membership</a>
 
