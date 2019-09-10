@@ -206,8 +206,12 @@ Vue.component('pengajuan-pspbmn', {
         },
         ShowOtherTabDJKN() {
             this.clearNotif()
-            if (this.pengajuan.jenis_bmn.name == 'Tanah' || this.pengajuan.jenis_bmn.name === 'Bangunan' || this.pengajuan.jenis_bmn.name === 'Tanah & Bangunan') {
+            console.log("masuk1")
+            console.log(this.pengajuan.jenis_bmn.name)
+            if (this.pengajuan.jenis_bmn.name === 'Tanah' || this.pengajuan.jenis_bmn.name === 'Bangunan' || this.pengajuan.jenis_bmn.name === 'Tanah dan Bangunan') {
+                console.log("masuk5")
                 if (this.pengajuan.totalnilai_bmn >= 75000000000) {
+                    console.log("masuk4")
                     this.isShowOtherTabDJKN = false
                     if ((this.pengajuan.totalnilai_bmn >= 75000000000) && (this.pengajuan.totalnilai_bmn <= 100000000000)) {
                         this.notif75M = true
@@ -222,7 +226,9 @@ Vue.component('pengajuan-pspbmn', {
                     //pilah akan dikelola kanwil atau KPKNL
                     this.isShowOtherTabDJKN = true
                     this.notifProses = true
+                    console.log("masuk2")
                     if ((this.pengajuan.totalnilai_bmn >= 10000000000) && (this.pengajuan.totalnilai_bmn < 75000000000)) {
+                        console.log("masuk3")    
                         this.KanwilProses = true
                         this.areaProsesText = 'Kanwil DJKN Papua, Papua Barat dan Maluku'
                         this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
