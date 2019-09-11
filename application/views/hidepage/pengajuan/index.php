@@ -17,6 +17,7 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- Custom Tabs -->
+                <input type="hidden" name="idPengajuan" id="idPengajuan" value="<?=$idPengajuan?>">
                 <pengajuan-pspbmn></pengajuan-pspbmn>
                 <!-- /.tab-content -->
             </div>

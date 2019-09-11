@@ -76,14 +76,14 @@
                                                 <span class="text-red">{{ errors.first('step1.KementerianLembaga') }}</span>
 
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Alamat Kantor</label>
-                                            <div class="col-sm-5">
-                                                <input type="name" class="form-control" id="inputEmail3" placeholder="Alamat Kementerian Lembaga " v-validate="'required'" name="KantorKL" v-model="pengajuan.alamat_kantorKL">
-                                                <span class="text-red">{{ errors.first('step1.KantorKL') }}</span>
-                                            </div>
-                                        </div>
+                                            </div><!-- 
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="col-sm-2 control-label">Alamat Kantor</label>
+                                                <div class="col-sm-5">
+                                                    <input type="name" class="form-control" id="inputEmail3" placeholder="Alamat Kementerian Lembaga " v-validate="'required'" name="KantorKL" v-model="pengajuan.alamat_kantorKL">
+                                                    <span class="text-red">{{ errors.first('step1.KantorKL') }}</span>
+                                                </div>
+                                            </div> -->
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Satker</label>
                                             <div class="col-sm-5">
@@ -130,9 +130,9 @@
                                                 <span class="text-red">{{ errors.first('step1.totalnilai_bmn') }}</span>
                                             </div>
                                         </div>
-
+<!-- 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi PSPBMN (Provinsi)</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi BMN (Provinsi)</label>
                                             <div class="col-sm-5">
                                                 <vue-multiselect
                                                     :allow-empty="false"  
@@ -150,10 +150,10 @@
 
                                                 <span class="text-red">{{ errors.first('step1.lokasiProvinsi') }}</span>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group" v-if="true">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi PSPBMN (Kabupaten)</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi BMN (Kabupaten)</label>
                                             <div class="col-sm-5">
                                                 <vue-multiselect 
                                                     v-model="pengajuan.kabupaten" 
@@ -262,16 +262,16 @@
                                                 <input type="nohape" class="form-control"  placeholder="Perihal Surat Permohonan" v-validate="'required'" name="perihalSurat_pemohon" v-model="pengajuan.perihalSurat_pemohon" data-vv-scope="step2">
                                                 <span class="text-red">{{ errors.first('step2.perihalSurat_pemohon') }}</span>
                                             </div>
-                                        </div>
+                                        </div><!-- 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Peraturan Pendelegasian Wewenang</label>
                                             <div class="col-sm-5">
                                                 <input type="nohape" class="form-control"  placeholder="Contoh: Peraturan Menteri Perhubungan no 1" v-validate="'required'" name="perihalSurat_pemohon" v-model="pengajuan.perihalSurat_pemohon" data-vv-scope="step2">
                                                 <span class="text-red">{{ errors.first('step2.perihalSurat_pemohon') }}</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">fileUploadBackupSimakoad Surat Permohonan</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
                                             <div class="col-sm-10">
                                                 <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required'" name="fileSuratPermohonName" data-vv-scope="step2">
                                                 <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
@@ -305,7 +305,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div><!-- 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Backup SIMAK</label>
                                             <div class="col-sm-10">
@@ -319,7 +319,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                     <!-- /.box-body -->
@@ -403,6 +403,14 @@
 
                                         </td>
                                         <td>
+                                            <button type="button" 
+                                                    class="btn btn-warning" 
+                                                    @click=
+                                                        "gotoEditData(data.id)">
+
+                                                Edit
+                                            </button>
+
                                             <button type="button" 
                                                     class="btn btn-info" 
                                                     @click=
@@ -564,10 +572,17 @@
                             </div>
                         </tab-content>
 
-                        <tab-content title="Last step" icon="fa fa-check-circle" >
+                        <tab-content title="Last step" icon="fa fa-check-circle" v-if="jenisForm.butuhkelengkapan||jenisForm.butuhsurvey||jenisForm.uploaddokumen">
                             <div class="callout callout-success">
                                 <h4>Terima Kasih</h4>
                                 <h4>Permohonan Verifikasi Dokumen Telah Selesai dilakukan. Terima kasih sudah menggunakan sistem PSP BMN</h4>
+                            </div>
+                        </tab-content>
+
+                        <tab-content title="Last step" icon="fa fa-check-circle" v-else>
+                            <div class="callout callout-warning">
+                                <h4>Mohon Menunggu</h4>
+                                <h4>Permohonan Verifikasi Dokumen Belum Selesai Dilakukan, Mohon Menunggu</h4>
                             </div>
                         </tab-content>
 

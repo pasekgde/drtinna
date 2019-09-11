@@ -1,8 +1,14 @@
 [
         {
+          "kantor": "Kanwil DJKN",
+          "kode": "05",
+          "email": "pkn.kpknl.jayapura@gmail.com"
+        },
+        {
           "provinsi": "Papua (Jayapura)",
           "kantor": "KPKNL Jayapura",
           "kode": "02",
+          "email": "pkn.kpknl.jayapura@gmail.com",
           "alamat": "Komplek Papua Trade Center (PTC), Jalan Raya Abepura, Kelapa Dua, Entrop, Jayapura, Papua - 99224.",
           "kabupaten": [
                         {"name":"Asmat"},
@@ -31,6 +37,7 @@
           "provinsi": "Papua (Biak)",
           "kantor": "KPKNL Biak",
           "kode": "04",
+          "email": "pkn.kpknlbiak@gmail.com",
           "alamat": "Jalan Majapahit No. 1, Biak, Papua. Telp. (0981) 26111",
           "kabupaten": [
                       {"name":"Biak Numfor"},
@@ -48,6 +55,7 @@
           "provinsi": "Papua Barat",
           "kantor": "KPKNL Sorong",
           "kode": "03",
+          "email": "pkn.kpknl.sorong@gmail.com",
           "alamat": "Gedung Keuangan Negara Sorong, Jalan Basuki Rahmat Km. 7, Kota Sorong, Papua Barat - 98414. Telp. (0951) 324868",
           "kabupaten": [
                       {"name":"Fakfak"},
@@ -69,6 +77,7 @@
           "provinsi": "Maluku",
           "kantor": "KPKNL Ambon",
           "kode": "01",
+          "email": "pknkpknlambon@gmail.com",
           "alamat": "Gedung Keuangan Negara Lt. IV Ambon, Jalan Raya Patimura No. 18 , Ambon, Maluku - 97124, Kotak Pos 1023. Telp. (0911) 344360",
           "kabupaten": [
                       {"name":"Buru"},

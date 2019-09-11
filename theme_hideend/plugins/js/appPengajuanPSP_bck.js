@@ -84,7 +84,6 @@ Vue.component('pengajuan-pspbmn', {
                             totalnilai_bmn: '22000000000',
                             provinsi: null,
                             detail_djkn: null,
-                            email_djkn: '',
                             nama_provinsi: '',
                             kabupaten: null,
                             nama_kabupaten: '',
@@ -93,13 +92,16 @@ Vue.component('pengajuan-pspbmn', {
                             noSurat_pemohon: '123',
                             tglSurat_pemohon: '',
                             perihalSurat_pemohon: '123',
+                            status_pengajuan: '',
                             fileSuratPermohon: '',
                             fileDaftarRincian: '',
-                            fileDokumenKelengkapan: ''
+                            fileDokumenKelengkapan: '',
+                            fileUploadBackupSimak: ''
                         },
                         fileSuratPermohon: '',
                         fileDaftarRincian: '',
                         fileDokumenKelengkapan: '',
+                        fileUploadBackupSimak: '',
                         option_kementerian_lembaga: [],
                         option_provinsi: [],
                         option_kabupaten: [],
@@ -114,7 +116,7 @@ Vue.component('pengajuan-pspbmn', {
             },
             created() {
                 this.getKementerianLembaga()
-                this.getKabupaten()
+                this.getKabupatenProvinsi()
                 this.showDatabyID()
             },
             computed: {
@@ -131,16 +133,26 @@ Vue.component('pengajuan-pspbmn', {
                     let idPengajuan = document.getElementById("idPengajuan").value
                     if(idPengajuan!==""){
                         axios.post(this.url+"/hideend/pengajuan/show/"+idPengajuan).then(function(response){
-                            if(response.data.pengajuan !== null){                    
+                            if(response.data.pengajuan !== null){
+                                console.log("sukses load pengajuan data")                      
+                                console.log(response.data.pengajuan[0])                      
                                 self.pengajuan = response.data.pengajuan[0]
                                 self.pengajuan.jenis_bmn = {
                                                     name:self.pengajuan.jenis_bmn
                                                  }
                                 self.pengajuan.kementerian_lembaga = {
                                                     nama_KL:self.pengajuan.kementerian_lembaga
-                                                 }                
-                                self.pengajuan.kabupaten = JSON.parse(response.data.pengajuan[0].detail_djkn)
-                                self.pengajuan.detail_djkn =  JSON.parse(response.data.pengajuan[0].detail_djkn)
+                                                 }
+                                self.pengajuan.provinsi = {
+                                                    provinsi:response.data.pengajuan[0].provinsi
+                                                 }
+
+                                self.pengajuan.kabupaten = {
+                                                    name:self.pengajuan.kabupaten
+                                                 }   
+                                self.pengajuan.detail_djkn = JSON.parse(response.data.pengajuan[0].detail_djkn)
+                                self.pengajuan.provinsi = self.pengajuan.detail_djkn 
+                                self.option_kabupaten = self.pengajuan.provinsi.kabupaten
                             }
                         })   
                     }
@@ -152,11 +164,9 @@ Vue.component('pengajuan-pspbmn', {
                         if (!result) {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
-                        } else {   
-                            this.ShowOtherTabDJKN()
-                            this.pengajuan.status_pengajuan="Step 1 (Input Basic Info)"
-                            console.log(this.pengajuan.status_pengajuan)
-                            this.addPengajuan()
+                        } else {
+                             this.ShowOtherTabDJKN()
+                             this.addPengajuan()
                             return true
                         }
 
@@ -179,18 +189,24 @@ Vue.component('pengajuan-pspbmn', {
                 },
 
                 beforeTab2Switch: function() {  
-                    return this.$validator.validateAll("step2").then((result) => {
+                    let validateVar =  this.$validator.validateAll("step2").then((result) => {
                         if (!result) {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
                             this.uploadFile()
                             this.ShowOtherTabDJKN()
-                            this.pengajuan.status_pengajuan = "Finish Input Dokumen" 
+
+                            console.log("this.fileDokumenKelengkapan")
+                            console.log(this.fileDokumenKelengkapan)
                             this.updatePengajuan()
+
+                            console.log("this.fileDokumenKelengkapan after updatePengajuan()")
+                            console.log(this.fileDokumenKelengkapan)
                             return true
                         }
                     })
+                        return validateVar
                     
                 },
                 getProvinsi() {
@@ -200,25 +216,12 @@ Vue.component('pengajuan-pspbmn', {
                             self.option_provinsi = response.data
                         })
                 },
-                getKabupaten() {
+                getKabupaten(provinsiName) {
                     let self = this
                     axios.get(this.url + "/theme_costume/static_content/provinsi_kantor.json")
                         .then(response => {
-                            self.kabupaten = response.data;
-                            let dataKabupaten = []
-                            self.kabupaten.map((data, idx)=>{ 
-                                                            for (let key in data.kabupaten) {
-                                                                kab_kantor = {
-                                                                               name:data.kabupaten[key].name,
-                                                                               provinsi:data.provinsi,
-                                                                               kantor:data.kantor,
-                                                                               email:data.email,
-                                                                               alamat:data.alamat 
-                                                                            }
-                                                                dataKabupaten.push(kab_kantor)
-                                                            }
-                                                        })
-                            self.option_kabupaten = dataKabupaten
+                            self.kabupaten = (response.data.filter(d => d.provinsi === provinsiName.provinsi));
+                            self.option_kabupaten = self.kabupaten[0]["kabupaten"]
 
                         })
                 },
@@ -273,13 +276,11 @@ Vue.component('pengajuan-pspbmn', {
                                 this.KanwilProses = true
                                 this.areaProsesText = 'Kanwil DJKN Papua, Papua Barat dan Maluku'
                                 this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
-                                this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
                                 //------------------>insert DB Table status 
                             } else {
                                 this.DjknProses = true
-                                this.areaProsesText = this.pengajuan.kabupaten.kantor
-                                this.pengajuan.status_proses = this.pengajuan.kabupaten.kantor                                
-                                this.pengajuan.email_djkn = this.pengajuan.kabupaten.email
+                                this.areaProsesText = this.pengajuan.provinsi.kantor
+                                this.pengajuan.status_proses = this.pengajuan.provinsi.kantor
                                 //------------------>insert DB Table status 
                             }
 
@@ -301,15 +302,17 @@ Vue.component('pengajuan-pspbmn', {
                     this.file1 = this.$refs.fileSuratPermohon.files[0];
                     this.file2 = this.$refs.fileDaftarRincian.files[0];
                     this.file3 = this.$refs.fileDokumenKelengkapan.files[0];
+                    this.file4 = this.$refs.fileUploadBackupSimak.files[0];
 
 
 
-                    if (this.file1 && this.file2 && this.file3) {
+                    if (this.file1 && this.file2 && this.file3 && this.file4) {
 
                         let formData = new FormData();
                         formData.append('file1', this.file1);
                         formData.append('file2', this.file2);
                         formData.append('file3', this.file3);
+                        formData.append('file4', this.file4);
                         let self = this
                         let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
                                 headers: {
@@ -320,6 +323,7 @@ Vue.component('pengajuan-pspbmn', {
                                     self.fileSuratPermohon = response.data.file[0]
                                     self.fileDaftarRincian = response.data.file[1]
                                     self.fileDokumenKelengkapan = response.data.file[2]
+                                    self.fileUploadBackupSimak = response.data.file[3]
                             })
                             .catch(function(error) {
                                 console.log(error);
@@ -332,6 +336,32 @@ Vue.component('pengajuan-pspbmn', {
                 },
                 clearPengajuanData() {
                     this.updatePengajuan()
+                    // this.pengajuan = {
+                    //     nama_petugas: '',
+                    //     nip_petugas: '',
+                    //     jabatan_petugas: '',
+                    //     kontak_petugas: '',
+                    //     email_petugas: '',
+                    //     kementerian_lembaga: '', //becarefull disini, karena yang dipassing select adalah object. selalu akses spesifik value
+                    //     alamat_kantorKL: '',
+                    //     satuan_kerja: '',
+                    //     jenis_bmn: {
+                    //         name: ''
+                    //     },
+                    //     totalnilai_bmn: '',
+                    //     provinsi: '',
+                    //     kabupaten: '',
+                    //     status_proses: '',
+                    //     status_pengajuan: '',
+                    //     jabatan_pemohon: '',
+                    //     noSurat_pemohon: '',
+                    //     tglSurat_pemohon: '',
+                    //     perihalSurat_pemohon: '',
+                    //     fileSuratPermohon: '',
+                    //     fileDaftarRincian: '',
+                    //     fileDokumenKelengkapan: '',
+                    //     fileUploadBackupSimak: ''
+                    // }
                     this.resetTab()
                     window.location.href = myUrl + 'hideend/pengajuan/status';
                 },
@@ -345,11 +375,13 @@ Vue.component('pengajuan-pspbmn', {
                     this.pengajuan.fileSuratPermohon = this.fileSuratPermohon
                     this.pengajuan.fileDaftarRincian = this.fileDaftarRincian
                     this.pengajuan.fileDokumenKelengkapan = this.fileDaftarRincian
+                    this.pengajuan.fileUploadBackupSimak = this.fileDaftarRincian
 
                     this.pengajuan.nama_kementerian_lembaga = this.pengajuan.kementerian_lembaga.nama_KL
-                    this.pengajuan.nama_provinsi =      this.pengajuan.kabupaten.provinsi
+                    this.pengajuan.nama_provinsi = this.pengajuan.provinsi.provinsi
                     this.pengajuan.nama_kabupaten = this.pengajuan.kabupaten.name
                     this.pengajuan.nama_jenis_bmn = this.pengajuan.jenis_bmn.name
+                    this.pengajuan.status_pengajuan = "Dokumen Terkirim"
 
                     var formData = this.formData(this.pengajuan);
                     axios.post(this.url + "/hideend/pengajuan/update", formData).then(function(response) {
@@ -363,9 +395,11 @@ Vue.component('pengajuan-pspbmn', {
                 addPengajuan() {
                     //get Select name
                     this.pengajuan.nama_kementerian_lembaga = this.pengajuan.kementerian_lembaga.nama_KL
+                    this.pengajuan.nama_provinsi = this.pengajuan.provinsi.provinsi
                     this.pengajuan.nama_kabupaten = this.pengajuan.kabupaten.name
                     this.pengajuan.nama_jenis_bmn = this.pengajuan.jenis_bmn.name                    
-                    this.pengajuan.detail_djkn = JSON.stringify(this.pengajuan.kabupaten)
+                    this.pengajuan.detail_djkn = JSON.stringify(this.pengajuan.provinsi)
+                    this.pengajuan.status_pengajuan = "Finish Terkirim"
                     if(this.pengajuan.id===''){
                         var formData = this.formData(this.pengajuan);
                         //kudu ada assign spt ini karena di tengah axios we couldn't call "this"> it would return promise

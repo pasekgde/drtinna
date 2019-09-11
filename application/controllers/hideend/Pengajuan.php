@@ -19,7 +19,7 @@ class Pengajuan extends CI_Controller
 	}
 
 
-	public function index()
+	public function index($idPengajuan='')
 	{
 		$this->template->loadData("activeLink",
 			array("content" => array("general" => 1)));
@@ -43,6 +43,7 @@ class Pengajuan extends CI_Controller
 			'<script src="'.$this->common->theme_hideend().'plugins/js/appPengajuanPSP.js"></script>'
 			);
 		$this->template->loadContent("hidepage/pengajuan/index.php", array(
+				"idPengajuan" => $idPengajuan
 			)
 		);
 	}
@@ -76,6 +77,15 @@ class Pengajuan extends CI_Controller
 		);
 	}
 
+	public function show($id){
+       	$query =  $this->pengajuan_model->showAllbyID($id);
+       	$result = [];
+        if($query){
+            $result['pengajuan'] = $query;
+        }
+        echo json_encode($result);
+    }
+
 	public function showAll(){
        	$query =  $this->pengajuan_model->showAll();
        	$result = [];
@@ -99,6 +109,7 @@ class Pengajuan extends CI_Controller
                 'kabupaten' => $this->input->post('nama_kabupaten'),
                 'kementerian_lembaga' => $this->input->post('nama_kementerian_lembaga'),
                 'alamat_kantorKL' => $this->input->post('alamat_kantorKL'),
+                'email_djkn' => $this->input->post('email_djkn'),
                 'satuan_kerja' => $this->input->post('satuan_kerja'),
                 'nama_petugas' => $this->input->post('nama_petugas'),
                 'nip_petugas' => $this->input->post('nip_petugas'),
@@ -114,7 +125,6 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
-                'fileUploadBackupSimak' => $this->input->post('fileUploadBackupSimak'),
                 'submitdate' =>  date("Y/m/d")
             );
             
@@ -168,6 +178,8 @@ class Pengajuan extends CI_Controller
                 'jenis_bmn' => $this->input->post('nama_jenis_bmn'),
                 'totalnilai_bmn' => $this->input->post('totalnilai_bmn'),
                 'provinsi' => $this->input->post('nama_provinsi'),
+                'detail_djkn' => $this->input->post('detail_djkn'),
+                'email_djkn' => $this->input->post('email_djkn'),
                 'kabupaten' => $this->input->post('nama_kabupaten'),
                 'kementerian_lembaga' => $this->input->post('nama_kementerian_lembaga'),
                 'alamat_kantorKL' => $this->input->post('alamat_kantorKL'),
@@ -186,7 +198,6 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
-                'fileUploadBackupSimak' => $this->input->post('fileUploadBackupSimak'),
                 'submitdate' =>  date("Y/m/d")//format to date
             );
             
@@ -194,40 +205,7 @@ class Pengajuan extends CI_Controller
             if ($this->pengajuan_model->update($id, $data)) {
                 $result['error'] = false;
                 $result['msg']   = 'Booking added successfully';
-                $subject         = "[NEW BOOKING]" . " " . $data["fullname"] . "-" . $data["roomname"];
-                $email           = $data["email"];
-                $msg             = $this->load->view("frontpage/layout/email/email_confirm_view", '', true);
-                
-                //Name
-                $msg = str_replace("%_name_cust", $data["fullname"], $msg);
-                
-                
-                //Villa
-                $msg = str_replace("%_villa", $roomName, $msg);
-                
-                //Checkin
-                $msg = str_replace("%_checkin", $arrivaldate, $msg);
-                
-                //Checkout
-                $msg = str_replace("%_checkout", $departuredate, $msg);
-                
-                //Duration
-                $msg = str_replace("%_duration", $stayduration, $msg);
-                
-                               
-                //Total
-                $totalAmountPay = $this->common->formatIDR($totalAmountPay);
-                $msg            = str_replace("%_totalharga", $totalAmountPay, $msg);
-                
-                $replayto = "dode.agung.asmara@gmail.com";
-                //send email to customer
-               //$this->sendEmail($subject, $msg, $email, $replayto);
-                                
-                
-                $replayto             = $email;
-                $emailUbudSerendipity = "dode.agung.asmara@gmail.com";
-                //send email to Admin
-               // $this->sendEmail($subject, $msg, $emailUbudSerendipity, $replayto);
+               
 
                 
             }else{
@@ -243,7 +221,7 @@ class Pengajuan extends CI_Controller
 	public function uploadFile()
 	{
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0) && ($_FILES['file3']['size'] > 0) && ($_FILES['file4']['size'] > 0) ) {
+		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0) && ($_FILES['file3']['size'] > 0)) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/pengajuan/",
 		       "overwrite" => FALSE,
@@ -281,17 +259,6 @@ class Pengajuan extends CI_Controller
 			}		
 
 			if($this->upload->do_upload('file3')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/pengajuan/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}	
-
-			if($this->upload->do_upload('file4')){
 				$data = $this->upload->data();
 				$FileData = $data['file_name'];
 				$error[] = false;
