@@ -96,7 +96,7 @@ class Pengajuan extends CI_Controller
     }
 
 	public function test(){
-		echo $this->session->userdata('user_id');
+		echo $this->user->info->user_role_id;
 	}
 	public function add()
     {	
