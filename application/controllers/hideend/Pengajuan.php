@@ -95,6 +95,9 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
+	public function test(){
+		echo $this->session->userdata('user_id');
+	}
 	public function add()
     {	
 
