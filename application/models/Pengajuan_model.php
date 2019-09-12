@@ -20,7 +20,7 @@ class Pengajuan_Model extends CI_Model
 		return  $insert_id;
 	}
 
-	public function showAll(){
+	public function showAll($userid){
 		    $status = array('DJKN Pusat', 'PKNSI');
       	$query = $this->db
               ->select('p.*,
@@ -36,6 +36,7 @@ class Pengajuan_Model extends CI_Model
                         v.nama_survey,
                         v.cp_survey')
        				->where_not_in('status_proses',$status)
+              ->where('userid',$userid)
        				->order_by('id', 'DESC')
               ->from('pengajuan_pspbmn p')
               ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')

@@ -87,7 +87,8 @@ class Pengajuan extends CI_Controller
     }
 
 	public function showAll(){
-       	$query =  $this->pengajuan_model->showAll();
+		$userid=$this->user->info->user_role_id;
+       	$query =  $this->pengajuan_model->showAll($userid);
        	$result = [];
         if($query){
             $result['pengajuan'] = $query;
@@ -128,6 +129,7 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
+                'userid' => $this->user->info->user_role_id,
                 'submitdate' =>  date("Y/m/d")
             );
             
@@ -201,6 +203,7 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
+                'userid' => $this->user->info->user_role_id,
                 'submitdate' =>  date("Y/m/d")//format to date
             );
             
