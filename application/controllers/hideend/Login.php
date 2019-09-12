@@ -33,8 +33,8 @@ class Login extends CI_Controller
 
 	public function pro($redirect="")
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("/hidepage/error/login_error.php");
+		$this->template->set_layout("/hidepage/layout/login_layout.php");
 		if ($this->user_model->check_block_ip()) {
 			$this->template->error(lang("error_26"));
 		}

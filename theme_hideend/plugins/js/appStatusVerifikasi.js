@@ -1771,7 +1771,7 @@ Vue.component('table-verifikasi-pspbmn', {
 
                     showAll(){ 
                         let self = this
-                        axios.post(this.url+"/hideend/pengajuan/showAll").then(function(response){
+                        axios.post(this.url+"/hideend/pengajuan/showAll/verify").then(function(response){
                                  if(response.data.pengajuan == null){
                                         self.noResult()
                                     }else{

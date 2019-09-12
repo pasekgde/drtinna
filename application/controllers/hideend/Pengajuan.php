@@ -86,8 +86,12 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
-	public function showAll(){
-		$userid=$this->user->info->user_role_id;
+	public function showAll($jenisAkun){
+		$userid = '';
+		if($jenisAkun!=="verify"){
+			$userid=$this->user->info->user_role_id;
+		}
+		
        	$query =  $this->pengajuan_model->showAll($userid);
        	$result = [];
         if($query){

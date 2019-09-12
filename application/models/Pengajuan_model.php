@@ -20,7 +20,7 @@ class Pengajuan_Model extends CI_Model
 		return  $insert_id;
 	}
 
-	public function showAll($userid){
+	public function showAll($userid=''){
 		    $status = array('DJKN Pusat', 'PKNSI');
       	$query = $this->db
               ->select('p.*,

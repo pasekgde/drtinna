@@ -286,7 +286,7 @@ class Register extends CI_Controller
 		);
 
 		$cap = create_captcha($vals);
-		$this->template->loadContent("register/index.php", array(
+		$this->template->loadContent("hidepage/register/index2.php", array(
 			"cap" => $cap,
 			"email" => $email,
 			"first_name" => $first_name,
