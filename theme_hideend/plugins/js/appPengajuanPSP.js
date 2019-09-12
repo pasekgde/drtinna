@@ -59,29 +59,19 @@ Vue.component('pengajuan-pspbmn', {
                     vErrors:{},
                     pengajuan: {
                             id:'',
-                            nama_petugas: '123',
-                            nip_petugas: '123',
-                            jabatan_petugas: '123',
-                            kontak_petugas: '123',
+                            nama_petugas: '',
+                            nip_petugas: '',
+                            jabatan_petugas: '',
+                            kontak_petugas: '',
                             status_pengajuan: '',
-                            email_petugas: '123@gmail.com',
-                            kementerian_lembaga: 
-                                            {
-                                                kode_KL:"5",
-                                                nama_KL:"MAHKAMAH AGUNG",
-                                                no:"4"
-                                            }
-                                          , //becarefull disini, karena yang dipassing select adalah object. selalu akses spesifik value
+                            email_petugas: '',
+                            kementerian_lembaga:null, //becarefull disini, karena yang dipassing select adalah object. selalu akses spesifik value
                             nama_kementerian_lembaga: '', //becarefull disini, karena yang dipassing select adalah object. selalu akses spesifik value
-                            alamat_kantorKL: '123',
-                            satuan_kerja: '123',
-                            jenis_bmn:  
-                                            {
-                                                name:"Tanah dan Bangunan"
-                                            }
-                                          ,
+                            alamat_kantorKL: '',
+                            satuan_kerja: '',
+                            jenis_bmn: null,
                             nama_jenis_bmn: '',
-                            totalnilai_bmn: '22000000000',
+                            totalnilai_bmn: '',
                             provinsi: null,
                             detail_djkn: null,
                             email_djkn: '',
@@ -89,10 +79,10 @@ Vue.component('pengajuan-pspbmn', {
                             kabupaten: null,
                             nama_kabupaten: '',
                             status_proses: '',
-                            jabatan_pemohon: '123',
-                            noSurat_pemohon: '123',
+                            jabatan_pemohon: '',
+                            noSurat_pemohon: '',
                             tglSurat_pemohon: '',
-                            perihalSurat_pemohon: '123',
+                            perihalSurat_pemohon: '',
                             fileSuratPermohon: '',
                             fileDaftarRincian: '',
                             fileDokumenKelengkapan: ''

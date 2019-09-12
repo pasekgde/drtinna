@@ -130,27 +130,6 @@
                                                 <span class="text-red">{{ errors.first('step1.totalnilai_bmn') }}</span>
                                             </div>
                                         </div>
-<!-- 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi BMN (Provinsi)</label>
-                                            <div class="col-sm-5">
-                                                <vue-multiselect
-                                                    :allow-empty="false"  
-                                                    v-model="pengajuan.provinsi" 
-                                                    :options="option_provinsi" 
-                                                    :custom-label="name_provinsi" 
-                                                    placeholder="Pilih Provinsi" 
-                                                    label="provinsi" 
-                                                    track-by="provinsi" 
-                                                    @input="showKabupaten=true;getKabupaten(pengajuan.provinsi);pengajuan.kabupaten=null"
-                                                    v-validate data-vv-rules="required" 
-                                                    name="lokasiProvinsi" 
-                                                    data-vv-scope="step1">
-                                                </vue-multiselect>
-
-                                                <span class="text-red">{{ errors.first('step1.lokasiProvinsi') }}</span>
-                                            </div>
-                                        </div> -->
 
                                         <div class="form-group" v-if="true">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Lokasi BMN (Kabupaten)</label>
