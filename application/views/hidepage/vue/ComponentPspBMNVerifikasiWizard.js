@@ -413,6 +413,12 @@
                             <div class="form-horizontal" >
                                 <div class="box-body">
                                     <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Alamat Kantor Pemohon</label>
+                                            <div class="col-sm-9">
+                                               <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.alamat_kantor_pemohon">
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-sm-4">
                                             <div class="box-body2">
                                                 <button class="btn btn-success" @click="generateKMKDoc">
@@ -1139,14 +1145,15 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon btn-flat margin">Hasil Verifikasi Dokumen</h3>
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-horizontal" >
+                                <div class="box-body">
+                                    <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-3 control-label">Alamat Kantor Pemohon</label>
                                             <div class="col-sm-9">
                                                <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.alamat_kantor_pemohon">
                                             </div>
-                            </div>
-                            <div class="form-horizontal" >
-                                <div class="box-body">
+                                    </div>
                                     <div class="form-group">
                                         <div class="col-sm-4">
                                             <div class="box-body2">
