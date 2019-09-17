@@ -86,7 +86,7 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
-	public function showAll($jenisAkun){
+	public function showAll($jenisAkun=''){
 		$userid = '';
 		if($jenisAkun!=="verify"){
 			$userid=$this->user->info->user_role_id;
@@ -113,6 +113,8 @@ class Pengajuan extends CI_Controller
             $data = array(
                 'jenis_bmn' => $this->input->post('nama_jenis_bmn'),
                 'totalnilai_bmn' => $this->input->post('totalnilai_bmn'),
+                'jumlah_unit' => $this->input->post('jumlah_unit'),
+                'detail_djkn' => $this->input->post('detail_djkn'),
                 'provinsi' => $this->input->post('nama_provinsi'),
                 'kabupaten' => $this->input->post('nama_kabupaten'),
                 'kementerian_lembaga' => $this->input->post('nama_kementerian_lembaga'),
@@ -186,6 +188,7 @@ class Pengajuan extends CI_Controller
             $data = array(
                 'jenis_bmn' => $this->input->post('nama_jenis_bmn'),
                 'totalnilai_bmn' => $this->input->post('totalnilai_bmn'),
+                'jumlah_unit' => $this->input->post('jumlah_unit'),
                 'provinsi' => $this->input->post('nama_provinsi'),
                 'detail_djkn' => $this->input->post('detail_djkn'),
                 'email_djkn' => $this->input->post('email_djkn'),
@@ -229,64 +232,76 @@ class Pengajuan extends CI_Controller
     }
 
 	public function uploadFile()
-	{
+	{	
+		$dataArray = array();
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0) && ($_FILES['file3']['size'] > 0)) {
+		if (isset($_FILES['file1']) || isset($_FILES['file2']) || isset($_FILES['file3'])) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/pengajuan/",
 		       "overwrite" => FALSE,
 		       "max_filename" => 300,
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
-		       "allowed_types" => "docx|doc|xlsx|xls|pdf",
-		       "max_size" => 200000
+		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|jpeg|png",
+		       "max_size" => 0
 		    ));
 
+		    $tipe = array();
 		    $file = array();
 		    $msg = array();
 		    $error = array();
+		    if(isset($_FILES['file1'])){
+				if($this->upload->do_upload('file1')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/pengajuan/".$FileData;			    	    	
+			    	$tipe[] = "file1";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
 
-			if($this->upload->do_upload('file1')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/pengajuan/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}			
+			}
+					
 
-			if($this->upload->do_upload('file2')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/pengajuan/".$FileData;		    	
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
+		    if(isset($_FILES['file2'])){
+				if($this->upload->do_upload('file2')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/pengajuan/".$FileData;		    	
+			    	$tipe[] = "file2";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}		
 			}		
 
-			if($this->upload->do_upload('file3')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/pengajuan/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
+
+		    if(isset($_FILES['file3'])){
+				if($this->upload->do_upload('file3')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/pengajuan/".$FileData;
+			    	$tipe[] = "file3";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
 			}	
 
 		     $dataArray = array(
 							"error" => $error,
 							"msg" => $msg,
+							"tipe" => $tipe,
 							"file" => $file
 				);
 		    
-
-		}else{
 
 		}
 

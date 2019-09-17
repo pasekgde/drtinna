@@ -35,12 +35,16 @@ class Pengajuan_Model extends CI_Model
                         v.rencana_survey,
                         v.nama_survey,
                         v.cp_survey')
-       				->where_not_in('status_proses',$status)
-              ->where('userid',$userid)
-       				->order_by('id', 'DESC')
-              ->from('pengajuan_pspbmn p')
-              ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')
-       				->get();
+       				->where_not_in('status_proses',$status);
+        if($userid!==''){                 
+              $query = $query->where('userid',$userid);
+        } 
+
+       	$query = $query->order_by('id', 'DESC')
+                      ->from('pengajuan_pspbmn p')
+                      ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')
+               				->get();
+                      
         if($query->num_rows() > 0){
             return $query->result();
         }else{

@@ -1,8 +1,12 @@
+<script type="text/x-template" id="sidebarPengajuanWizardForm">
+            
+</script>
 <script type="text/x-template" id="pspPengajuanWizardForm">
     <div>
+    <div class="col-md-8">
                 <div class="nav-tabs-custom">
-                    <form-wizard :ref="'vuewizard'">
-                        <wizard-step slot-scope="props" slot="step" :tab="props.tab" :transition="props.transition" :index="props.index">
+                    <form-wizard :ref="'vuewizard'" :start-index.sync="stepIndex">
+                        <wizard-step slot-scope="props" slot="step"  :tab="props.tab" :transition="props.transition" :index="props.index">
                         </wizard-step>
                         <h3 slot="title"></h3>
                         <tab-content title="Inital Input" icon="fa fa-user" :before-change="beforeTab1Switch">
@@ -99,7 +103,7 @@
 
 
                                 <div class="box-header with-border">
-                                    <h3 class="box-title btn bg-maroon btn-flat margin">PENGAJUAN BMN</h3>
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">IDENTITAS BMN</h3>
                                 </div>
                                 <div class="form-horizontal">
                                     <div class="box-body">
@@ -121,6 +125,13 @@
                                                 </vue-multiselect>
 
                                                 <span class="text-red">{{ errors.first('step1.JenisBMN') }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Jumlah Unit</label>
+                                            <div class="col-sm-5">
+                                                <input type="email" class="form-control"  placeholder="Jumlah Unit BMN" v-validate="'required|numeric'" name="jumlah_unit" v-model="pengajuan.jumlah_unit" data-vv-scope="step1">
+                                                <span class="text-red">{{ errors.first('step1.jumlah_unit') }}</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -158,7 +169,7 @@
                             </div>
                         </tab-content>
                                                 
-                        <tab-content title="Proses PSPBMN" icon="fa fa-certificate">
+                        <tab-content title="Proses PSPBMN" icon="fa fa-certificate" :before-change="beforeTab1SubSwitch">
                             <div class="callout callout-warning" v-if="notif100M">
                                 <h4>Silahkan ajukan Permohonan anda kepada </h4>
                                 <h1>Direktorat Jenderal Kekayaan Negara</h1>
@@ -213,7 +224,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Jabatan Pemohon</label>
                                             <div class="col-sm-8">
-                                                <input type="name" class="form-control"  placeholder="Mis. Kepala Kantor, Direktur, Panglima" v-validate="'required'" name="jabatan_pemohon" v-model="pengajuan.jabatan_pemohon" data-vv-scope="step2">
+                                                <input type="name" class="form-control"  placeholder="isi dengan lengkap, Contoh: Kepala Kantor Pertanahan Maluku Tengah" v-validate="'required'" name="jabatan_pemohon" v-model="pengajuan.jabatan_pemohon" data-vv-scope="step2">
                                                 <span class="text-red">{{ errors.first('step2.jabatan_pemohon') }}</span>
                                             </div>
                                         </div>
@@ -227,11 +238,15 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Tanggal Surat Permohonan</label>
                                             <div class="col-sm-5">
-                                                <input type="jabatan" id="datepicker-input-trigger" :value="formatDates(pengajuan.tglSurat_pemohon)" class="form-control"  placeholder="Tanggal Surat" v-validate="'required'" name="tglSurat_pemohon" data-vv-scope="step2" />
-                                                <airbnb-style-datepicker style="left:0!important" :trigger-element-id="'datepicker-input-trigger'" :mode="'single'" :date-one="pengajuan.tglSurat_pemohon" v-on:date-one-selected="function(val) { pengajuan.tglSurat_pemohon = val }" :months-to-show="1"
+                                                <input type="jabatan" id="datepicker-input-trigger" :value="formatDates" class="form-control"  placeholder="Tanggal Surat" v-validate="'required'" name="tglSurat_pemohon" data-vv-scope="step2" />
+                                                <airbnb-style-datepicker 
+                                                    style="left:0!important" 
+                                                    :trigger-element-id="'datepicker-input-trigger'" 
+                                                    :mode="'single'" 
+                                                    :date-one="pengajuan.tglSurat_pemohon" 
+                                                    v-on:date-one-selected="function(val) { pengajuan.tglSurat_pemohon = val }" :months-to-show="1"
                                                     v-on:closed="onClosed" v-on:previous-month="onMonthChange" v-on:next-month="onMonthChange">
                                                 </airbnb-style-datepicker>
-
                                                 <span class="text-red">{{ errors.first('step2.tglSurat_pemohon') }}</span>
                                             </div>
                                         </div>
@@ -241,31 +256,47 @@
                                                 <input type="nohape" class="form-control"  placeholder="Perihal Surat Permohonan" v-validate="'required'" name="perihalSurat_pemohon" v-model="pengajuan.perihalSurat_pemohon" data-vv-scope="step2">
                                                 <span class="text-red">{{ errors.first('step2.perihalSurat_pemohon') }}</span>
                                             </div>
-                                        </div><!-- 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Peraturan Pendelegasian Wewenang</label>
-                                            <div class="col-sm-5">
-                                                <input type="nohape" class="form-control"  placeholder="Contoh: Peraturan Menteri Perhubungan no 1" v-validate="'required'" name="perihalSurat_pemohon" v-model="pengajuan.perihalSurat_pemohon" data-vv-scope="step2">
-                                                <span class="text-red">{{ errors.first('step2.perihalSurat_pemohon') }}</span>
-                                            </div>
-                                        </div> -->
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
-                                            <div class="col-sm-10">
-                                                <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required'" name="fileSuratPermohonName" data-vv-scope="step2">
-                                                <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
-                                                <p class="help-block">Upload Document *.docx or *.xlsx</p>
-                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Daftar Rician BMN (Format Exel)</label>
-                                            <div class="col-sm-10">
-                                                <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required'" name="fileDaftarRincianName" data-vv-scope="step2">
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
+                                            <div class="col-sm-10" v-if="!uploadUlangFilePermohonan">
+                                                <div class="box-body2">
+                                                    <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileSuratPermohon" download>
+                                                        <i class="fa fa-download"></i> {{hrefFileSuratPermohon}}
+                                                    </a>
+                                                </div>                                              
+                                                <button type="button" class="btn btn-success" @click="uploadUlangFilePermohonan=true">
+                                                        Upload Ulang
+                                                </button>
+                                            </div> 
+
+
+                                            <div class="col-sm-10" v-if="uploadUlangFilePermohonan">
+                                                <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required'" name="fileSuratPermohonName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
+                                                <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
+                                                <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Daftar Rincian BMN (Format Exel)</label>
+                                            <div class="col-sm-10" v-if="!uploadUlangDaftarRincian">
+                                                <div class="box-body2">
+                                                    <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileDaftarRincian" download>
+                                                        <i class="fa fa-download"></i> {{hrefFileDaftarRincian}}
+                                                    </a>
+                                                </div>                                              
+                                                <button type="button" class="btn btn-success" @click="uploadUlangDaftarRincian=true">
+                                                        Upload Ulang
+                                                </button>
+                                            </div> 
+                                            <div class="col-sm-10" v-if="uploadUlangDaftarRincian">
+                                                <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required'" name="fileDaftarRincianName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                                 <span class="text-red">{{ errors.first('step2.fileDaftarRincianName') }}</span>
                                             </div>
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-5"  v-if="uploadUlangDaftarRincian">
                                                 <div class="box-body2">
-                                                    <a class="btn btn-block btn-social btn-bitbucket">
+                                                    <a class="btn btn-block btn-social btn-bitbucket" :href="downloadFileSampleRincianBMN" download>
                                                         <i class="fa fa-download"></i> Download contoh format Rincian BMN
                                                     </a>
                                                 </div>
@@ -273,18 +304,26 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Dokumen Kelengkapan</label>
-                                            <div class="col-sm-10">
-                                                <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required'" name="fileDokumenKelengkapanName" data-vv-scope="step2">
+
+                                            <div class="col-sm-10" v-if="!uploadUlangDokumenKelengkapan">
+                                                <div class="box-body2">
+                                                    <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileDokumenKelengkapan" download>
+                                                        <i class="fa fa-download"></i> {{hrefFileDokumenKelengkapan}}
+                                                    </a>
+                                                </div>                                              
+                                                <button type="button" class="btn btn-success" @click="uploadUlangDokumenKelengkapan=true">
+                                                        Upload Ulang
+                                                </button>
+                                            </div> 
+
+                                            <div class="col-sm-10" v-if="uploadUlangDokumenKelengkapan">
+                                                <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required'" name="fileDokumenKelengkapanName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg">
                                                 <span class="text-red">{{ errors.first('step2.fileDokumenKelengkapanName') }}</span>
                                             </div>
-                                            <div class="col-sm-5">
-                                                <div class="box-body2">
-                                                    <a class="btn btn-block btn-social btn-bitbucket">
-                                                        <i class="fa fa-download"></i> Apa saja syarat kelengkapannya?
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- 
+                                        </div>
+
+
+                                        <!-- 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Backup SIMAK</label>
                                             <div class="col-sm-10">
@@ -317,14 +356,144 @@
 
                         <template slot="footer" slot-scope="props">
                             <div class="wizard-footer-right2">
-                                <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Save & Next</wizard-button>
-                                <wizard-button v-else @click.native="clearPengajuanData" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done & Upload Data' : 'Next'}}</wizard-button>
+                                <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab();" class="wizard-footer-right" :style="props.fillButtonStyle">Save & Next</wizard-button>
+                                <wizard-button v-else @click.native="clearPengajuanData();" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done & Upload Data' : 'Next'}}</wizard-button>
 
-                                <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" class="btn btn-warning" :style="props.fillButtonStyle">Back</wizard-button>
+                                <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab();" class="btn btn-warning" :style="props.fillButtonStyle">Back</wizard-button>
                             </div>  
                         </template>
                     </form-wizard>
                 </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box box-default">
+   
+                <div v-if="stepIndex=='0'">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Pengumuman!</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="callout callout-danger">
+                            <h4>IDENTITAS PETUGAS</h4>
+
+                            <p>Mohon diisi data petugas yang melaksanakan inputing permohonan PSP secara lengkap. Kami akan mengirimkan notifikasi email atas progress PSP BMN yang diajukan</p>
+                        </div>
+                        <div class="callout callout-info">
+                            <h4>IDENTITAS SATKER </h4>
+
+                            <p>Pilih Nama Kementerian/Lembaga serta ketikkan Nama Satker secara lengkap.</p>
+                        </div>
+                        <div class="callout callout-warning">
+                            <h4>PENGAJUAN BMN</h4>
+
+                            <p>Pilih Jenis BMN, Jumlah Unit BMN dan Masukkan Total Nilai Perolehannya. Masukkan Nilai Perolehan sebelum Revaluasi BMN 2017-2018.</p>
+                        </div> 
+                    </div>
+                </div>     
+                <div v-else-if="stepIndex=='1'">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Pengumuman!</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="callout callout-danger">
+                            <h4>Penting diingat!</h4>
+
+                            <p>Mohon untuk memastikan Tujuan Surat dalam Surat Permohonan, apakah sudah sesuai dengan informasi di sebalah berikut.</p>
+                        </div> 
+                    </div>
+                </div>        
+                <div v-else-if="stepIndex=='2'">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Pengumuman!</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="callout callout-danger">
+                            <h4>JABATAN PEMOHON</h4>
+
+                            <p>Ketikkan Jabatan Pemohon secara lengkap, Contoh: Kepala Kantor Pertanahan Maluku Tengah, Sekretaris Jenderal Kementerian Agama, dll.</p>
+                        </div>
+                        <div class="callout callout-info">
+                            <h4>UPLOAD SURAT PERMOHONAN </h4>
+
+                            <p>Upload File Surat Permohonan dalam format PDF atau JPEG. </p>
+                        </div>
+                        <div class="callout callout-warning">
+                            <h4>UPLOAD DAFTAR RINCIAN BMN</h4>
+
+                            <p>Upload File Daftar Rincian BMN dalam format XLS. File ini sangat membantu kami dalam memverifikasi berkas permohonan. Untuk format XLS dapat di download pada tombol yang tersedia.</p>
+                        </div> 
+                        <div class="callout callout-warning">
+                            <h4>UPLOAD DOKUMEN KELENGKAPAN</h4>
+
+                            <p>Upload File Dokumen Kelengkapan Permohonan PSP dalam format PDF atau JPEG. Dokumen Kelengkapan antara lain:</p>
+                            <ol>
+                                <li>
+                                    Untuk BMN yang Memiliki Dokumen Kepemilikan, lampirkan:
+                                    <ul>
+                                        <li>Fotokopi Dokumen Kepemilikan, dan</li>
+                                        <li>Surat keterangan pejabat struktural menyatakan kebenaran fotokopi tersebut</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Untuk BMN yang tidak mempunyai Dokumen Kepemilikan (Selain Tanah dan Bangunan diatas Rp. 100 Juta), lampirkan:
+                                    <ul>
+                                        <li>Fotokopi  BAST perolehan barang dan dokumen lainnya, dan</li>
+                                        <li>Surat keterangan pejabat struktural menyatakan kebenaran fotokopi tersebut</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Untuk BMN yang tidak mempunyai Dokumen Kepemilikan, lampirkan:
+                                    <ul>
+                                        <li>SPTJ bermaterai bahwa barang tersebut adalah BMN dan digunakan untuk tugas dan fungsi</li>
+                                        <li>Surat Kehilangan dari Kepolisian apabila Memiliki Dokumen Kepemilikan namun Hilang.</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    KIB
+                                </li>
+                                <li>
+                                    Foto
+                                </li>
+                                <li>
+                                    Fotocopy Surat Keputusan (dari Kementerian/Lembaga) tentang Pendelegasian Wewenang
+                                </li>
+                            </ol>
+                        </div> 
+                    </div>
+                </div>        
+                <div v-else-if="stepIndex=='3'">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Pengumuman!</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="callout callout-danger">
+                            <h4>IDENTITAS PETUGAS</h4>
+
+                            <p>Mohon diisi data petugas yang melaksanakan inputing permohonan PSP secara lengkap. Kami akan mengirimkan notifikasi email atas progress PSP BMN yang diajukan</p>
+                        </div>
+                        <div class="callout callout-info">
+                            <h4>IDENTITAS SATKER </h4>
+
+                            <p>Pilih Nama Kementerian/Lembaga serta ketikkan Nama Satker secara lengkap.</p>
+                        </div>
+                        <div class="callout callout-warning">
+                            <h4>PENGAJUAN BMN</h4>
+
+                            <p>Pilih Jenis BMN, Jumlah Unit BMN dan Masukkan Total Nilai Perolehannya. Masukkan Nilai Perolehan sebelum Revaluasi BMN 2017-2018.</p>
+                        </div> 
+                    </div>
+                </div>   
+                    
+                </div>
+    </div>
     </div>
 </script>
 
@@ -357,7 +526,7 @@
                                         </td>
                                         <td>
                                             <div v-if="data.hasil_verifikasi!==null">
-                                                <button type="button" 
+                                              <button type="button" 
                                                         class="btn" 
                                                         :class="{'btn-success':(data.hasil_verifikasi === 'Terbitkan KMK Dokumen')}" 
                                                         v-if="data.hasil_verifikasi === 'Terbitkan KMK Dokumen'">
@@ -366,15 +535,18 @@
                                                 <button type="button" 
                                                         class="btn" 
                                                         :class="{'btn-danger':(data.hasil_verifikasi === 'Butuh Kelengkapan Data')}" 
-                                                        v-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
+                                                        v-else-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
                                                    {{data.hasil_verifikasi}}
                                                 </button>
                                                 <button type="button" 
                                                         class="btn" 
                                                         :class="{'btn-warning':(data.hasil_verifikasi === 'Butuh Survey Lapangan')}" 
-                                                        v-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
+                                                        v-else-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
                                                    {{data.hasil_verifikasi}}
                                                 </button>
+                                                <div v-else>
+                                                    {{data.hasil_verifikasi}}
+                                                </div>  
                                             </div>
                                             <div v-else>
                                                 Belum Verifikasi

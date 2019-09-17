@@ -18,7 +18,7 @@ class Verifikasi extends CI_Controller
 		$this->load->model("user_model");
 		$this->load->model("pengajuan_model");
 		$this->load->model("verifikasi_model");
-	//	$this->load->helper(array('form', 'url'));
+		//$this->load->helper(array('form', 'url'));
 		if (!$this->user->loggedin) $this->template->error(lang("error_1"));
 		// if(!$this->common->has_permissions(array(
 		// 		"admin", "content_manager", "content_worker"), $this->user)) {
@@ -1171,6 +1171,7 @@ class Verifikasi extends CI_Controller
                 'suratSalinanKMKfinal' => $this->input->post('suratSalinanKMKfinal'),	            
                 'suratNDSSurveyLapanganfinal' => $this->input->post('suratNDSSurveyLapanganfinal'),	            
                 'suratNDSPermintaanKelengkapanfinal' => $this->input->post('suratNDSPermintaanKelengkapanfinal'),	            
+                'alamat_kantor_pemohon' => $this->input->post('alamat_kantor_pemohon'),	            
                 'updatedate' =>  date("Y/m/d")
             );
             

@@ -65,6 +65,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                         suratSalinanKMKfinal:'',
                         suratNDSPermintaanKelengkapanfinal:'',
                         suratNDSSurveyLapanganfinal:'',
+                        alamat_kantor_pemohon:'',
                     },       
 
                     showDocumentVerifikasiFinal:false,             
@@ -113,7 +114,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                 this.getDataVerifikasiDokumen()
             },
             computed: {
-                                hrefImageLoader: function () {
+                hrefImageLoader: function () {
                     // `this` points to the vm instance
                     return this.url+'/theme_costume/images/success.gif'
                     // return this.url
@@ -720,6 +721,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
+                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
                             this.addVerifikasi("Proses by Verifikator")
                             return true
                         }
@@ -733,6 +735,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
+                             this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
                              this.addVerifikasi("Dokumen Fisik telah Dicek")
                             return true
                         }
@@ -746,7 +749,8 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                             this.addVerifikasi("Dokumen Fisik telah Dicek")
+                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
+                            this.addVerifikasi("Dokumen Fisik telah Dicek")
                             return true
                         }
 
@@ -876,7 +880,8 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                         suratSalinanKMKfinal:'',
                         suratNDSPermintaanKelengkapanfinal:'',
                         suratNDSSurveyLapanganfinal:'',
-                        peraturan_pendelegasian_wewenang_KL:''
+                        peraturan_pendelegasian_wewenang_KL:'',
+                        alamat_kantor_pemohon:''
 
                     },          
                     showDocumentVerifikasiFinal:false,         
@@ -1621,6 +1626,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
+                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
                             this.addVerifikasi("Proses by Verifikator")
                             return true
                         }
@@ -1634,7 +1640,8 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                             this.addVerifikasi("Dokumen Fisik telah Dicek")
+                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
+                            this.addVerifikasi("Dokumen Fisik telah Dicek")
                             return true
                         }
 
@@ -1647,7 +1654,8 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                             this.addVerifikasi("Dokumen Fisik telah Dicek")
+                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
+                            this.addVerifikasi("Dokumen Fisik telah Dicek")
                             return true
                         }
 

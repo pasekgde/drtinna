@@ -898,7 +898,7 @@
                                 </div>
 
                                 <div class="box-header with-border">
-                                    <h3 class="box-title btn bg-maroon btn-flat margin">KEPALA BIDANG</h3>
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">KEPALA KANTOR</h3>
                                 </div>                             
                                 
                                 
@@ -906,7 +906,7 @@
                                 <div class="form-horizontal">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Jabatan KABID KPKNL</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Jabatan Kepala Kantor</label>
                                             <div class="col-sm-5">
                                                 <vue-multiselect 
                                                     v-model="data_kepala_bidang_kpknl" 
@@ -938,7 +938,7 @@
 
 
                                         <div class="form-group" v-if="showStatusJabatanKabid">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Kepala bidang</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Kepala Kantor</label>
                                             <div class="col-sm-5">
                                                 <input type="name" class="form-control" placeholder="Masukkan Nama Kepala bidang" v-validate="'required'" name="nama_kepala_bidang" v-model="data_kepala_bidang_kpknl.nama" data-vv-scope="step1">
                                                 <span class="text-red">{{ errors.first('step1.nama_kepala_bidang') }}</span>
@@ -946,7 +946,7 @@
                                         </div>
 
                                         <div class="form-group" v-if="showStatusJabatanKabid">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Kepala bidang</label>
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">NIP Kepala Kantor</label>
                                             <div class="col-sm-5">
                                                 <the-mask type="text" mask="######## ###### # ###" class="form-control" v-validate="'required'" name="nip_kepala_bidang" v-model="data_kepala_bidang_kpknl.nip" placeholder="Masukkan NIP Kepala bidang" data-vv-scope="step1"> </the-mask>
                                                 <span class="text-red">{{ errors.first('step1.nip_kepala_bidang') }}</span>
@@ -1138,6 +1138,12 @@
                         <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" :before-change="beforeTab3SwitchKPKNL" v-if="jenisForm.verifikasi" >
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon btn-flat margin">Hasil Verifikasi Dokumen</h3>
+                            </div>
+                            <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-3 control-label">Alamat Kantor Pemohon</label>
+                                            <div class="col-sm-9">
+                                               <input type="text" class="form-control" placeholder="Masukkan Nama" v-model="verifikasi.alamat_kantor_pemohon">
+                                            </div>
                             </div>
                             <div class="form-horizontal" >
                                 <div class="box-body">
@@ -1572,15 +1578,19 @@
                                                 <button type="button" 
                                                         class="btn" 
                                                         :class="{'btn-danger':(data.hasil_verifikasi === 'Butuh Kelengkapan Data')}" 
-                                                        v-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
+                                                        v-else-if="data.hasil_verifikasi === 'Butuh Kelengkapan Data'">
                                                    {{data.hasil_verifikasi}}
                                                 </button>
                                                 <button type="button" 
                                                         class="btn" 
                                                         :class="{'btn-warning':(data.hasil_verifikasi === 'Butuh Survey Lapangan')}" 
-                                                        v-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
+                                                        v-else-if="data.hasil_verifikasi === 'Butuh Survey Lapangan'">
                                                    {{data.hasil_verifikasi}}
                                                 </button>
+                                                <div v-else>
+                                                    {{data.hasil_verifikasi}}
+                                                </div>  
+
                                             </div>
                                             <div v-else>
                                                 Belum Verifikasi
