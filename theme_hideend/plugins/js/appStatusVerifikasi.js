@@ -66,6 +66,9 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                         suratNDSPermintaanKelengkapanfinal:'',
                         suratNDSSurveyLapanganfinal:'',
                         alamat_kantor_pemohon:'',
+                        rencana_survey:'',
+                        nama_survey:'',
+                        cp_survey:'',
                     },       
 
                     showDocumentVerifikasiFinal:false,             
@@ -344,6 +347,13 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     this.isButuhKelengkapanData = false
                     this.isButuhSurveyLapangan = true
 
+                    this.verifikasi.daftarKekuranganData=[]
+                    this.verifikasi.daftar_tembusan=[]
+                    this.daftarTembusan = []
+                    this.verifikasi.jabatan_salinan=''
+                    this.verifikasi.nama_salinan=''
+                    this.verifikasi.nip_salinan=''
+
                     this.verifikasi.hasil_verifikasi = "Butuh Survey Lapangan"
 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
@@ -369,6 +379,15 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     this.isButuhKelengkapanData = true
                     this.isButuhSurveyLapangan = false
 
+                    this.verifikasi.rencana_survey='' 
+                    this.verifikasi.nama_survey='' 
+                    this.verifikasi.cp_survey='' 
+                    this.verifikasi.daftar_tembusan=[]
+                    this.daftarTembusan = []
+                    this.verifikasi.jabatan_salinan=''
+                    this.verifikasi.nama_salinan=''
+                    this.verifikasi.nip_salinan=''
+
                     this.verifikasi.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData)  
                     this.verifikasi.hasil_verifikasi = "Butuh Kelengkapan Data"  
                                         
@@ -393,18 +412,29 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                 btnGenerateKMKDoc(){
                     this.isGenerateKMKDoc = true
                     this.isButuhKelengkapanData = false
-                    this.isButuhSurveyLapangan = false
-                    this.verifikasi.hasil_verifikasi = "Terbitkan KMK Dokumen"  
-
+                    this.isButuhSurveyLapangan = false    
+                    this.verifikasi.rencana_survey='' 
+                    this.verifikasi.nama_survey='' 
+                    this.verifikasi.cp_survey='' 
+                    this.verifikasi.daftarKekuranganData=[]
+                    this.verifikasi.hasil_verifikasi = "Terbitkan KMK Dokumen" 
+                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan) 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
 
-                    console.log(GabungData)
+                    this.clearGenerateDoc()
+                    GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
-                    axios.post(this.url + "/hideend/verifikasi/generateDocKPKNL/"+this.choosePengajuan.id).then(function(response) {
-                                
+                    axios.post(this.url + "/hideend/verifikasi/generateDocKPKNL/",formData).then(function(response) {
+                            console.log("response.data.dokumen")     
+                            console.log(response.data.dokumen)     
                             if (response.data.dokumen) {
-
+                                self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
+                                self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
+                                self.verifikasi.fileKMK = response.data.dokumen.fileKMK
+                                self.verifikasi.fileSalinanKMK = response.data.dokumen.fileSalinanKMK
+                                self.verifikasi.fileNDSPermintaanKelengkapan = response.data.dokumen.fileNDSPermintaanKelengkapan
+                                self.verifikasi.fileNDSSurveyLapangan = response.data.dokumen.fileNDSSurveyLapangan
            
                             }
                         })
@@ -492,32 +522,31 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                                 self.showStatusJabatanKasi = true
                                 self.showStatusJabatanKabid = true
 
-
                                 self.verifikasi =  response.data.dokumen[0]
                                 self.data_kepala_seksi_kpknl = {
-                                                        jabatan : response.data.dokumen[0].jabatan_kepala_seksi,
-                                                        status : response.data.dokumen[0].status_kepala_seksi,
-                                                        nip : response.data.dokumen[0].nip_kepala_seksi,          
-                                                        nama : response.data.dokumen[0].nama_kepala_seksi 
+                                                        jabatan : self.option_data_kepala_seksi_kpknl[0].jabatan,
+                                                        status : self.option_data_kepala_seksi_kpknl[0].status,
+                                                        nip : self.option_data_kepala_seksi_kpknl[0].nip,          
+                                                        nama : self.option_data_kepala_seksi_kpknl[0].nama 
                                                 }
                                 self.temp_data_kepala_seksi_kpknl = {
-                                                        jabatan : response.data.dokumen[0].jabatan_kepala_seksi,
-                                                        status : response.data.dokumen[0].status_kepala_seksi,
-                                                        nip : response.data.dokumen[0].nip_kepala_seksi,          
-                                                        nama : response.data.dokumen[0].nama_kepala_seksi
+                                                        jabatan : self.option_data_kepala_seksi_kpknl[0].jabatan,
+                                                        status : self.option_data_kepala_seksi_kpknl[0].status,
+                                                        nip : self.option_data_kepala_seksi_kpknl[0].nip,          
+                                                        nama : self.option_data_kepala_seksi_kpknl[0].nama 
                                                 }                        
                                 self.data_kepala_bidang_kpknl = {
-                                                        jabatan : response.data.dokumen[0].jabatan_kepala_bidang,
-                                                        status : response.data.dokumen[0].status_kepala_bidang,
-                                                        nip : response.data.dokumen[0].nip_kepala_bidang,          
-                                                        nama : response.data.dokumen[0].nama_kepala_bidang 
+                                                        jabatan : self.option_data_kepala_bidang_kpknl[0].jabatan,
+                                                        status : self.option_data_kepala_bidang_kpknl[0].status,
+                                                        nip : self.option_data_kepala_bidang_kpknl[0].nip,          
+                                                        nama : self.option_data_kepala_bidang_kpknl[0].nama 
                                                 }
 
                                 self.temp_data_kepala_bidang_kpknl = {
-                                                        jabatan : response.data.dokumen[0].jabatan_kepala_bidang,
-                                                        status : response.data.dokumen[0].status_kepala_bidang,
-                                                        nip : response.data.dokumen[0].nip_kepala_bidang,          
-                                                        nama : response.data.dokumen[0].nama_kepala_bidang
+                                                        jabatan : self.option_data_kepala_bidang_kpknl[0].jabatan,
+                                                        status : self.option_data_kepala_bidang_kpknl[0].status,
+                                                        nip : self.option_data_kepala_bidang_kpknl[0].nip,          
+                                                        nama : self.option_data_kepala_bidang_kpknl[0].nama 
                                                 }
                                 self.verifikasi.jabatan_salinan = (response.data.dokumen[0].jabatan_salinan === "null")?'':response.data.dokumen[0].jabatan_salinan
                                 self.verifikasi.nama_salinan = (response.data.dokumen[0].nama_salinan === "null")?'':response.data.dokumen[0].nama_salinan
@@ -534,7 +563,10 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                                     self.daftarKekuranganData = JSON.parse(response.data.dokumen[0].daftarKekuranganData) 
                                 }      
 
-                                if(response.data.dokumen[0].daftar_tembusan==='null' || response.data.dokumen[0].daftar_tembusan===''){
+                                console.log("response.data.dokumen[0].daftar_tembusan")
+                                console.log(response.data.dokumen[0].daftar_tembusan)
+
+                                if(response.data.dokumen[0].daftar_tembusan==='null' || response.data.dokumen[0].daftar_tembusan===''|| response.data.dokumen[0].daftar_tembusan==='[]'){
                                      self.daftarTembusan = [{
                                                                 nama:''
                                                             }]  
@@ -695,14 +727,23 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     let self = this
                     axios.get(this.url + "/theme_costume/static_content/kepala_bidangPKN.json")
                         .then(response => {
-                            self.option_data_kepala_bidang_kpknl = response.data.jabatan_kepala_bidang
+                            
+                            self.option_data_kepala_bidang_kpknl = response.data.jabatan_kepala_bidang.filter(
+                                            data => data.kantor.includes(this.choosePengajuan.status_proses))
+
+                            
                         })
                 },     
                 getKepalaSeksiKPKNL() {
                     let self = this
                     axios.get(this.url + "/theme_costume/static_content/kepala_seksiPKN.json")
                         .then(response => {
-                            self.option_data_kepala_seksi_kpknl = response.data.jabatan_kepala_seksi
+                            console.log("response.data.jabatan_kepala_seksi")
+                            console.log(response.data.jabatan_kepala_seksi)
+                            console.log(response.data.jabatan_kepala_seksi.filter(
+                                            data => data.kantor.includes(this.choosePengajuan.status_proses)))
+                            self.option_data_kepala_seksi_kpknl = response.data.jabatan_kepala_seksi.filter(
+                                            data => data.kantor.includes(this.choosePengajuan.status_proses))
                         })
                 },
                 name_jabatan_kepala_seksi_kpknl({jabatan}) {
@@ -749,15 +790,14 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
-                            this.addVerifikasi("Dokumen Fisik telah Dicek")
+                            this.addVerifikasi("Keputusan Telah di buat")
                             return true
                         }
 
                     })
                 },
                 beforeTab4SwitchKPKNL: function() {
-                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
+                    //this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
                     this.addVerifikasi("Keputusan Telah di buat")
                     return true
                 },
@@ -881,7 +921,10 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                         suratNDSPermintaanKelengkapanfinal:'',
                         suratNDSSurveyLapanganfinal:'',
                         peraturan_pendelegasian_wewenang_KL:'',
-                        alamat_kantor_pemohon:''
+                        alamat_kantor_pemohon:'',
+                        rencana_survey:'',
+                        nama_survey:'',
+                        cp_survey:'',
 
                     },          
                     showDocumentVerifikasiFinal:false,         
@@ -1172,6 +1215,13 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     this.isButuhKelengkapanData = false
                     this.isButuhSurveyLapangan = true
 
+                    this.verifikasi.daftarKekuranganData=[]
+                    this.verifikasi.daftar_tembusan=[]
+                    this.daftarTembusan = []
+                    this.verifikasi.jabatan_salinan=''
+                    this.verifikasi.nama_salinan=''
+                    this.verifikasi.nip_salinan=''
+
                     this.verifikasi.hasil_verifikasi = "Butuh Survey Lapangan"
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
                     this.clearGenerateDoc()
@@ -1196,9 +1246,18 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     this.isButuhKelengkapanData = true
                     this.isButuhSurveyLapangan = false
 
+                    this.verifikasi.rencana_survey='' 
+                    this.verifikasi.nama_survey='' 
+                    this.verifikasi.cp_survey='' 
+                    this.verifikasi.daftar_tembusan=[]
+                    this.daftarTembusan = []
+                    this.verifikasi.jabatan_salinan=''
+                    this.verifikasi.nama_salinan=''
+                    this.verifikasi.nip_salinan=''
+
                     this.verifikasi.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData)  
                     
-                   this.verifikasi.hasil_verifikasi = "Butuh Kelengkapan Data"                         
+                    this.verifikasi.hasil_verifikasi = "Butuh Kelengkapan Data"                         
 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
                     this.clearGenerateDoc()
@@ -1221,7 +1280,14 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     this.isGenerateKMKDoc = true
                     this.isButuhKelengkapanData = false
                     this.isButuhSurveyLapangan = false    
+
+                    this.verifikasi.rencana_survey='' 
+                    this.verifikasi.nama_survey='' 
+                    this.verifikasi.cp_survey='' 
+                    this.verifikasi.daftarKekuranganData=[]
+
                     this.verifikasi.hasil_verifikasi = "Terbitkan KMK Dokumen"  
+                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
                     this.clearGenerateDoc()
                     GabungData.id = this.verifikasi.id
@@ -1371,8 +1437,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                                 self.verifikasi.nama_salinan = (response.data.dokumen[0].nama_salinan === "null")?'':response.data.dokumen[0].nama_salinan
                                 self.verifikasi.nip_salinan = (response.data.dokumen[0].nip_salinan === "null")?'':response.data.dokumen[0].nip_salinan
                                 self.verifikasi.peraturan_pendelegasian_wewenang_KL = (response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL === "null")?'':response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL
-                                console.log("response.data.dokumen[0].daftarKekuranganData")
-                                console.log(response.data.dokumen[0].daftarKekuranganData)
+ 
                                 if(response.data.dokumen[0].daftarKekuranganData==="null" || response.data.dokumen[0].daftarKekuranganData===""){
                                     self.daftarKekuranganData = [{
                                                                 nama:''
@@ -1383,7 +1448,9 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                                     self.daftarKekuranganData = JSON.parse(response.data.dokumen[0].daftarKekuranganData)
                                 } 
 
-                                if(response.data.dokumen[0].daftar_tembusan==="null" || response.data.dokumen[0].daftar_tembusan===""){
+                                console.log(response.data.dokumen[0].daftar_tembusan)
+
+                                if(response.data.dokumen[0].daftar_tembusan==="null" || response.data.dokumen[0].daftar_tembusan===""||response.data.dokumen[0].daftar_tembusan==='[]'){
                                     self.daftarTembusan = [{
                                                                 nama:''
                                                             }]  
@@ -1391,12 +1458,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                                    
                                 }else{
                                      self.daftarTembusan = JSON.parse(response.data.dokumen[0].daftar_tembusan)
-                                }    
-
-                                console.log("self.daftarKekuranganData")            
-                                console.log(self.daftarKekuranganData)            
-                                console.log("response.data.dokumen[0].daftarKekuranganData")            
-                                console.log(response.data.dokumen[0].daftarKekuranganData)            
+                                }         
 
                                
                             }
@@ -1654,15 +1716,14 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
-                            this.addVerifikasi("Dokumen Fisik telah Dicek")
+                            this.addVerifikasi("Keputusan Telah di buat")
                             return true
                         }
 
                     })
                 },
                 beforeTab4SwitchKANWIL: function() {
-                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
+                    //this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
                     this.addVerifikasi("Keputusan Telah di buat")
                     return true
                 },

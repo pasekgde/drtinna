@@ -140,6 +140,7 @@ Vue.component('pengajuan-pspbmn', {
                 this.getKabupaten()
                 this.showDatabyID()
                 this.getStepIndexForm()
+                this.isExistUploadFile()
             },
             computed: {
                         valName() {
@@ -180,6 +181,19 @@ Vue.component('pengajuan-pspbmn', {
             },
             methods: {
 
+                isExistUploadFile: function (){
+                    console.log("test exist")
+                    console.log(this.pengajuan.fileSuratPermohon)
+                    if(this.pengajuan.fileSuratPermohon===''){
+                        this.uploadUlangFilePermohonan=true
+                    }
+                    if(this.pengajuan.fileDaftarRincian===''){
+                        this.uploadUlangDaftarRincian=true
+                    }
+                    if(this.pengajuan.fileDokumenKelengkapan===''){
+                        this.uploadUlangDokumenKelengkapan=true
+                    }
+                },
                 getStepIndexForm: function (){
                             let valueStep ={
                                     step : this.stepIndex                                    
@@ -230,12 +244,12 @@ Vue.component('pengajuan-pspbmn', {
                     })
                 },
                 beforeTab1SubSwitch: function() {
-                                                this.getStepIndexForm()
-
-                            this.uploadUlangFilePermohonan=false
-                            this.uploadUlangDaftarRincian=false
-                            this.uploadUlangDokumenKelengkapan=false
-                            return true
+                    this.getStepIndexForm()
+                    this.uploadUlangFilePermohonan=false
+                    this.uploadUlangDaftarRincian=false
+                    this.uploadUlangDokumenKelengkapan=false
+                    this.isExistUploadFile()
+                    return true
 
                 },
                 onClosed: function() {
@@ -256,9 +270,9 @@ Vue.component('pengajuan-pspbmn', {
                             if(this.uploadUlangFilePermohonan!=false || this.uploadUlangDaftarRincian!=false || this.uploadUlangDokumenKelengkapan!=false){
                                 this.uploadFile()
                             }
-                                                        this.getStepIndexForm()
-
+                            this.getStepIndexForm()
                             this.ShowOtherTabDJKN()
+                            this.isExistUploadFile()
                             this.pengajuan.status_pengajuan = "Finish Input Dokumen" 
                             this.updatePengajuan()
                             return true

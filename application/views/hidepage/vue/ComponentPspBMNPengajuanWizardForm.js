@@ -475,20 +475,10 @@
                     </div>
                     <div class="box-body">
                         <div class="callout callout-danger">
-                            <h4>IDENTITAS PETUGAS</h4>
+                            <h4>Terima Kasih!</h4>
 
-                            <p>Mohon diisi data petugas yang melaksanakan inputing permohonan PSP secara lengkap. Kami akan mengirimkan notifikasi email atas progress PSP BMN yang diajukan</p>
+                            <p>Terima kasih sudah menginput data PSP BMN</p>
                         </div>
-                        <div class="callout callout-info">
-                            <h4>IDENTITAS SATKER </h4>
-
-                            <p>Pilih Nama Kementerian/Lembaga serta ketikkan Nama Satker secara lengkap.</p>
-                        </div>
-                        <div class="callout callout-warning">
-                            <h4>PENGAJUAN BMN</h4>
-
-                            <p>Pilih Jenis BMN, Jumlah Unit BMN dan Masukkan Total Nilai Perolehannya. Masukkan Nilai Perolehan sebelum Revaluasi BMN 2017-2018.</p>
-                        </div> 
                     </div>
                 </div>   
                     

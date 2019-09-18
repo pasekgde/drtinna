@@ -1172,6 +1172,7 @@ class Verifikasi extends CI_Controller
                 'suratNDSSurveyLapanganfinal' => $this->input->post('suratNDSSurveyLapanganfinal'),	            
                 'suratNDSPermintaanKelengkapanfinal' => $this->input->post('suratNDSPermintaanKelengkapanfinal'),	            
                 'alamat_kantor_pemohon' => $this->input->post('alamat_kantor_pemohon'),	            
+                'daftarKekuranganData' => $this->input->post('daftarKekuranganData'),	            
                 'updatedate' =>  date("Y/m/d")
             );
             

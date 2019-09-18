@@ -2,7 +2,7 @@
     "jabatan_kepala_bidang": [
         {
             "no": "1",
-            "jabatan": "Kepala Bidang PKN KPKNL Jayapura",
+            "jabatan": "Kepala Kantor KPKNL Jayapura",
             "kantor": "KPKNL Jayapura",
             "status": "definitif",
             "nip": "19740619 199903 1 002",          
@@ -10,7 +10,7 @@
         },
         {
             "no": "2",
-            "jabatan": "Kepala Bidang PKN KPKNL Sorong",
+            "jabatan": "Kepala Kantor KPKNL Sorong",
             "kantor": "KPKNL Sorong",
             "status": "definitif",
             "nip": "19740619 199903 1 002",
@@ -18,7 +18,7 @@
         },
         {
             "no": "3",
-            "jabatan": "Kepala Bidang PKN KPKNL Ambon",
+            "jabatan": "Kepala Kantor KPKNL Ambon",
             "kantor": "KPKNL Ambon",
             "status": "definitif",
             "nip": "19760216 200212 1 001",
@@ -26,7 +26,7 @@
         },
         {
             "no": "4",
-            "jabatan": "Kepala Bidang PKN KPKNL Biak",
+            "jabatan": "Kepala Kantor KPKNL Biak",
             "kantor": "KPKNL Biak",
             "status": "definitif",
             "nip": "19740619 199903 1 002",
