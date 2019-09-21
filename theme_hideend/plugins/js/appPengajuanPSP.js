@@ -416,8 +416,6 @@ Vue.component('pengajuan-pspbmn', {
 
                 uploadFile: function(e) {
                     let formData = new FormData();
-
-                    console.log('masuk update')
                     if(typeof this.$refs.fileSuratPermohon !== 'undefined'){
                          console.log('masuk update23')
                        this.file1 = this.$refs.fileSuratPermohon.files[0];   
@@ -433,10 +431,7 @@ Vue.component('pengajuan-pspbmn', {
                       this.file3 = this.$refs.fileDokumenKelengkapan.files[0];  
                        formData.append('file3', this.file3);  
                     }
-                    
-                   
-                    console.log('masuk update2')
-                    
+                                        
 
 
                     if (true) {

@@ -1045,7 +1045,9 @@ class Verifikasi extends CI_Controller
 			'<script src="'.$this->common->theme_hideend().'plugins/js/vue-airbnb-style-datepicker.min.js"></script>'.
 			'<script src="'.$this->common->theme_hideend().'plugins/js/date_fns.js"></script>'.
 			$vueComponent.
-			'<script src="'.$this->common->theme_hideend().'plugins/js/appStatusVerifikasi.js"></script>'
+			'<script src="'.$this->common->theme_hideend().'plugins/js/appStatusVerifikasi.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/appStatusVerifikasiKANWIL.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/appStatusVerifikasiKPKNL.js"></script>'
 			);
 		$this->template->loadContent("hidepage/verifikasi/status.php", array(
 			)
@@ -1189,14 +1191,14 @@ class Verifikasi extends CI_Controller
 	public function uploadFile()
 	{
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0) && ($_FILES['file3']['size'] > 0) && ($_FILES['file4']['size'] > 0) ) {
+		if (($_FILES['file1']['size'] > 0) || ($_FILES['file2']['size'] > 0) || ($_FILES['file3']['size'] > 0) || ($_FILES['file4']['size'] > 0) ) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/verifikasi/",
 		       "overwrite" => FALSE,
 		       "max_filename" => 300,
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
-		       "allowed_types" => "docx|doc|xlsx|xls",
+		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|png",
 		       "max_size" => 200000
 		    ));
 
@@ -1204,53 +1206,68 @@ class Verifikasi extends CI_Controller
 		    $msg = array();
 		    $error = array();
 
-			if($this->upload->do_upload('file1')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
+ 			if(isset($_FILES['file1'])){
+				if($this->upload->do_upload('file1')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/".$FileData;			    	    	
+			    	$tipe[] = "file1";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
+			}	
+ 			if(isset($_FILES['file2'])){
+				if($this->upload->do_upload('file2')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/".$FileData;			    	    	
+			    	$tipe[] = "file2";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
+			}	
+ 			if(isset($_FILES['file3'])){
+				if($this->upload->do_upload('file3')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/".$FileData;			    	    	
+			    	$tipe[] = "file3";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
+			}	
+ 			if(isset($_FILES['file4'])){
+				if($this->upload->do_upload('file4')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/".$FileData;			    	    	
+			    	$tipe[] = "file4";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
 			}			
 
-			if($this->upload->do_upload('file2')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/".$FileData;		    	
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}		
-
-			if($this->upload->do_upload('file3')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}	
-
-			if($this->upload->do_upload('file4')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}	
 
 		     $dataArray = array(
 							"error" => $error,
 							"msg" => $msg,
+							"tipe" => $tipe,
 							"file" => $file
 				);
 		    
@@ -1266,14 +1283,14 @@ class Verifikasi extends CI_Controller
 	public function uploadFileFinal()
 	{
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0) && ($_FILES['file3']['size'] > 0) && ($_FILES['file4']['size'] > 0) ) {
+		if (($_FILES['file1']['size'] > 0) || ($_FILES['file2']['size'] > 0) || ($_FILES['file3']['size'] > 0) || ($_FILES['file4']['size'] > 0) ) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/verifikasi/final/",
 		       "overwrite" => FALSE,
 		       "max_filename" => 300,
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
-		       "allowed_types" => "docx|doc|xlsx|xls",
+		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|png",
 		       "max_size" => 200000
 		    ));
 
@@ -1281,53 +1298,67 @@ class Verifikasi extends CI_Controller
 		    $msg = array();
 		    $error = array();
 
-			if($this->upload->do_upload('file1')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/final/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}			
+ 			if(isset($_FILES['file1'])){
+				if($this->upload->do_upload('file1')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/final/".$FileData;			    	    	
+			    	$tipe[] = "file1";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
 
-			if($this->upload->do_upload('file2')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/final/".$FileData;		    	
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}		
+			}	
+ 			if(isset($_FILES['file2'])){
+				if($this->upload->do_upload('file2')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/final/".$FileData;			    	    	
+			    	$tipe[] = "file2";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
 
-			if($this->upload->do_upload('file3')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/final/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
+			}	
+ 			if(isset($_FILES['file3'])){
+				if($this->upload->do_upload('file3')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/final/".$FileData;			    	    	
+			    	$tipe[] = "file3";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
+			}	
+ 			if(isset($_FILES['file4'])){
+				if($this->upload->do_upload('file4')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/final/".$FileData;			    	    	
+			    	$tipe[] = "file4";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
 			}	
 
-			if($this->upload->do_upload('file4')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/final/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}	
-
-		     $dataArray = array(
+		    $dataArray = array(
 							"error" => $error,
 							"msg" => $msg,
+							"tipe" => $tipe,
 							"file" => $file
 				);
 		    
@@ -1342,14 +1373,14 @@ class Verifikasi extends CI_Controller
 	public function uploadFileKelengkapan()
 	{
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0)) {
+		if (isset($_FILES['file1']['size']) || isset($_FILES['file2']['size'] )) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/verifikasi/kuranglengkap/",
 		       "overwrite" => FALSE,
 		       "max_filename" => 300,
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
-		       "allowed_types" => "docx|doc|xlsx|xls",
+		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|png",
 		       "max_size" => 200000
 		    ));
 
@@ -1357,32 +1388,44 @@ class Verifikasi extends CI_Controller
 		    $msg = array();
 		    $error = array();
 
-			if($this->upload->do_upload('file1')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/kuranglengkap/".$FileData;
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}			
+		    if(isset($_FILES['file1'])){
+				if($this->upload->do_upload('file1')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/kuranglengkap/".$FileData;			    	    	
+			    	$tipe[] = "file1";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
 
-			if($this->upload->do_upload('file2')){
-				$data = $this->upload->data();
-				$FileData = $data['file_name'];
-				$error[] = false;
-		    	$file[] = "/verifikasi/kuranglengkap/".$FileData;		    	
-		    	$msg[] = "Successfully upload!";
-			}else{
-				$error[] = true;
-		    	$msg[] = $this->upload->display_errors();
-			}		
+			}
+
+		    if(isset($_FILES['file2'])){
+				if($this->upload->do_upload('file2')){
+					$data = $this->upload->data();
+					$FileData = $data['file_name'];
+					$error[] = false;
+			    	$file[] = "/verifikasi/kuranglengkap/".$FileData;			    	    	
+			    	$tipe[] = "file2";
+			    	$msg[] = "Successfully upload!";
+				}else{
+					$error[] = true;
+			    	$msg[] = $this->upload->display_errors();
+				}	
+
+			}
+
+		
+
 
 
 		     $dataArray = array(
 							"error" => $error,
 							"msg" => $msg,
+							"tipe" => $tipe,
 							"file" => $file
 				);
 		    
@@ -1397,14 +1440,14 @@ class Verifikasi extends CI_Controller
 	public function uploadFileSurvey()
 	{
 		$this->load->library("upload");
-		if (($_FILES['file1']['size'] > 0) && ($_FILES['file2']['size'] > 0)) {
+		if (($_FILES['file1']['size'] > 0) || ($_FILES['file2']['size'] > 0)) {
 			$this->upload->initialize(array(
 		       "upload_path" => $this->settings->info->upload_path."/verifikasi/survey/",
 		       "overwrite" => FALSE,
 		       "max_filename" => 300,
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
-		       "allowed_types" => "docx|doc|xlsx|xls",
+		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|png",
 		       "max_size" => 200000
 		    ));
 
