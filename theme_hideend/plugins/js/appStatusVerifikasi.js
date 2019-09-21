@@ -23,7 +23,64 @@ Vue.component('hasil-pspbmn', {
                  return {
                     url: myUrl,
                     choosePengajuan:this.datapengajuan,
-                    verifikasi:{},       
+                    verifikasi:{
+                        id: '',
+                        idPengajuan : '',
+                        nama_verifikator : '123',
+                        nip_verifikator : '123',
+                        nip_kepala_seksi:'',
+                        nama_kepala_seksi:'',
+                        jabatan_kepala_seksi:'',
+                        status_kepala_seksi:'',
+                        nip_kepala_bidang:'',            
+                        nama_kepala_bidang:'',            
+                        jabatan_kepala_bidang:'',            
+                        status_kepala_bidang:'',
+                        nip_kepala_kanwil:'',                        
+                        nama_kepala_kanwil:'',                        
+                        jabatan_kepala_kanwil:'',                        
+                        status_kepala_kanwil:'',
+                        check_jenis_bmn:'sesuai',
+                        check_nilai_bmn:'sesuai',
+                        check_surat_permohonan:'sesuai',
+                        check_rincian_usulan_bmn:'sesuai',
+                        check_kib:'sesuai',
+                        check_foto_bmn:'sesuai',
+                        check_sk_delegasi:'sesuai',
+                        check_dokumen_kepemilikan:'ada',
+                        check_fc_dokumen_kepemilikan:'sesuai',
+                        check_sptjm_bermaterai:'sesuai',
+                        check_kebenaran_fc_dokumen_kepemilikan:'sesuai',
+                        noteDokumen:'sesuai',
+                        jabatan_salinan:'',
+                        nama_salinan:'',
+                        nip_salinan:'',
+                        daftar_tembusan:'',
+                        fileNDSPersetujuan:'',
+                        fileHasilVerifikasi:'',
+                        fileKMK:'',
+                        fileNDSPermintaanKelengkapan:'',
+                        fileNDSSurveyLapangan:'',
+                        daftarKekuranganData:'',
+                        hasil_verifikasi:'',                        
+                        suratHasilVerifikasifinal:'',
+                        suratKMKfinal:'',
+                        suratSalinanKMKfinal:'',
+                        suratNDSPermintaanKelengkapanfinal:'',
+                        suratNDSSurveyLapanganfinal:'',
+                        peraturan_pendelegasian_wewenang_KL:'',
+                        alamat_kantor_pemohon:'',
+                        rencana_survey:'',
+                        nama_survey:'',
+                        cp_survey:'',                        
+                        fileHasilVerifikasi:'',
+                        fileNDSPersetujuan:'',
+                        fileHasilVerifikasi:'',
+                        fileKMK:'',
+                        fileSalinanKMK:'',
+                        fileNDSPermintaanKelengkapan:'',
+                        fileNDSSurveyLapangan:''
+                    },       
 
                     showDocumentVerifikasiFinal:false,             
                     showDocumentKekuranganFinal:false,             
@@ -65,6 +122,9 @@ Vue.component('hasil-pspbmn', {
                       uploadUlangSuratHasilVerifikasifinal:false,
                       uploadUlangSuratNDSPermintaanKelengkapanfinal:false,
                       uploadUlangSuratNDSSurveyLapanganfinal:false,
+                      uploadUlangSuratNDSPersetujuanfinal:false,
+                      uploadUlangSuratKMKfinal:false,
+                      uploadUlangSuratSalinanKMKfinal:false,
                       file1:'',
                       file2:'',
                       file3:'',
@@ -73,11 +133,11 @@ Vue.component('hasil-pspbmn', {
 
             },
             updated: function () {
-                
+               this.loadfileFinal() 
             },
             created(){
                 
-                this.loadfileFinal()
+                
                 this.getKepalaSeksiKPKNL() 
                 this.getKepalaBidangKPKNL() 
                 this.getDataVerifikasiDokumen()
@@ -281,11 +341,11 @@ Vue.component('hasil-pspbmn', {
                        formData.append('file2', this.file2);  
                     }
                     if(typeof this.$refs.suratKMKfinal !== 'undefined'){
-                       this.file1 = this.$refs.suratKMKfinal.files[0];   
+                       this.file3 = this.$refs.suratKMKfinal.files[0];   
                        formData.append('file3', this.file3);  
                     }
                     if(typeof this.$refs.suratSalinanKMKfinal !== 'undefined'){
-                       this.file2 = this.$refs.suratSalinanKMKfinal.files[0];   
+                       this.file4 = this.$refs.suratSalinanKMKfinal.files[0];   
                        formData.append('file4', this.file4);  
                     }
 
