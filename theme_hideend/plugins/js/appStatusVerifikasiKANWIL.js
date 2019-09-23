@@ -475,7 +475,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
-                    axios.post(this.url + "/hideend/verifikasi/generateDocKANWIL/",formData).then(function(response) {
+                    axios.post(this.url + "/hideend/verifikasi/generateDocKMKKANWIL/",formData).then(function(response) {
 
                             console.log("generate doc!")
                             console.log(response.data.dokumen)

@@ -200,7 +200,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                 // a computed getter
                 hreffileSalinanKMK: function () {
                     // `this` points to the vm instance
-                    return this.url+this.verifikasi.fileKMK
+                    return this.url+this.verifikasi.fileSalinanKMK
                     //return this.url
                 },
                 // a computed getter
@@ -449,7 +449,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
-                    axios.post(this.url + "/hideend/verifikasi/generateDocKPKNL/",formData).then(function(response) {
+                    axios.post(this.url + "/hideend/verifikasi/generateDocKMKKPKNL/",formData).then(function(response) {
                             console.log("btnGenerateKMKDoc")     
                             console.log(response.data.dokumen)     
                             if (true) {

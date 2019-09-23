@@ -472,7 +472,7 @@ Vue.component('hasil-pspbmn', {
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
-                    axios.post(this.url + "/hideend/verifikasi/generateDocKPKNL/",formData).then(function(response) {
+                    axios.post(this.url + "/hideend/verifikasi/generateDocKMKKPKNL/",formData).then(function(response) {
                             console.log("btnGenerateKMKDoc")     
                             console.log(response.data.dokumen)     
                             if (true) {
