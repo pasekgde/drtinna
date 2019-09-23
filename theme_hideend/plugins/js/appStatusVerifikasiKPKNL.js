@@ -369,6 +369,9 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     this.verifikasi.hasil_verifikasi = "Butuh Survey Lapangan"
 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
+                    GabungData.rencana_survey = this.verifikasi.rencana_survey
+                    GabungData.nama_survey = this.verifikasi.nama_survey
+                    GabungData.cp_survey = this.verifikasi.cp_survey
                     this.clearGenerateDoc()
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);

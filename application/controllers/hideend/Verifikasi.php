@@ -372,8 +372,7 @@ class Verifikasi extends CI_Controller
 
 		$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
 		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
-		$dataArray = array(
-						"kode_kpknl" => ' ', //diambil dari tanggal dokumen tergenerate
+		$dataArray = array( //diambil dari tanggal dokumen tergenerate
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
 						"nama_kl" => $this->input->post('kementerian_lembaga'),
@@ -402,10 +401,10 @@ class Verifikasi extends CI_Controller
 						"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
 						"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang")
 		);
-
+		$detail_djkn = json_decode($this->input->post("detail_djkn"));
+		$templateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 		$templateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
 		$templateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
-		$templateProcessor->setValue('kode_kpknl', $dataArray["kode_kpknl"]);
 		$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
@@ -625,14 +624,13 @@ class Verifikasi extends CI_Controller
 
 
 	public function generateNDSSurveyLapanganKPKNL() {
-		$file = 'Kanwil 6 ND S Survei Lapangan1.docx';
+		$file = 'KPKNL 6 ND S Survei Lapangan1.docx';
 		$targetFile = "./uploads/template/";		
-		$targetSaveFile = "./uploads/verifikasi/kanwil/";
+		$targetSaveFile = "./uploads/verifikasi/kpknl/";
 		
 		$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
-
+		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
 		$dataArray = array(
-						"kode_kpknl" => ' ', //diambil dari tanggal dokumen tergenerate
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
 						"nama_kl" => $this->input->post('kementerian_lembaga'),
@@ -659,9 +657,15 @@ class Verifikasi extends CI_Controller
 						"nip_kepala_seksi" => $this->input->post("nip_kepala_seksi"),
 						"nip_kepala_bidang" => $this->input->post("nip_kepala_bidang"),
 						"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
-						"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang")
+						"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang"),
+						"waktu_survei" => $this->input->post("rencana_survey"),
+						"cp_survei_lapangan" => $this->input->post("cp_survey"),
+						"nama_KPKNL" => $this->input->post("status_proses")
 		);
-
+		$detail_djkn = json_decode($this->input->post("detail_djkn"));
+		$templateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
+		$templateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
+		$templateProcessor->setValue('telepon_dan_email_kpknl', $detail_djkn->email);
 		$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
@@ -688,8 +692,12 @@ class Verifikasi extends CI_Controller
 		$templateProcessor->setValue('nip_kepala_bidang', $dataArray["nip_kepala_bidang"]);
 		$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
 		$templateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
+		$templateProcessor->setValue('nama_KPKNL', $dataArray["nama_KPKNL"]);
 
-		$fileSave = 'Kanwil - ND S Survey Lapangan -'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+
+
+
+		$fileSave = 'KPKNL - ND S Survey Lapangan -'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -750,9 +758,8 @@ class Verifikasi extends CI_Controller
 
 
 	public function generateSurveyLapanganKPKNL(){
-		
-		$fileHasilVerifikasiKANWIL=$this->generateHasilVerifikasiKANWIL();
-		$fileNDSSurveyLapanganKANWIL=$this->generateNDSSurveyLapanganKANWIL();
+		$fileHasilVerifikasiKANWIL=$this->generateHasilVerifikasiKPKNL();
+		$fileNDSSurveyLapanganKANWIL=$this->generateNDSSurveyLapanganKPKNL();
 		
 		$dataArray = array(
 						'fileNDSPersetujuan'=>'',

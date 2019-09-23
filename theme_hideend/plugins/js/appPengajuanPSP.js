@@ -299,6 +299,7 @@ Vue.component('pengajuan-pspbmn', {
                                                                                name:data.kabupaten[key].name,
                                                                                provinsi:data.provinsi,
                                                                                kantor:data.kantor,
+                                                                               kode:data.kode,
                                                                                email:data.email,
                                                                                alamat:data.alamat 
                                                                             }
