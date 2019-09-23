@@ -243,7 +243,7 @@ class Pengajuan extends CI_Controller
 		       "encrypt_name" => false,
 		       "remove_spaces" => TRUE,
 		       "allowed_types" => "docx|doc|xlsx|xls|pdf|jpg|jpeg|png",
-		       "max_size" => 0
+		       "max_size" => 5000
 		    ));
 
 		    $tipe = array();

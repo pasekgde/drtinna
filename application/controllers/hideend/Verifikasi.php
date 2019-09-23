@@ -188,14 +188,14 @@ class Verifikasi extends CI_Controller
 		$templateProcessor->setValue('nip_verifikator',$dataArray["nip_verifikator"]);
 
 
-
-		$fileSave = 'Kanwil - Hasil Verifikasi-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
-
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'Kanwil-Hasil Verifikasi-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
 	}
 
-	//Generate document
+
 	public function generateHasilVerifikasiKPKNL(){
 		$file = 'KPKNL 1 Hasil Verifikasi.docx';
 		$targetFile = "./uploads/template/";		
@@ -363,7 +363,9 @@ class Verifikasi extends CI_Controller
 		$templateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
 		$templateProcessor->setValue('cp_kpknl',$detail_djkn->email);
 
-		$fileSave = 'KPKNL - Hasil Verifikasi-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-Hasil Verifikasi-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -413,7 +415,7 @@ class Verifikasi extends CI_Controller
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala Kanwil DJKN Papua, Papua Barat, dan Maluku':'Kepala Kantor';
 		$templateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
 		$templateProcessor->setValue('bapak_ibu', $bapak_ibu);
-		$templateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
+
 		$templateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
 		
 		$templateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
@@ -445,7 +447,10 @@ class Verifikasi extends CI_Controller
 		$templateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
 
 
-		$fileSave = 'KPKNL - ND S Persetujuan-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		
+		$fileSave = 'Kanwil-ND S Persetujuan-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -528,7 +533,9 @@ class Verifikasi extends CI_Controller
 		$templateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
 
 
-		$fileSave = 'KPKNL - ND S Persetujuan-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-ND S Persetujuan-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -627,7 +634,10 @@ class Verifikasi extends CI_Controller
 
 
 
-		$fileSave = 'KPKNL - KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		
+		$fileSave = 'Kanwil-KMK-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -727,7 +737,9 @@ class Verifikasi extends CI_Controller
 
 
 
-		$fileSave = 'KPKNL - KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-KMK-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -774,11 +786,17 @@ class Verifikasi extends CI_Controller
 					"nama_KPKNL" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt" => ($this->input->post("plt_plh")==='definitif')?'':'Plt',
-					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang")
+					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
+					"jabatan_salinan" => $this->input->post("jabatan_salinan"),
+					"nama_salinan" => $this->input->post("nama_salinan"),
+					"nip_salinan" => $this->input->post("nip_salinan")
 					);
 
 
 		//echo "<pre>"; print_r($dataArray);die;
+				$templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
+		$templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
+		$templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
 		$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		 $templateProcessor->setValue('kementerian_lembaga', $dataArray["kementerian_lembaga"]);	
 		 $templateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
@@ -827,7 +845,9 @@ class Verifikasi extends CI_Controller
 
 
 
-		$fileSave = 'KPKNL - Salinan KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-Salinan KMK-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -874,11 +894,17 @@ class Verifikasi extends CI_Controller
 					"nama_KPKNL" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt" => ($this->input->post("plt_plh")==='definitif')?'':'Plt',
-					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang")
+					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
+					"nama_salinan" => $this->input->post("nama_salinan"),
+					"nip_salinan" => $this->input->post("nip_salinan"),
+					"jabatan_salinan" => $this->input->post("jabatan_salinan")
 					);
 
 
 		//echo "<pre>"; print_r($dataArray);die;
+		$templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
+		$templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
+		$templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
 		$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		 $templateProcessor->setValue('kementerian_lembaga', $dataArray["kementerian_lembaga"]);	
 		 $templateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
@@ -927,7 +953,10 @@ class Verifikasi extends CI_Controller
 
 
 
-		$fileSave = 'KPKNL - Salinan KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		
+		$fileSave = 'Kanwil-Salinan KMK-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -1023,7 +1052,9 @@ class Verifikasi extends CI_Controller
 			$templateProcessor->setValue($namaidx1, $kurang->nama);
 
 		} 
-		$fileSave = 'KPKNL - ND S Permintaan Kelengkapan-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-ND S Permintaan Kelengkapan-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -1113,7 +1144,9 @@ class Verifikasi extends CI_Controller
 			$templateProcessor->setValue($namaidx1, $kurang->nama);
 
 		} 
-		$fileSave = 'Kanwil - ND S Permintaan Kelengkapan-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'Kanwil - ND S Permintaan Kelengkapan-'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -1197,8 +1230,9 @@ class Verifikasi extends CI_Controller
 
 
 
-
-		$fileSave = 'KPKNL - ND S Survey Lapangan -'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'Kanwil - ND S Survey Lapangan -'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -1280,8 +1314,9 @@ class Verifikasi extends CI_Controller
 
 
 
-
-		$fileSave = 'KPKNL - ND S Survey Lapangan -'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
+		$noSurat = $this->common->cleanString($this->input->post("noSurat_pemohon"));
+		$kementerian_lembaga = $this->common->cleanString($this->input->post("kementerian_lembaga"));
+		$fileSave = 'KPKNL-ND S Survey Lapangan -'.$kementerian_lembaga.'-'.$noSurat.'.docx';
 
 		$templateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
@@ -1409,8 +1444,8 @@ class Verifikasi extends CI_Controller
 	}
 
 	public function generateKelengkapanDataKPKNL(){
-		$fileHasilVerifikasiKANWIL=$this->generateHasilVerifikasiKANWIL();
-		$fileNDSPermintaanKelengkapanKANWIL=$this->generateNDSPermintaanKelengkapanKPKNL();
+		$fileHasilVerifikasiKPKNL=$this->generateHasilVerifikasiKPKNL();
+		$fileNDSPermintaanKelengkapanKPKNL=$this->generateNDSPermintaanKelengkapanKPKNL();
 		$dataArray = array(
 						'fileNDSPersetujuan'=>'',
 						'fileHasilVerifikasi'=>$fileHasilVerifikasiKANWIL,
@@ -1440,151 +1475,13 @@ class Verifikasi extends CI_Controller
 
 
 
-	// public function generateNDSPersetujuanKANWIL(){
-	// 	$file = "Kanwil 2 ND S Persetujuan1.docx";
-	// 	$targetFile = "./uploads/template/";				
-	// 	$targetSaveFile = "./uploads/verifikasi/kanwil/";
-
-	// 	$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
-	// 	$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
-	// 	$dataArray = array(
-	// 					"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
-	// 					"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
-	// 					"nama_satker" => $this->input->post('satuan_kerja'),
-	// 					"tanggal_cetak" => $this->input->post("tglSurat_pemohon"), //Berubah ketika tombol di Generate
-	// 					"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
-	// 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-	// 					"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-	// 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
-	// 					"tanggal_penginputan" => $this->input->post("tglSurat_pemohon"), //kapan dokumen diajukan), masukin timestamp di database
-	// 					"jenis_bmn" => $this->input->post("jenis_bmn"),
-	// 					"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
-	// 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
-	// 					"peraturan_pelimpahan_wewenang_kementrian_lembaga_pemohon" => $this->input->post("peraturan_pendelegasian_wewenang_KL"),
-	// 					"plh_plt" => $this->input->post("plt_plh"),
-	// 					"nama_kepala_bidang" => $this->input->post("nama_kepala_bidang"),
-	// 					"alamat_kantor_pemohon" => $this->input->post("alamat_kantor_pemohon"),
-	// 					"nama_kepala_kanwil"	=> $this->input->post("nama_kepala_kanwil"),
-	// 					"nama_verifikator" => $this->input->post("nama_verifikator"),
-	// 					"nama_kepala_seksi" => $this->input->post("nama_kepala_seksi"),
-	// 					"kmk_nomor" => $this->input->post("noSurat_pemohon"), //isi manual oleh petugas
-	// 					"jabatan_kepala_seksi" => $this->input->post("jabatan_kepala_seksi"),
-	// 					"nip_kepala_seksi" => $this->input->post("nip_kepala_seksi"),
-	// 					"nip_kepala_bidang" => $this->input->post("nip_kepala_bidang"),
-	// 					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
-	// 					"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang")
-	// 	);
-
-	// 	$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
-	// 	$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-	// 	$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
-	// 	$templateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
-	// 	$templateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
-	// 	$templateProcessor->setValue('nomor_surat_permohonan', $dataArray["nomor_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_surat_permohonan', $dataArray["tanggal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('perihal_surat_permohonan', $dataArray["perihal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_penginputan', $dataArray["tanggal_penginputan"]);
-	// 	$templateProcessor->setValue('jenis_bmn', $dataArray["jenis_bmn"]);
-	// 	$templateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('peraturan_pelimpahan_wewenang_kementrian_lembaga_pemohon', $dataArray["peraturan_pelimpahan_wewenang_kementrian_lembaga_pemohon"]);
-	// 	$templateProcessor->setValue('plh_plt', $dataArray["plh_plt"]);
-	// 	$templateProcessor->setValue('nama_kepala_bidang', $dataArray["nama_kepala_bidang"]);
-	// 	$templateProcessor->setValue('alamat_kantor_pemohon', $dataArray["alamat_kantor_pemohon"]);
-	// 	$templateProcessor->setValue('nama_kepala_kanwil', $dataArray["nama_kepala_kanwil"]);
-	// 	$templateProcessor->setValue('nama_verifikator', $dataArray["nama_verifikator"]);
-	// 	$templateProcessor->setValue('nama_kepala_seksi', $dataArray["nama_kepala_seksi"]);
-	// 	$templateProcessor->setValue('kmk_nomor', $dataArray["kmk_nomor"]);
-	// 	$templateProcessor->setValue('jabatan_kepala_seksi', $dataArray["jabatan_kepala_seksi"]);
-	// 	$templateProcessor->setValue('nip_kepala_seksi', $dataArray["nip_kepala_seksi"]);
-	// 	$templateProcessor->setValue('nip_kepala_bidang', $dataArray["nip_kepala_bidang"]);
-	// 	$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
-	// 	$templateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
-
-
-	// 	$fileSave = 'Kanwil - ND S Persetujuan-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
-
-	// 	$templateProcessor->saveAs($targetSaveFile.$fileSave);
-	// 	return $targetSaveFile.$fileSave;
-	// }
-
-
-
-
-
-	// public function generateSalinanKMKKPKNL(){
-	// 	$file = 'Kanwil 4 Salinan KMK1.docx';
-	// 	$targetFile = './uploads/template/';		
-	// 	$targetSaveFile = "./uploads/verifikasi/kanwil/";
-
-	// 	$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
-	// 	$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
-	// 	$dataArray = array(
-	// 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
-	// 					"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
-	// 					"nama_satker" => $this->input->post('satuan_kerja'),
-	// 					"tanggal_cetak" => $this->input->post("tglSurat_pemohon"), //Berubah ketika tombol di Generate
-	// 					"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
-	// 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-	// 					"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-	// 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
-	// 					"tanggal_penginputan" => $this->input->post("tglSurat_pemohon"), //kapan dokumen diajukan), masukin timestamp di database
-	// 					"jenis_bmn" => $this->input->post("jenis_bmn"),
-	// 					"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
-	// 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
-	// 					"peraturan_pelimpahan_wewenang_kementrian_lembaga_pemohon" => $this->input->post("peraturan_pendelegasian_wewenang_KL"),
-	// 					"plh_plt" => $this->input->post("plt_plh"),
-	// 					"nama_kepala_bidang" => $this->input->post("nama_kepala_bidang"),
-	// 					"alamat_kantor_pemohon" => $this->input->post("alamat_kantor_pemohon"),
-	// 					"nama_kepala_kanwil"	=> $this->input->post("nama_kepala_kanwil"),
-	// 					"nama_verifikator" => $this->input->post("nama_verifikator"),
-	// 					"nama_kepala_seksi" => $this->input->post("nama_kepala_seksi"),
-	// 					"kmk_nomor" => $this->input->post("noSurat_pemohon"), //isi manual oleh petugas
-	// 					"jabatan_kepala_seksi" => $this->input->post("jabatan_kepala_seksi"),
-	// 					"nip_kepala_seksi" => $this->input->post("nip_kepala_seksi"),
-	// 					"nip_kepala_bidang" => $this->input->post("nip_kepala_bidang"),
-	// 					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
-	// 					"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang")
-	// 	);
-
-	// 	$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
-	// 	$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-	// 	$templateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
-	// 	$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
-	// 	$templateProcessor->setValue('nomor_surat_permohonan', $dataArray["nomor_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_surat_permohonan', $dataArray["tanggal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('perihal_surat_permohonan', $dataArray["perihal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('jenis_bmn', $dataArray["jenis_bmn"]);
-	// 	$templateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_1', $dataArray["daftar_nama_tembusan_1"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_2', $dataArray["daftar_nama_tembusan_2"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_3', $dataArray["daftar_nama_tembusan_3"]);
-	// 	$templateProcessor->setValue('nama_KPKNL', $dataArray["nama_KPKNL"]);
-	// 	$templateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
-	// 	$templateProcessor->setValue('plh_plt', $dataArray["plh_plt"]);
-	// 	$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
-	// 	$templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
-	// 	$templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
-	// 	$templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
-	// 	$templateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
-
-	// 	$fileSave = 'Kanwil - SALINAN-KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
-
-	// 	$templateProcessor->saveAs($targetSaveFile.$fileSave);
-	// 	return $targetSaveFile.$fileSave;
-	// }
-	
-
-
-
-	
-
 
 
 	public function generateDocKMKKANWIL(){
-		$fileNDSPersetujuanKANWIL=$this->generateNDSPersetujuanKANWIL();
+
 		$fileHasilVerifikasiKANWIL=$this->generateHasilVerifikasiKANWIL();
+
+		$fileNDSPersetujuanKANWIL=$this->generateNDSPersetujuanKANWIL();
 		$fileKMKKANWIL=$this->generateKMKKANWIL();
 		$fileSalinanKMKKANWIL=$this->generateSalinanKMKKANWIL();
 
@@ -1648,136 +1545,6 @@ class Verifikasi extends CI_Controller
 
 
 
-	// public function generateSalinanKMKKANWIL(){
-	// 	$file = 'Kanwil 4 Salinan KMK1.docx';
-	// 	$targetFile = './uploads/template/';		
-	// 	$targetSaveFile = "./uploads/verifikasi/kanwil/";
-
-	// 	$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
-
-	// 	$dataArray = array(
-	// 						"tahun_terbit" => "2019",
-	// 						"nama_kl" => "Direktorat A",
-	// 						"jabatan_pemohon" => "Sekjen Umum",
-	// 						"nama_satker" => "Aulia Mijil",
-	// 						"nomor_surat_permohonan" => "12/INS-KOTA/VIII/2019",
-	// 						"tanggal_surat_permohonan" => "10/07/2019",
-	// 						"perihal_surat_permohonan" => "Permohonan Pendanaan",
-	// 						"jenis_bmn" => "ATK",
-	// 						"total_nilai_bmn" => "500000",
-	// 						"huruf_total_nilai_bmn" => "Lima Ratus Ribu Rupiah",
-	// 						"daftar_nama_tembusan_1" => "Kepala Daerah1",
-	// 						"daftar_nama_tembusan_2" => "Kepala Daerah2",
-	// 						"daftar_nama_tembusan_3" => "Kepala Daerah3",
-	// 						"nama_KPKNL" => "David Kambek",
-	// 						"tanggal_cetak" => "30/07/2019",
-	// 						"plh_plt" => "PLT",
-	// 						"nama_kepala_kantor" => "Lingard Jojo",
-	// 						"jabatan_salinan" => "Bendahara Umum",
-	// 						"nama_salinan" => "Kim Jon Tos",
-	// 						"nip_salinan" => "19950711 200801 1 001",
-	// 						"kementerian_pemohon" => "Direktorat Keuangan"
-	// 	);
-
-	// 	$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
-	// 	$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-	// 	$templateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
-	// 	$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
-	// 	$templateProcessor->setValue('nomor_surat_permohonan', $dataArray["nomor_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_surat_permohonan', $dataArray["tanggal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('perihal_surat_permohonan', $dataArray["perihal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('jenis_bmn', $dataArray["jenis_bmn"]);
-	// 	$templateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_1', $dataArray["daftar_nama_tembusan_1"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_2', $dataArray["daftar_nama_tembusan_2"]);
-	// 	$templateProcessor->setValue('daftar_nama_tembusan_3', $dataArray["daftar_nama_tembusan_3"]);
-	// 	$templateProcessor->setValue('nama_KPKNL', $dataArray["nama_KPKNL"]);
-	// 	$templateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
-	// 	$templateProcessor->setValue('plh_plt', $dataArray["plh_plt"]);
-	// 	$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
-	// 	$templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
-	// 	$templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
-	// 	$templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
-	// 	$templateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
-
-	// 	$fileSave = 'Kanwil - SALINAN-KMK-'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
-
-	// 	$templateProcessor->saveAs($targetSaveFile.$fileSave);
-	// 	return $targetSaveFile.$fileSave;
-	// }
-	
-
-
-
-
-	// public function generateNDSSurveyLapanganKANWIL() {
-	// 	$file = 'Kanwil 6 ND S Survei Lapangan1.docx';
-	// 	$targetFile = "./uploads/template/";		
-	// 	$targetSaveFile = "./uploads/verifikasi/kanwil/";
-		
-	// 	$templateProcessor = new \PhpOffice\PhpWord\templateProcessor($targetFile.$file);
-
-	// 	$dataArray = array(
-	// 					"tahun_terbit" => "2019",
-	// 					"nama_kl" => "Sitikomah",
-	// 					"nama_satker" => "Gusti Aji",
-	// 					"tanggal_cetak" => "22/09/2019",
-	// 					"jabatan_pemohon" => "Setda",
-	// 					"nomor_surat_permohonan" => "01/INS-KOTA/VIII/2019",
-	// 					"tanggal_surat_permohonan" => "10/10/2019",
-	// 					"perihal_surat_permohonan" => "Permohonan PSP",
-	// 					"tanggal_penginputan" => "1/08/2019",
-	// 					"jenis_bmn" => "Dokumen",
-	// 					"total_nilai_bmn" => "100000",
-	// 					"huruf_total_nilai_bmn" => "Seratus Ribu Rupiah",
-	// 					"nama_kasi_pkn" => "Mahendra Diggayu",
-	// 					"plh_plt" => "PLH",
-	// 					"waktu_survei" => "1/8/2019",
-	// 					"cp_survei_lapangan" => "Dian Sastro",
-	// 					"alamat_kantor_pemohon" => "JL.Sudirman Nomor 1 Denpasar",
-	// 					"nama_verifikator" => "Ita Dewi",
-	// 					"nama_kepala_seksi" => "Cika Dogen",
-	// 					"jabatan_kepala_seksi" => "Sekretaris",
-	// 					"nip_kepala_seksi" => "19950920 200801 1 001",
-	// 					"nama_kepala_bidang" => "Dian Sinta",
-	// 					"nip_kepala_bidang" => "19950920 200801 1 002",
-	// 					"nama_kepala_kantor" => "Cok Gita",
-	// 					"nip_kepala_kantor" => "19950920 200801 1 003"
-	// 	);
-
-	// 	$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
-	// 	$templateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-	// 	$templateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
-	// 	$templateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
-	// 	$templateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
-	// 	$templateProcessor->setValue('nomor_surat_permohonan', $dataArray["nomor_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_surat_permohonan', $dataArray["tanggal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('perihal_surat_permohonan', $dataArray["perihal_surat_permohonan"]);
-	// 	$templateProcessor->setValue('tanggal_penginputan', $dataArray["tanggal_penginputan"]);
-	// 	$templateProcessor->setValue('jenis_bmn', $dataArray["jenis_bmn"]);
-	// 	$templateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
-	// 	$templateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
-	// 	$templateProcessor->setValue('plh_plt', $dataArray["plh_plt"]);
-	// 	$templateProcessor->setValue('waktu_survei', $dataArray["waktu_survei"]);
-	// 	$templateProcessor->setValue('cp_survei_lapangan', $dataArray["cp_survei_lapangan"]);
-	// 	$templateProcessor->setValue('alamat_kantor_pemohon', $dataArray["alamat_kantor_pemohon"]);
-	// 	$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
-	// 	$templateProcessor->setValue('nama_verifikator', $dataArray["nama_verifikator"]);
-	// 	$templateProcessor->setValue('nama_kepala_seksi', $dataArray["nama_kepala_seksi"]);
-	// 	$templateProcessor->setValue('jabatan_kepala_seksi', $dataArray["jabatan_kepala_seksi"]);
-	// 	$templateProcessor->setValue('nip_kepala_seksi', $dataArray["nip_kepala_seksi"]);
-	// 	$templateProcessor->setValue('nama_kepala_bidang', $dataArray["nama_kepala_bidang"]);
-	// 	$templateProcessor->setValue('nip_kepala_bidang', $dataArray["nip_kepala_bidang"]);
-	// 	$templateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
-	// 	$templateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
-
-	// 	$fileSave = 'Kanwil - ND S Survey Lapangan -'.$this->input->post("kementerian_lembaga").'-'.$this->input->post("noSurat_pemohon").'.docx';
-
-	// 	$templateProcessor->saveAs($targetSaveFile.$fileSave);
-	// 	return $targetSaveFile.$fileSave;
-	// }
 
 
 

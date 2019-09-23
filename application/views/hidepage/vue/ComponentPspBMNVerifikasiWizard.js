@@ -1479,7 +1479,7 @@
 
 
                                         <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
                                             <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1499,7 +1499,7 @@
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Permintaan Kelengkapan </label>
 
                                         <div class="col-sm-8" v-if="uploadUlangSuratNDSPermintaanKelengkapanfinal">
-                                            <input type="file" id="suratNDSPermintaanKelengkapanfinal" ref="suratNDSPermintaanKelengkapanfinal" v-validate="'required'" name="suratNDSPermintaanKelengkapanfinal" data-vv-scope="step2" v-on:change="">
+                                            <input type="file" id="suratNDSPermintaanKelengkapanfinal" ref="suratNDSPermintaanKelengkapanfinal" v-validate="'required|size:2000'" name="suratNDSPermintaanKelengkapanfinal" data-vv-scope="step2" v-on:change="">
                                             <span class="text-red">{{ errors.first('step2.suratNDSPermintaanKelengkapanfinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1559,7 +1559,7 @@
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
 
                                         <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scop e="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
+                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scop e="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
                                             <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1579,7 +1579,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Surat ND S Survey Lapangan </label>
                                         <div class="col-sm-8" v-if="uploadUlangSuratNDSSurveyLapanganfinal">
-                                            <input type="file" id="suratNDSSurveyLapanganfinal" ref="suratNDSSurveyLapanganfinal" v-validate="'required'" name="suratNDSSurveyLapanganfinal" data-vv-scope="step2" v-on:change="" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
+                                            <input type="file" id="suratNDSSurveyLapanganfinal" ref="suratNDSSurveyLapanganfinal" v-validate="'required|size:2000'" name="suratNDSSurveyLapanganfinal" data-vv-scope="step2" v-on:change="" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
                                             <span class="text-red">{{ errors.first('step2.suratNDSSurveyLapanganfinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1635,7 +1635,7 @@
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Persetujuan </label>\
 
                                         <div class="col-sm-8" v-if="uploadUlangSuratNDSPersetujuanfinal">
-                                            <input type="file" id="suratNDSPersetujuanfinal" ref="suratNDSPersetujuanfinal" v-validate="'required'" name="suratNDSPersetujuanfinal" data-vv-scope="step2">
+                                            <input type="file" id="suratNDSPersetujuanfinal" ref="suratNDSPersetujuanfinal" v-validate="'required|size:2000'" name="suratNDSPersetujuanfinal" data-vv-scope="step2">
                                             <span class="text-red">{{ errors.first('step2.suratNDSPersetujuanfinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1654,7 +1654,7 @@
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
 
                                         <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
                                             <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1683,7 +1683,7 @@
                                                         </button>
                                         </div>
                                         <div class="col-sm-8" v-if="uploadUlangSuratKMKfinal">
-                                            <input type="file" id="suratKMKfinal" ref="suratKMKfinal" v-validate="'required'" name="suratKMKfinal" data-vv-scope="step2">
+                                            <input type="file" id="suratKMKfinal" ref="suratKMKfinal" v-validate="'required|size:2000'" name="suratKMKfinal" data-vv-scope="step2">
                                             <span class="text-red">{{ errors.first('step2.suratKMKfinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>
@@ -1702,7 +1702,7 @@
                                                         </button>
                                         </div>
                                         <div class="col-sm-8" v-if="uploadUlangSuratSalinanKMKfinal">
-                                            <input type="file" id="suratSalinanKMKfinal" ref="suratSalinanKMKfinal" v-validate="'required'" name="suratSalinanKMKfinal" data-vv-scope="step2" v-on:change="">
+                                            <input type="file" id="suratSalinanKMKfinal" ref="suratSalinanKMKfinal" v-validate="'required|size:2000'" name="suratSalinanKMKfinal" data-vv-scope="step2" v-on:change="">
                                             <span class="text-red">{{ errors.first('step2.suratSalinanKMKfinal') }}</span>
                                             <p class="help-block">Upload Document *.docx or *.pdf</p>
                                         </div>

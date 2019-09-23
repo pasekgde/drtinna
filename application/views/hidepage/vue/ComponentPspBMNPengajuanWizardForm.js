@@ -265,7 +265,7 @@
 
 
                                             <div class="col-sm-10" v-if="uploadUlangFilePermohonan">
-                                                <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required'" name="fileSuratPermohonName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
+                                                <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required|size:2000'" name="fileSuratPermohonName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
                                                 <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
                                                 <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
                                             </div>
@@ -284,7 +284,7 @@
                                                 </button>
                                             </div> 
                                             <div class="col-sm-10" v-if="uploadUlangDaftarRincian">
-                                                <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required'" name="fileDaftarRincianName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required|size:2000'" name="fileDaftarRincianName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,image/x-png,image/gif,image/jpeg,image/jpg">
                                                 <span class="text-red">{{ errors.first('step2.fileDaftarRincianName') }}</span>
                                             </div>
                                             <div class="col-sm-5"  v-if="uploadUlangDaftarRincian">
@@ -310,8 +310,9 @@
                                             </div> 
 
                                             <div class="col-sm-10" v-if="uploadUlangDokumenKelengkapan">
-                                                <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required'" name="fileDokumenKelengkapanName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg">
+                                                <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required|size:2000'" name="fileDokumenKelengkapanName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
                                                 <span class="text-red">{{ errors.first('step2.fileDokumenKelengkapanName') }}</span>
+                                                <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
                                             </div>
                                         </div>
 

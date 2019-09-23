@@ -236,7 +236,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                 // a computed getter
                 hreffileSalinanKMK: function () {
                     // `this` points to the vm instance
-                    return this.url+this.verifikasi.fileKMK
+                    return this.url+this.verifikasi.fileSalinanKMK
                     //return this.url
                 },
                 // a computed getter
