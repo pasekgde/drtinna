@@ -5,6 +5,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
             data() {
                  return {
                     url: myUrl,
+                    stepIndex:0,
                     choosePengajuan:this.datapengajuan,
                     verifikasi:{
                         id: '',

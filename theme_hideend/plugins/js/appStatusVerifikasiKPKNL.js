@@ -1,9 +1,11 @@
+
 Vue.component('verifikasi-pspbmn-kpknl', {
             template: '#pspVerifikasiWizardFormKPKNL',
             props: ['datapengajuan','tipepengajuan','jenisform'],
             data() {
                  return {
                     url: myUrl,
+                    stepIndex:0,
                     choosePengajuan:this.datapengajuan,
                     verifikasi:{
                         id: '',
@@ -400,24 +402,32 @@ Vue.component('verifikasi-pspbmn-kpknl', {
 
                     this.verifikasi.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData)  
                     this.verifikasi.hasil_verifikasi = "Butuh Kelengkapan Data"  
+
+                    console.log("this.daftarKekuranganData")
+                    console.log(this.verifikasi.daftarKekuranganData )
+                    
                                         
 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
-                    this.clearGenerateDoc()
+                        GabungData.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData) 
+                    console.log(this.verifikasi)
+                    console.log(GabungData)
+                    console.log('this.daftarKekuranganData')
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
 
                     axios.post(this.url + "/hideend/verifikasi/generateKelengkapanDataKPKNL/",formData).then(function(response) {
                             if (true) {                                
-                                self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
+                                self.verifikasi.fileNDSPersetujuan = ''
                                 self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
-                                self.verifikasi.fileKMK = response.data.dokumen.fileKMK
-                                self.verifikasi.fileSalinanKMK = response.data.dokumen.fileSalinanKMK
+                                self.verifikasi.fileKMK = ''
+                                self.verifikasi.fileSalinanKMK = ''
                                 self.verifikasi.fileNDSPermintaanKelengkapan = response.data.dokumen.fileNDSPermintaanKelengkapan
-                                self.verifikasi.fileNDSSurveyLapangan = response.data.dokumen.fileNDSSurveyLapangan          
+                                self.verifikasi.fileNDSSurveyLapangan = ''          
                             }
                         })
+                    this.clearGenerateDoc()
                 },
                 btnGenerateKMKDoc(){
                     this.isGenerateKMKDoc = true

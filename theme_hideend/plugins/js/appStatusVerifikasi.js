@@ -136,11 +136,8 @@ Vue.component('hasil-pspbmn', {
                this.loadfileFinal() 
             },
             created(){
+                this.cekdokumenUpload()
                 
-                
-                this.getKepalaSeksiKPKNL() 
-                this.getKepalaBidangKPKNL() 
-                this.getDataVerifikasiDokumen()
                 
             },
             mounted(){
@@ -184,7 +181,6 @@ Vue.component('hasil-pspbmn', {
                 }
             },
             methods:{
-
                 finishUploadHasil(){
                     let valueHide ={
                                     showWizardFormHASIL : false                                    
@@ -565,75 +561,6 @@ Vue.component('hasil-pspbmn', {
                 addRowTembusan(){
                     this.daftarTembusan.push({'nama': ''});
                 },
-                getDataVerifikasiDokumen:function(){
-                    let self = this
-                    axios.post(this.url + "/hideend/verifikasi/checkDocumentVerifikasi/"+this.choosePengajuan.id).then(function(response) {
-                               console.log("masuk get verifikasi data")
-                               console.log(response.data.dokumen)
-
-                                self.showStatusJabatanKasi = true
-                                self.showStatusJabatanKabid = true
-
-
-                                self.data_kepala_seksi_kpknl = {
-                                                        jabatan : self.option_data_kepala_seksi_kpknl[0].jabatan,
-                                                        status : self.option_data_kepala_seksi_kpknl[0].status,
-                                                        nip : self.option_data_kepala_seksi_kpknl[0].nip,          
-                                                        nama : self.option_data_kepala_seksi_kpknl[0].nama 
-                                                }
-                                self.temp_data_kepala_seksi_kpknl = {
-                                                        jabatan : self.option_data_kepala_seksi_kpknl[0].jabatan,
-                                                        status : self.option_data_kepala_seksi_kpknl[0].status,
-                                                        nip : self.option_data_kepala_seksi_kpknl[0].nip,          
-                                                        nama : self.option_data_kepala_seksi_kpknl[0].nama 
-                                                }                        
-                                self.data_kepala_bidang_kpknl = {
-                                                        jabatan : self.option_data_kepala_bidang_kpknl[0].jabatan,
-                                                        status : self.option_data_kepala_bidang_kpknl[0].status,
-                                                        nip : self.option_data_kepala_bidang_kpknl[0].nip,          
-                                                        nama : self.option_data_kepala_bidang_kpknl[0].nama 
-                                                }
-
-                                self.temp_data_kepala_bidang_kpknl = {
-                                                        jabatan : self.option_data_kepala_bidang_kpknl[0].jabatan,
-                                                        status : self.option_data_kepala_bidang_kpknl[0].status,
-                                                        nip : self.option_data_kepala_bidang_kpknl[0].nip,          
-                                                        nama : self.option_data_kepala_bidang_kpknl[0].nama 
-                                                }
-                            if (response.data.dokumen) {
-
-
-                                self.verifikasi =  response.data.dokumen[0]
-                                self.verifikasi.jabatan_salinan = (response.data.dokumen[0].jabatan_salinan === "null")?'':response.data.dokumen[0].jabatan_salinan
-                                self.verifikasi.nama_salinan = (response.data.dokumen[0].nama_salinan === "null")?'':response.data.dokumen[0].nama_salinan
-                                self.verifikasi.nip_salinan = (response.data.dokumen[0].nip_salinan === "null")?'':response.data.dokumen[0].nip_salinan
-                                self.verifikasi.peraturan_pendelegasian_wewenang_KL = (response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL === "null")?'':response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL
-                                console.log(response.data.dokumen[0].daftarKekuranganData)    
-                                console.log("null? KPKNL")      
-
-                                 if(response.data.dokumen[0].daftarKekuranganData==="null" || response.data.dokumen[0].daftarKekuranganData===""){
-                                    self.daftarKekuranganData = [{
-                                                                nama:''
-                                                            }] 
-                                }else{ 
-                                    self.daftarKekuranganData = JSON.parse(response.data.dokumen[0].daftarKekuranganData) 
-                                }      
-
-
-                                if(response.data.dokumen[0].daftar_tembusan==='null' || response.data.dokumen[0].daftar_tembusan===''|| response.data.dokumen[0].daftar_tembusan==='[]'){
-                                     self.daftarTembusan = [{
-                                                                nama:''
-                                                            }]  
-                                   
-                                }else{
-                                    self.daftarTembusan = JSON.parse(response.data.dokumen[0].daftar_tembusan) 
-                                   
-                                }                
-                                             
-                            }
-                        })
-                },
-
                 clearGenerateDoc(){
                     this.showDocumentVerifikasiFinal = false
                     this.showDocumentKekuranganFinal = false
@@ -777,34 +704,6 @@ Vue.component('hasil-pspbmn', {
                                           }
 
                 }, 
-                getKepalaBidangKPKNL() {
-                    let self = this
-                    axios.get(this.url + "/theme_costume/static_content/kepala_bidangPKN.json")
-                        .then(response => {
-                            
-                            self.option_data_kepala_bidang_kpknl = response.data.jabatan_kepala_bidang.filter(
-                                            data => data.kantor.includes(this.choosePengajuan.status_proses))
-
-                            // self.data_kepala_bidang_kpknl =  response.data.jabatan_kepala_bidang.filter(
-                            //                 data => data.kantor.includes(this.choosePengajuan.status_proses))
-                        })
-                },     
-                getKepalaSeksiKPKNL() {
-                    let self = this
-                    axios.get(this.url + "/theme_costume/static_content/kepala_seksiPKN.json")
-                        .then(response => {
-                            self.option_data_kepala_seksi_kpknl = response.data.jabatan_kepala_seksi.filter(
-                                            data => data.kantor.includes(this.choosePengajuan.status_proses))
-                            // self.data_kepala_seksi_kpknl =  response.data.jabatan_kepala_seksi.filter(
-                            //                 data => data.kantor.includes(this.choosePengajuan.status_proses))
-                        })
-                },
-                name_jabatan_kepala_seksi_kpknl({jabatan}) {
-                    return `${jabatan}` 
-                },        
-                name_jabatan_kepala_bidang_kpknl({jabatan}) {
-                    return `${jabatan}` 
-                },
 
                 
                 beforeTab1SwitchKPKNL: function() {

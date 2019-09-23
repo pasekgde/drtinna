@@ -57,7 +57,7 @@
                                     <!-- /.box-body -->
 
                                 </div>
-                                                                <div class="box-header with-border">
+                                <div class="box-header with-border">
                                     <h3 class="box-title btn bg-maroon btn-flat margin">IDENTITAS SATKER</h3>
                                 </div>
                                 <!-- /.box-header -->
@@ -80,14 +80,7 @@
                                                 <span class="text-red">{{ errors.first('step1.KementerianLembaga') }}</span>
 
                                             </div>
-                                            </div><!-- 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="col-sm-2 control-label">Alamat Kantor</label>
-                                                <div class="col-sm-5">
-                                                    <input type="name" class="form-control" id="inputEmail3" placeholder="Alamat Kementerian Lembaga " v-validate="'required'" name="KantorKL" v-model="pengajuan.alamat_kantorKL">
-                                                    <span class="text-red">{{ errors.first('step1.KantorKL') }}</span>
-                                                </div>
-                                            </div> -->
+                                            </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Nama Satker</label>
                                             <div class="col-sm-5">
@@ -484,7 +477,7 @@
                     
                 </div>
     </div>
-    </div>
+  </div>
 </script>
 
 
