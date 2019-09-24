@@ -123,9 +123,15 @@ Vue.component('pengajuan-pspbmn', {
                         file1:'',
                         file2:'',
                         file3:'',
-                        uploadUlangFilePermohonan:false,
-                        uploadUlangDaftarRincian:false,
-                        uploadUlangDokumenKelengkapan:false,
+                        showformUploadPermohonan:true,
+                        showformUploadDokumenKelengkapan:true,
+                        showformUploadRincian:true,
+                        isprosesUploadPermohonan:false,
+                        isprosesUploadDokumenKelengkapan:false,
+                        isprosesUploadRincian:false,
+                        isuploadUlangFilePermohonan:false,
+                        isuploadUlangDaftarRincian:false,
+                        isuploadUlangDokumenKelengkapan:false,
                         option_jenis_bmn: [
                                             {name: 'Tanah'},
                                             {name: 'Bangunan'},
@@ -180,18 +186,187 @@ Vue.component('pengajuan-pspbmn', {
                         }
             },
             methods: {
+                uploadFile: function(e) {
+                    let formData = new FormData();
+                    if(typeof this.$refs.fileSuratPermohon !== 'undefined'){
+                         console.log('masuk update23')
+                       this.file1 = this.$refs.fileSuratPermohon.files[0];   
+                       formData.append('file1', this.file1);  
+                    }
+                    if(typeof this.$refs.fileDaftarRincian !== 'undefined'){
+                       this.file2 = this.$refs.fileDaftarRincian.files[0];   
+                       formData.append('file2', this.file2);  
+                    }
+
+                    if(typeof this.$refs.fileDokumenKelengkapan !== 'undefined'){
+                         console.log('masuk update234')
+                      this.file3 = this.$refs.fileDokumenKelengkapan.files[0];  
+                       formData.append('file3', this.file3);  
+                    }
+                                        
+
+
+                    if (true) {
+
+                        let self = this
+                        let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                            .then(function(response) {
+                                    console.log("response.data.file")
+                                    console.log(response.data.file)
+                                    response.data.file.forEach((item, index)=>{
+                                        console.log(item)
+                                        if(response.data.tipe[index]==="file1"){
+                                            self.pengajuan.fileSuratPermohon = item
+                                        }
+                                        if(response.data.tipe[index]==="file2"){
+                                            self.pengajuan.fileDaftarRincian = item
+                                        }
+                                        if(response.data.tipe[index]==="file3"){
+                                            self.pengajuan.fileDokumenKelengkapan = item
+                                        }
+                                    })
+                            })
+                            .catch(function(error) {
+                                console.log(error);
+                            });
+                    }
+
+                },
+
+                uploadFileDokumenKelengkapan: function(e) {
+                    let formData = new FormData();
+                    if(typeof this.$refs.fileDokumenKelengkapan !== 'undefined'){
+                         console.log('masuk update234')
+                      this.file3 = this.$refs.fileDokumenKelengkapan.files[0];  
+                       formData.append('file3', this.file3);  
+                    }   
+
+
+                    if (typeof this.$refs.fileDokumenKelengkapan !== 'undefined') {
+
+                        let self = this
+                        let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                            .then(function(response) {
+                                    console.log("response.data.file")
+                                    console.log(response.data.file)
+                                    response.data.file.forEach((item, index)=>{
+                                        console.log(item)
+                                        console.log("self.uploadUlangFileDokumenKelengkapan")
+                                        self.isuploadUlangDokumenKelengkapan=false
+                                        self.isuploadFileDokumenKelengkapan=true
+                                        self.isprosesUploadDokumenKelengkapan=false
+                                        if(response.data.tipe[index]==="file3"){
+                                            self.pengajuan.fileDokumenKelengkapan = item
+                                        }
+                                    })
+                            })
+                            .catch(function(error) {
+                                self.uploadUlangFileDokumenKelengkapan=false
+                                self.isprosesUploadDokumenKelengkapan=false
+                                self.showformUploadDokumenKelengkapan=true
+
+                                console.log(error);
+                            });
+                    }
+
+                },
+                uploadFilePermohonan: function(e) {
+                    let formData = new FormData();
+                    if(typeof this.$refs.fileSuratPermohon !== 'undefined'){
+                       this.file1 = this.$refs.fileSuratPermohon.files[0];   
+                       formData.append('file1', this.file1);  
+                    }             
+
+
+                    if (typeof this.$refs.fileSuratPermohon !== 'undefined') {
+
+                        let self = this
+                        let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                            .then(function(response) {
+                                    console.log("response.data.file")
+                                    console.log(response.data.file)
+                                    response.data.file.forEach((item, index)=>{
+                                        console.log(item)
+                                        console.log("self.isuploadUlangFilePermohonan")
+                                        self.isuploadUlangFilePermohonan=false
+                                        self.isuploadFilePermohonan=true
+                                        self.isprosesUploadPermohonan=false
+                                        if(response.data.tipe[index]==="file1"){
+                                            self.pengajuan.fileSuratPermohon = item
+                                        }
+                                    })
+                            })
+                            .catch(function(error) {
+                                self.isuploadUlangFilePermohonan=false
+                                self.isprosesUploadPermohonan=false
+                                self.showformUploadPermohonan=true
+
+                                console.log(error);
+                            });
+                    }
+
+                },
+                uploadFileRincian: function(e) {
+                    let formData = new FormData();
+                    if(typeof this.$refs.fileDaftarRincian !== 'undefined'){
+                       this.file2 = this.$refs.fileDaftarRincian.files[0];   
+                       formData.append('file2', this.file2);  
+                    }
+      
+
+
+                    if (typeof this.$refs.fileDaftarRincian !== 'undefined') {
+
+                        let self = this
+                        let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                            .then(function(response) {
+                                    response.data.file.forEach((item, index)=>{
+                                        self.isuploadUlangDaftarRincian=false
+                                        self.isuploadFileRincian=true
+                                        self.isprosesUploadRincian=false
+                                        if(response.data.tipe[index]==="file2"){
+                                            self.pengajuan.fileDaftarRincian = item
+                                        }
+                                    })
+                            })
+                            .catch(function(error) {
+                                self.uploadUlangFileRincian=false
+                                self.isprosesUploadRincian=false
+                                self.showformUploadRincian=true
+
+                                console.log(error);
+                            });
+                    }
+
+                },
 
                 isExistUploadFile: function (){
                     console.log("test exist")
                     console.log(this.pengajuan.fileSuratPermohon)
                     if(this.pengajuan.fileSuratPermohon===''){
-                        this.uploadUlangFilePermohonan=true
+                        this.isuploadUlangFilePermohonan=true
                     }
                     if(this.pengajuan.fileDaftarRincian===''){
-                        this.uploadUlangDaftarRincian=true
+                        this.isuploadUlangDaftarRincian=true
                     }
                     if(this.pengajuan.fileDokumenKelengkapan===''){
-                        this.uploadUlangDokumenKelengkapan=true
+                        this.isuploadUlangDokumenKelengkapan=true
                     }
                 },
                 getStepIndexForm: function (){
@@ -245,9 +420,9 @@ Vue.component('pengajuan-pspbmn', {
                 },
                 beforeTab1SubSwitch: function() {
                     this.getStepIndexForm()
-                    this.uploadUlangFilePermohonan=false
-                    this.uploadUlangDaftarRincian=false
-                    this.uploadUlangDokumenKelengkapan=false
+                    this.isuploadUlangFilePermohonan=false
+                    this.isuploadUlangDaftarRincian=false
+                    this.isuploadUlangDokumenKelengkapan=false
                     this.isExistUploadFile()
                     return true
 
@@ -267,7 +442,7 @@ Vue.component('pengajuan-pspbmn', {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
                         } else {
-                            if(this.uploadUlangFilePermohonan!=false || this.uploadUlangDaftarRincian!=false || this.uploadUlangDokumenKelengkapan!=false){
+                            if(this.isuploadUlangFilePermohonan!=false || this.isuploadUlangDaftarRincian!=false || this.isuploadUlangDokumenKelengkapan!=false){
                                 this.uploadFile()
                             }
                             this.getStepIndexForm()
@@ -415,56 +590,6 @@ Vue.component('pengajuan-pspbmn', {
                     this.areaProsesText = ''
                 },
 
-                uploadFile: function(e) {
-                    let formData = new FormData();
-                    if(typeof this.$refs.fileSuratPermohon !== 'undefined'){
-                         console.log('masuk update23')
-                       this.file1 = this.$refs.fileSuratPermohon.files[0];   
-                       formData.append('file1', this.file1);  
-                    }
-                    if(typeof this.$refs.fileDaftarRincian !== 'undefined'){
-                       this.file2 = this.$refs.fileDaftarRincian.files[0];   
-                       formData.append('file2', this.file2);  
-                    }
-
-                    if(typeof this.$refs.fileDokumenKelengkapan !== 'undefined'){
-                         console.log('masuk update234')
-                      this.file3 = this.$refs.fileDokumenKelengkapan.files[0];  
-                       formData.append('file3', this.file3);  
-                    }
-                                        
-
-
-                    if (true) {
-
-                        let self = this
-                        let ax = axios.post(this.url + '/hideend/pengajuan/uploadFile', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                            .then(function(response) {
-                                    console.log("response.data.file")
-                                    console.log(response.data.file)
-                                    response.data.file.forEach((item, index)=>{
-                                        console.log(item)
-                                        if(response.data.tipe[index]==="file1"){
-                                            self.pengajuan.fileSuratPermohon = item
-                                        }
-                                        if(response.data.tipe[index]==="file2"){
-                                            self.pengajuan.fileDaftarRincian = item
-                                        }
-                                        if(response.data.tipe[index]==="file3"){
-                                            self.pengajuan.fileDokumenKelengkapan = item
-                                        }
-                                    })
-                            })
-                            .catch(function(error) {
-                                console.log(error);
-                            });
-                    }
-
-                },
                 clearPengajuanData() {
                     this.updatePengajuan()
                     this.resetTab()

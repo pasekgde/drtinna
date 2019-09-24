@@ -299,8 +299,8 @@
                                     <div class="form-group" style="background-color:green;padding:30px">
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label" style="color:white">Input Surat Keputusan tentang Pendelegasian Wewenang</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" placeholder="ex. Peraturan Pemerintah Pasal 1" v-validate="'required'" name="peraturan_pendelegasian_wewenang" v-model="verifikasi.peraturan_pendelegasian_wewenang_KL" data-vv-scope="step3">
-                                            <span class="text-red">{{ errors.first('step3.peraturan_pendelegasian_wewenang') }}</span>
+                                            <input type="text" class="form-control" placeholder="ex. Peraturan Pemerintah Pasal 1" v-validate="'required'" name="peraturan_pendelegasian_wewenang" v-model="verifikasi.peraturan_pendelegasian_wewenang_KL" data-vv-scope="step2">
+                                            <span class="text-red">{{ errors.first('step2.peraturan_pendelegasian_wewenang') }}</span>
                                         </div>
                                     </div>
                                 </div>

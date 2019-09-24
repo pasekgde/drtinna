@@ -794,10 +794,10 @@ class Verifikasi extends CI_Controller
 
 
 		//echo "<pre>"; print_r($dataArray);die;
-				$templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
-		$templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
-		$templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
-		$templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
+		 $templateProcessor->setValue('jabatan_salinan', $dataArray["jabatan_salinan"]);
+		 $templateProcessor->setValue('nama_salinan', $dataArray["nama_salinan"]);
+		 $templateProcessor->setValue('nip_salinan', $dataArray["nip_salinan"]);
+		 $templateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		 $templateProcessor->setValue('kementerian_lembaga', $dataArray["kementerian_lembaga"]);	
 		 $templateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
 		 $templateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -1322,6 +1322,37 @@ class Verifikasi extends CI_Controller
 		return $targetSaveFile.$fileSave;
 	}
 
+	public function generateSurveyLapanganKANWIL(){
+		
+		$fileHasilVerifikasi=$this->generateHasilVerifikasiKANWIL();
+		$fileNDSSurveyLapangan=$this->generateNDSSurveyLapanganKANWIL();
+		
+		$dataArray = array(
+						'fileNDSPersetujuan'=>'',
+						'fileHasilVerifikasi'=>$fileHasilVerifikasi,
+						'fileKMK'=>'',
+						'fileSalinanKMK'=>'',
+						'fileNDSPermintaanKelengkapan'=>'',
+						'fileNDSSurveyLapangan'=>$fileNDSSurveyLapangan,
+						'daftarKekuranganData' => '',
+						'rencana_survey' => $this->input->post('rencana_survey'),
+						'nama_survey' => $this->input->post('nama_survey'),
+						'cp_survey' => $this->input->post('cp_survey'),
+						'isGenerateDokumenKMK'=>0,
+						'isButuhKelengkapanData'=>0,
+						'isButuhSurveyLapangan'=>1
+						);
+
+		$dokumen = array(
+					'dokumen'=>$dataArray
+					);
+            
+        $id = $this->input->post('id');
+		$this->verifikasi_model->update($id, $dataArray);
+
+		echo json_encode($dokumen);
+
+	}
 	public function generateSurveyLapanganKPKPNL(){
 		
 		$fileHasilVerifikasiKPKNL=$this->generateHasilVerifikasiKPKNL();

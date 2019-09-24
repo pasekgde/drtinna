@@ -252,42 +252,59 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
-                                            <div class="col-sm-10" v-if="!uploadUlangFilePermohonan">
+                                            <div class="col-sm-10" v-if="!isuploadUlangFilePermohonan">
                                                 <div class="box-body2">
                                                     <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileSuratPermohon" download>
                                                         <i class="fa fa-download"></i> {{hrefFileSuratPermohon}}
                                                     </a>
                                                 </div>                                              
-                                                <button type="button" class="btn btn-success" @click="uploadUlangFilePermohonan=true">
+                                                <button type="button" class="btn btn-success" @click="isuploadUlangFilePermohonan=true;showformUploadPermohonan=true">
                                                         Upload Ulang
                                                 </button>
                                             </div> 
 
 
-                                            <div class="col-sm-10" v-if="uploadUlangFilePermohonan">
-                                                <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required|size:2000'" name="fileSuratPermohonName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
-                                                <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
-                                                <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
+                                            <div class="col-sm-10" v-if="isuploadUlangFilePermohonan">
+                                                <div v-if="showformUploadPermohonan">
+                                                    <input type="file" id="fileSuratPermohon" ref="fileSuratPermohon" v-validate="'required|size:2000'" name="fileSuratPermohonName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
+                                                    <span class="text-red">{{ errors.first('step2.fileSuratPermohonName') }}</span>
+                                                    <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
+                                                </div>
+                                                <div v-if="isprosesUploadPermohonan">
+                                                    <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
+                                                </div>
+                                                <button type="button" class="btn btn-danger" @click="uploadFilePermohonan();isprosesUploadPermohonan=true;showformUploadPermohonan=false">
+                                                        Upload File
+                                                </button>
                                             </div>
 
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Daftar Rincian BMN (Format Exel)</label>
-                                            <div class="col-sm-10" v-if="!uploadUlangDaftarRincian">
+                                            <div class="col-sm-10" v-if="!isuploadUlangDaftarRincian">
                                                 <div class="box-body2">
                                                     <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileDaftarRincian" download>
                                                         <i class="fa fa-download"></i> {{hrefFileDaftarRincian}}
                                                     </a>
                                                 </div>                                              
-                                                <button type="button" class="btn btn-success" @click="uploadUlangDaftarRincian=true">
+                                                <button type="button" class="btn btn-success" @click="isuploadUlangDaftarRincian=true;showformUploadRincian=true">
                                                         Upload Ulang
                                                 </button>
                                             </div> 
-                                            <div class="col-sm-10" v-if="uploadUlangDaftarRincian">
-                                                <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required|size:2000'" name="fileDaftarRincianName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,image/x-png,image/gif,image/jpeg,image/jpg">
-                                                <span class="text-red">{{ errors.first('step2.fileDaftarRincianName') }}</span>
+                                            <div class="col-sm-10" v-if="isuploadUlangDaftarRincian">
+                                                <div class="col-sm-10" v-if="showformUploadRincian">
+                                                    <input type="file" id="fileDaftarRincian" ref="fileDaftarRincian" v-validate="'required|size:2000'" name="fileDaftarRincianName" data-vv-scope="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,image/x-png,image/gif,image/jpeg,image/jpg">
+                                                    <span class="text-red">{{ errors.first('step2.fileDaftarRincianName') }}</span>
+                                                </div>
+
+                                                <div v-show="isprosesUploadRincian">
+                                                    <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
+                                                </div>
+                                                <button type="button" class="btn btn-danger" @click="uploadFileRincian();isprosesUploadRincian=true;showformUploadRincian=false">
+                                                        Upload File
+                                                </button>
                                             </div>
-                                            <div class="col-sm-5"  v-if="uploadUlangDaftarRincian">
+                                            <div class="col-sm-5"  v-if="isuploadUlangDaftarRincian">
                                                 <div class="box-body2">
                                                     <a class="btn btn-block btn-social btn-bitbucket" :href="downloadFileSampleRincianBMN" download>
                                                         <i class="fa fa-download"></i> Download contoh format Rincian BMN
@@ -298,44 +315,33 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Dokumen Kelengkapan</label>
 
-                                            <div class="col-sm-10" v-if="!uploadUlangDokumenKelengkapan">
+                                            <div class="col-sm-10" v-if="!isuploadUlangDokumenKelengkapan">
                                                 <div class="box-body2">
                                                     <a class="btn btn-block btn-social btn-bitbucket" :href="hrefFileDokumenKelengkapan" download>
                                                         <i class="fa fa-download"></i> {{hrefFileDokumenKelengkapan}}
                                                     </a>
                                                 </div>                                              
-                                                <button type="button" class="btn btn-success" @click="uploadUlangDokumenKelengkapan=true">
+                                                <button type="button" class="btn btn-success" @click="isuploadUlangDokumenKelengkapan=true;showformUploadDokumenKelengkapan=true">
                                                         Upload Ulang
                                                 </button>
                                             </div> 
 
-                                            <div class="col-sm-10" v-if="uploadUlangDokumenKelengkapan">
-                                                <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required|size:2000'" name="fileDokumenKelengkapanName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
-                                                <span class="text-red">{{ errors.first('step2.fileDokumenKelengkapanName') }}</span>
-                                                <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
+                                            <div class="col-sm-10" v-if="isuploadUlangDokumenKelengkapan">
+                                                <div class="col-sm-10" v-if="showformUploadDokumenKelengkapan">
+                                                    <input type="file" id="fileDokumenKelengkapan" ref="fileDokumenKelengkapan" v-validate="'required|size:2000'" name="fileDokumenKelengkapanName" data-vv-scope="step2" accept="application/pdf,image/x-png,image/gif,image/jpeg,image/jpg">
+                                                    <span class="text-red">{{ errors.first('step2.fileDokumenKelengkapanName') }}</span>
+                                                    <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
+                                                </div>
+
+                                                <div v-show="isprosesUploadDokumenKelengkapan">
+                                                    <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
+                                                </div>
+                                                <button type="button" class="btn btn-danger" @click="uploadFileDokumenKelengkapan();isprosesUploadDokumenKelengkapan=true;isuploadUlangDokumenKelengkapan=true;showformUploadDokumenKelengkapan=false">
+                                                        Upload File
+                                                </button>
                                             </div>
                                         </div>
-
-
-                                        <!-- 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Backup SIMAK</label>
-                                            <div class="col-sm-10">
-                                                <input type="file" id="fileUploadBackupSimak" ref="fileUploadBackupSimak" v-validate="'required'" name="fileUploadBackupSimakName" data-vv-scope="step2" v-on:change="">
-                                                <span class="text-red">{{ errors.first('step2.fileUploadBackupSimakName') }}</span>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <div class="box-body2">
-                                                    <a class="btn btn-block btn-social btn-bitbucket">
-                                                        <i class="fa fa-download"></i> Download format backup SIMAK
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
                                     </div>
-                                    <!-- /.box-body -->
-
                                 </div>
                             </div>
                         </tab-content>
@@ -415,17 +421,17 @@
                         <div class="callout callout-info">
                             <h4>UPLOAD SURAT PERMOHONAN </h4>
 
-                            <p>Upload File Surat Permohonan dalam format PDF atau JPEG. </p>
+                            <p>Upload File Surat Permohonan dalam format PDF atau JPEG. (Max 2 MB) </p>
                         </div>
                         <div class="callout callout-warning">
                             <h4>UPLOAD DAFTAR RINCIAN BMN</h4>
 
-                            <p>Upload File Daftar Rincian BMN dalam format XLS. File ini sangat membantu kami dalam memverifikasi berkas permohonan. Untuk format XLS dapat di download pada tombol yang tersedia.</p>
+                            <p>Upload File Daftar Rincian BMN dalam format XLS. File ini sangat membantu kami dalam memverifikasi berkas permohonan. Untuk format XLS dapat di download pada tombol yang tersedia.  (Max 2 MB)</p>
                         </div> 
-                        <div class="callout callout-warning">
+                        <div class="callout callout-info">
                             <h4>UPLOAD DOKUMEN KELENGKAPAN</h4>
 
-                            <p>Upload File Dokumen Kelengkapan Permohonan PSP dalam format PDF atau JPEG. Dokumen Kelengkapan antara lain:</p>
+                            <p>Upload File Dokumen Kelengkapan Permohonan PSP dalam format PDF atau JPEG  (Max 2 MB). Dokumen Kelengkapan antara lain:</p>
                             <ol>
                                 <li>
                                     Untuk BMN yang Memiliki Dokumen Kepemilikan, lampirkan:

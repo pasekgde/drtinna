@@ -443,6 +443,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
 
                     let GabungData = {...this.verifikasi,...this.choosePengajuan}
                     this.clearGenerateDoc()
+                    GabungData.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData)
                     GabungData.id = this.verifikasi.id
                     var formData = this.formData(GabungData);
                     let self = this
