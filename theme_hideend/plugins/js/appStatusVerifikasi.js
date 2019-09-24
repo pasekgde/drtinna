@@ -136,7 +136,7 @@ Vue.component('hasil-pspbmn', {
                this.loadfileFinal() 
             },
             created(){
-                this.cekdokumenUpload()
+                //this.cekdokumenUpload()
                 
                 
             },

@@ -5,6 +5,7 @@ include_once(APPPATH."third_party/PhpWord/Autoloader.php");
 
 use PhpOffice\PhpWord\Autoloader;
 use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpWord\PhpWord;
 Autoloader::register();
 Settings::loadConfig();
 class Verifikasi extends CI_Controller

@@ -1473,6 +1473,37 @@
                         <div class="form-horizontal">
                             <div class="box-body">
                                 <div v-if="!successUpload">
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
+                                            <div class="col-sm-10" v-if="!isuploadUlangSuratHasilVerifikasifinal">
+                                                <div class="box-body2">
+                                                   <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratHasilVerifikasifinal" download>
+                                                                <i class="fa fa-download"></i> {{hrefsuratHasilVerifikasifinal}}
+                                                            </a>
+                                                </div>                                              
+                                                <button type="button" class="btn btn-success" @click="isuploadUlangSuratHasilVerifikasifinal=true;showformUploadHasilVerifikasifinal=true">
+                                                        Upload Ulang
+                                                </button>
+                                            </div> 
+
+
+                                            <div class="col-sm-10" v-if="isuploadUlangSuratHasilVerifikasifinal">
+                                                <div v-if="showformUploadHasilVerifikasifinal">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
+                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                                    <p class="help-block">Upload Document *.docx or *.pdf</p>
+                                                    
+                                                </div>
+                                                <div v-if="isprosesUploadPermohonan">
+                                                    <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
+                                                </div>
+                                                <button type="button" class="btn btn-danger" @click="uploadFileHasilVerifikasiFinal();isprosesUploadPermohonan=true;showformUploadPermohonan=false">
+                                                        Upload File
+                                                </button>
+                                            </div>
+
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
 
@@ -1731,7 +1762,7 @@
                         </div>
                     </div>
                 </tab-content>
-                <tab-content title="Last step" icon="fa fa-check-circle" :before-change="beforeTab4SwitchKANWIL">
+                <tab-content title="Last step" icon="fa fa-check-circle" :before-change="beforeTab4SwitchHasil">
                     <div class="callout callout-success">
                         <h4>Terima Kasih</h4>
                         <h4>Permohonan Verifikasi Dokumen Telah Selesai dilakukan.</h4>
