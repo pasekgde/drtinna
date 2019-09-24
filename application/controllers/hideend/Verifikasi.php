@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/* @property phpword_model $phpword_model */
+/* @property PhpWord_model $PhpWord_model */
 include_once(APPPATH."third_party/PhpWord/Autoloader.php");
 
 
@@ -33,7 +33,7 @@ class Verifikasi extends CI_Controller
 		$targetFile = "./uploads/template/";		
 		$targetSaveFile = "./uploads/verifikasi/kanwil/";
 
-		$TemplateProcessor = new \phpOffice\phpWord\TemplateProcessor($targetFile.$file);
+		$TemplateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($targetFile.$file);
 		$tanggal_surat_permohonan = $this->common->tgl_indo($this->input->post('tglSurat_pemohon'));
 
 		$dataArray = array(
