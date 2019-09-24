@@ -19,12 +19,7 @@ class Verifikasi extends CI_Controller
 		$this->load->model("user_model");
 		$this->load->model("pengajuan_model");
 		$this->load->model("verifikasi_model");
-		//$this->load->helper(array('form', 'url'));
 		if (!$this->user->loggedin) $this->template->error(lang("error_1"));
-		// if(!$this->common->has_permissions(array(
-		// 		"admin", "content_manager", "content_worker"), $this->user)) {
-		// 		$this->template->error(lang("error_81"));
-		// }
 	}
 
 	//Generate document fix
@@ -1197,10 +1192,7 @@ class Verifikasi extends CI_Controller
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala '.$this->input->post('status_proses'):'Kepala Kantor';
 
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
-		$detail_djkn = json_decode($this->input->post("detail_djkn"));
-		$TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
-		$TemplateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
-		$TemplateProcessor->setValue('telepon_dan_email_kpknl', $detail_djkn->email);
+		
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
