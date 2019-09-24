@@ -79,7 +79,9 @@ Vue.component('hasil-pspbmn', {
                         fileKMK:'',
                         fileSalinanKMK:'',
                         fileNDSPermintaanKelengkapan:'',
-                        fileNDSSurveyLapangan:''
+                        fileNDSSurveyLapangan:'',
+                        isuploadUlangSuratHasilVerifikasifinal:false,
+                        dokumenVerifikasiFinal:'',
                     },       
 
                     showDocumentVerifikasiFinal:false,             
@@ -119,25 +121,21 @@ Vue.component('hasil-pspbmn', {
                       isShowLast: false,
                       jenisForm:this.jenisform,
                       successUpload:false,
-                      uploadUlangSuratHasilVerifikasifinal:false,
-                      uploadUlangSuratNDSPermintaanKelengkapanfinal:false,
-                      uploadUlangSuratNDSSurveyLapanganfinal:false,
-                      uploadUlangSuratNDSPersetujuanfinal:false,
-                      uploadUlangSuratKMKfinal:false,
-                      uploadUlangSuratSalinanKMKfinal:false,
+                      isuploadUlangDokumenVerifikasiFinal:false,
+                      isShowformUploadDokumenVerifikasiFinal:false,
+                      isprosesUploadDokumenKelengkapan:false,
                       file1:'',
-                      file2:'',
-                      file3:'',
-                      file4:'',
+
                 }
 
             },
             updated: function () {
-               this.loadfileFinal() 
+                
             },
             created(){
-                //this.cekdokumenUpload()
-                
+                //this.cekdokumenUpload()             
+                this.getDataVerifikasiDokumen()                
+                   
                 
             },
             mounted(){
@@ -149,38 +147,24 @@ Vue.component('hasil-pspbmn', {
                     // return this.url
                 },
                 // a computed getter
-                hrefsuratNDSPersetujuanfinal: function () {
+                hrefDokumenVerifikasiFinal: function () {
                     // `this` points to the vm instance
-                    return (this.verifikasi.suratNDSPersetujuanfinal==='')?'':( this.url+'/uploads/'+this.verifikasi.suratNDSPersetujuanfinal)
+                    return (this.verifikasi.suratHasilVerifikasifinal==='')?'':( this.url+'/uploads/'+this.verifikasi.suratHasilVerifikasifinal)
                     // return this.url
                 },
-                // a computed getter
-                hrefsuratHasilVerifikasifinal: function () {
-                    return (this.verifikasi.suratHasilVerifikasifinal==='')?'':(this.url+'/uploads/'+this.verifikasi.suratHasilVerifikasifinal)
-                },
-                // a computed getter
-                hrefsuratKMKfinal: function () {
-                    return (this.verifikasi.suratKMKfinal==='')?'':(this.url+'/uploads/'+this.verifikasi.suratKMKfinal)
-                    // return this.url
-                },
-                // a computed getter
-                hrefsuratSalinanKMKfinal: function () {
-                    return (this.verifikasi.suratSalinanKMKfinal==='')?'':(this.url+'/uploads/'+this.verifikasi.suratSalinanKMKfinal)
-                  
-                },
-                // a computed getter
-                hrefsuratNDSPermintaanKelengkapanfinal: function () {
-                    return (this.verifikasi.suratNDSPermintaanKelengkapanfinal==='')?'':(this.url+'/uploads/'+this.verifikasi.suratNDSPermintaanKelengkapanfinal)
-                  
-                    // return this.url
-                },
-                // a computed getter
-                hrefsuratNDSSurveyLapanganfinal: function () {
-                    return (this.verifikasi.suratNDSSurveyLapanganfinal==='')?'':(this.url+'/uploads/'+this.verifikasi.suratNDSSurveyLapanganfinal)
-                                      // return this.url
-                }
             },
             methods:{
+
+                getDataVerifikasiDokumen:function(){
+                    let self = this
+                    axios.post(this.url + "/hideend/verifikasi/checkDocumentVerifikasi/"+this.choosePengajuan.id).then(function(response) {
+                               console.log("masuk get verifikasi data")
+                               console.log(response.data.dokumen)
+                               self.verifikasi = response.data.dokumen[0]
+                               self.loadfileFinal()    
+                        })
+                    
+                },
                 finishUploadHasil(){
                     let valueHide ={
                                     showWizardFormHASIL : false                                    
@@ -188,42 +172,20 @@ Vue.component('hasil-pspbmn', {
                     this.$emit('hide-form', valueHide)
                 },
                 loadfileFinal: function () {   
-
-                     if(this.verifikasi.suratHasilVerifikasifinal===''){
-                        this.uploadUlangSuratHasilVerifikasifinal=true
+                    if(this.verifikasi.suratHasilVerifikasifinal===''){
+                        this.isuploadUlangDokumenVerifikasiFinal=true
+                        this.isShowformUploadDokumenVerifikasiFinal=true
+                        this.isprosesUploadDokumenKelengkapan=false
                     }else{
-                        this.uploadUlangSuratHasilVerifikasifinal=false
+                        this.isuploadUlangDokumenVerifikasiFinal=false
                     }    
                     
-                    if(this.verifikasi.suratKMKfinal===''){
-                        this.uploadUlangSuratKMKfinal=true
-                    }else{
-                        this.uploadUlangSuratKMKfinal=false
-                    }
-
-                    if(this.verifikasi.suratSalinanKMKfinal===''){
-                        this.uploadUlangSuratSalinanKMKfinal=true
-                    }else{
-                        this.uploadUlangSuratSalinanKMKfinal=false
-                    }
-
-                    if(this.verifikasi.suratNDSPermintaanKelengkapanfinal===''){
-                        this.uploadUlangSuratNDSPermintaanKelengkapanfinal=true
-                    }else{
-                        this.uploadUlangSuratNDSPermintaanKelengkapanfinal=false
-                    }
-
-                    if(this.verifikasi.suratNDSSurveyLapanganfinal===''){
-                        this.uploadUlangSuratNDSSurveyLapanganfinal=true
-                    }else{
-                        this.uploadUlangSuratNDSSurveyLapanganfinal=false
-                    }
                 },
 
                 beforeTabHasilVerifikasi: function() {
 
                     let self = this
-                    return this.$validator.validateAll("step2").then((result) => {
+                    return this.$validator.validateAll("step1").then((result) => {
                         if (!result) {
                             alert('mohon melengkapi seluruh form diatas')
                             return false;
@@ -234,115 +196,11 @@ Vue.component('hasil-pspbmn', {
 
                     })
                 },
-                uploadFileKelengkapan: function() {
+                uploadFileDokumenVerifikasiFinal: function() {
                     let formData = new FormData();
-                    if(typeof this.$refs.suratHasilVerifikasifinal !== 'undefined'){
-                       this.file1 = this.$refs.suratHasilVerifikasifinal.files[0];   
+                    if(typeof this.$refs.dokumenVerifikasiFinal !== 'undefined'){
+                       this.file1 = this.$refs.dokumenVerifikasiFinal.files[0];   
                        formData.append('file1', this.file1);  
-                    }
-                    if(typeof this.$refs.suratNDSPermintaanKelengkapanfinal !== 'undefined'){
-                       this.file2 = this.$refs.suratNDSPermintaanKelengkapanfinal.files[0];   
-                       formData.append('file2', this.file2);  
-                    }
-                    if (true) {
-                        let self = this
-                        axios.post(this.url + '/hideend/verifikasi/uploadFileKelengkapan', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                            .then(function(response) {
-                                if (!response.data) {
-                                    alert('File not uploaded All. Please check one of your file');
-                                } else {
-                                    response.data.file.forEach((item,index)=>{
-                                        console.log(response.data.tipe[index])
-                                        if(response.data.tipe[index]==="file1"){
-                                            self.verifikasi.suratHasilVerifikasifinal = item
-                                        }
-                                        if(response.data.tipe[index]==="file2"){
-                                            self.verifikasi.suratNDSPermintaanKelengkapanfinal = item
-                                        }
-
-                                    })
-                                    
-                                    
-                                    
-
-                                }
-
-                            })
-                            .catch(function(error) {
-                                console.log(error);
-                            });
-                            this.successUpload = true
-                    }else{
-                        alert("Silakan diUpload semua dokumen")
-                    }
-
-                },
-                uploadFileSurvey: function() {
-                    let formData = new FormData();
-                    if(typeof this.$refs.suratHasilVerifikasifinal !== 'undefined'){
-                       this.file1 = this.$refs.suratHasilVerifikasifinal.files[0];   
-                       formData.append('file1', this.file1);  
-                    }
-                    if(typeof this.$refs.suratNDSSurveyLapanganfinal !== 'undefined'){
-                       this.file2 = this.$refs.suratNDSSurveyLapanganfinal.files[0];   
-                       formData.append('file2', this.file2);  
-                    }
-
-                    if (true) {
-                        let self = this
-                        axios.post(this.url + '/hideend/verifikasi/uploadFileSurvey', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                            .then(function(response) {
-                                if (!response.data) {
-                                    alert('File not uploaded All. Please check one of your file');
-                                } else {
-                                    response.data.file.forEach((item,index)=>{
-                                        console.log(response.data.tipe[index])
-                                        if(response.data.tipe[index]==="file1"){
-                                            self.verifikasi.suratHasilVerifikasifinal = item
-                                        }
-                                        if(response.data.tipe[index]==="file2"){
-                                            self.verifikasi.suratNDSSurveyLapanganfinal = item
-                                        }
-
-                                    })
-
-                                }
-
-                            })
-                            .catch(function(error) {
-                                console.log(error);
-                            });
-                            this.successUpload=true
-                    }else{
-                        alert("Silakan diUpload semua dokumen")
-                    }
-
-                },
-                uploadFileComplete: function() {
-                    let formData = new FormData();
-                    if(typeof this.$refs.suratNDSPersetujuanfinal !== 'undefined'){
-                       this.file1 = this.$refs.suratNDSPersetujuanfinal.files[0];   
-                       formData.append('file1', this.file1);  
-                    }
-                    if(typeof this.$refs.suratHasilVerifikasifinal !== 'undefined'){
-                       this.file2 = this.$refs.suratHasilVerifikasifinal.files[0];   
-                       formData.append('file2', this.file2);  
-                    }
-                    if(typeof this.$refs.suratKMKfinal !== 'undefined'){
-                       this.file3 = this.$refs.suratKMKfinal.files[0];   
-                       formData.append('file3', this.file3);  
-                    }
-                    if(typeof this.$refs.suratSalinanKMKfinal !== 'undefined'){
-                       this.file4 = this.$refs.suratSalinanKMKfinal.files[0];   
-                       formData.append('file4', this.file4);  
                     }
 
 
@@ -357,29 +215,18 @@ Vue.component('hasil-pspbmn', {
                                 if (!response.data) {
                                     alert('File not uploaded All. Please check one of your file');
                                 } else {
-                                    self.successUpload = true
-
-
-                                    response.data.file.forEach((item,index)=>{
-                                        if(response.data.tipe[index]==="file1"){
-                                            self.verifikasi.suratNDSPersetujuanfinal = item
-                                        }
-                                        if(response.data.tipe[index]==="file2"){
-                                            self.verifikasi.suratHasilVerifikasifinal = item
-                                        }
-                                        if(response.data.tipe[index]==="file3"){
-                                            self.verifikasi.suratKMKfinal = item
-                                        }
-                                        if(response.data.tipe[index]==="file4"){
-                                            self.verifikasi.suratSalinanKMKfinal = item
+                                        if(response.data.tipe[0]==="file1"){
+                                            self.isuploadUlangDokumenVerifikasiFinal = false
+                                            self.verifikasi.suratHasilVerifikasifinal = response.data.file[0]
                                         }
 
-                                    })
+                                    
 
                                 }
 
                             })
                             .catch(function(error) {
+                                self.isShowformUploadDokumenVerifikasiFinal=true
                                 console.log(error);
                             });
 
@@ -388,183 +235,6 @@ Vue.component('hasil-pspbmn', {
                         alert("Silakan diUpload semua dokumen")
                     }
 
-                },
-                btnDataSurveyLapangan(){
-                    this.isGenerateKMKDoc = false
-                    this.isButuhKelengkapanData = false
-                    this.isButuhSurveyLapangan = true
-
-                    this.verifikasi.daftarKekuranganData=[]
-                    this.verifikasi.daftar_tembusan=[]
-                    this.daftarTembusan = []
-                    this.verifikasi.jabatan_salinan=''
-                    this.verifikasi.nama_salinan=''
-                    this.verifikasi.nip_salinan=''
-
-                    this.verifikasi.hasil_verifikasi = "Butuh Survey Lapangan"
-
-                    let GabungData = {...this.verifikasi,...this.choosePengajuan}
-                    this.clearGenerateDoc()
-                    GabungData.id = this.verifikasi.id
-                    var formData = this.formData(GabungData);
-                    let self = this
-
-                    axios.post(this.url + "/hideend/verifikasi/generateSurveyLapanganKPKNL/",formData).then(function(response) {
-                            if (true) {
-                                self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
-                                self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
-                                self.verifikasi.fileKMK = response.data.dokumen.fileKMK
-                                self.verifikasi.fileSalinanKMK = response.data.dokumen.fileSalinanKMK
-                                self.verifikasi.fileNDSPermintaanKelengkapan = response.data.dokumen.fileNDSPermintaanKelengkapan
-                                self.verifikasi.fileNDSSurveyLapangan = response.data.dokumen.fileNDSSurveyLapangan
-           
-                            }
-                        })
-                },
-                btnGenerateKelengkapanDoc(){
-                    this.isGenerateKMKDoc = false
-                    this.isButuhKelengkapanData = true
-                    this.isButuhSurveyLapangan = false
-
-                    this.verifikasi.rencana_survey='' 
-                    this.verifikasi.nama_survey='' 
-                    this.verifikasi.cp_survey='' 
-                    this.verifikasi.daftar_tembusan=[]
-                    this.daftarTembusan = []
-                    this.verifikasi.jabatan_salinan=''
-                    this.verifikasi.nama_salinan=''
-                    this.verifikasi.nip_salinan=''
-
-                    this.verifikasi.daftarKekuranganData = JSON.stringify(this.daftarKekuranganData)  
-                    this.verifikasi.hasil_verifikasi = "Butuh Kelengkapan Data"  
-                                        
-
-                    let GabungData = {...this.verifikasi,...this.choosePengajuan}
-                    this.clearGenerateDoc()
-                    GabungData.id = this.verifikasi.id
-                    var formData = this.formData(GabungData);
-                    let self = this
-
-                    axios.post(this.url + "/hideend/verifikasi/generateKelengkapanDataKPKNL/",formData).then(function(response) {
-                            if (true) {                                
-                                self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
-                                self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
-                                self.verifikasi.fileKMK = response.data.dokumen.fileKMK
-                                self.verifikasi.fileSalinanKMK = response.data.dokumen.fileSalinanKMK
-                                self.verifikasi.fileNDSPermintaanKelengkapan = response.data.dokumen.fileNDSPermintaanKelengkapan
-                                self.verifikasi.fileNDSSurveyLapangan = response.data.dokumen.fileNDSSurveyLapangan          
-                            }
-                        })
-                },
-                btnGenerateKMKDoc(){
-                    this.isGenerateKMKDoc = true
-                    this.isButuhKelengkapanData = false
-                    this.isButuhSurveyLapangan = false    
-                    this.verifikasi.rencana_survey='' 
-                    this.verifikasi.nama_survey='' 
-                    this.verifikasi.cp_survey='' 
-                    this.verifikasi.daftarKekuranganData=[]
-                    this.verifikasi.hasil_verifikasi = "Terbitkan KMK Dokumen" 
-                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan) 
-                    let GabungData = {...this.verifikasi,...this.choosePengajuan}
-
-                    this.clearGenerateDoc()
-                    GabungData.id = this.verifikasi.id
-                    var formData = this.formData(GabungData);
-                    let self = this
-                    axios.post(this.url + "/hideend/verifikasi/generateDocKMKKPKNL/",formData).then(function(response) {
-                            console.log("btnGenerateKMKDoc")     
-                            console.log(response.data.dokumen)     
-                            if (true) {
-                                self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
-                                self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
-                                self.verifikasi.fileKMK = response.data.dokumen.fileKMK
-                                self.verifikasi.fileSalinanKMK = response.data.dokumen.fileSalinanKMK
-                                self.verifikasi.fileNDSPermintaanKelengkapan = response.data.dokumen.fileNDSPermintaanKelengkapan
-                                self.verifikasi.fileNDSSurveyLapangan = response.data.dokumen.fileNDSSurveyLapangan
-           
-                            }
-                        })
-
-                },
-                uploadFile: function() {
-
-                    this.file1 = this.$refs.fileSuratPermohon.files[0];
-                    this.file2 = this.$refs.fileDaftarRincian.files[0];
-                    this.file3 = this.$refs.fileDokumenKelengkapan.files[0];
-                    this.file4 = this.$refs.fileUploadBackupSimak.files[0];
-
-                    if (this.file1 && this.file2 && this.file3 && this.file4) {
-
-                        let formData = new FormData();
-                        formData.append('file1', this.file1);
-                        formData.append('file2', this.file2);
-                        formData.append('file3', this.file3);
-                        formData.append('file4', this.file4);
-
-                        axios.post(this.url + '/hideend/verifikasi/uploadFileFinal', formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                            .then(function(response) {
-                                if (!response.data) {
-                                    alert('File not uploaded All. Please check one of your file');
-                                } else {
-                                    v.pengajuan.fileSuratPermohon = response.data.file[0]
-                                    v.pengajuan.fileDaftarRincian = response.data.file[1]
-                                    v.pengajuan.fileDokumenKelengkapan = response.data.file[2]
-                                    v.pengajuan.fileUploadBackupSimak = response.data.file[3]
-
-
-                                }
-
-                            })
-                            .catch(function(error) {
-                                console.log(error);
-                            });
-                    }
-
-                },
-                generateKMKDoc(){
-                    this.isGenerateKMKDoc = true
-                    this.isButuhKelengkapanData = false
-                    this.isButuhSurveyLapangan = false  
-                },
-                butuhKelengkapanData(){
-                    this.isGenerateKMKDoc = false
-                    this.isButuhKelengkapanData = true
-                    this.isButuhSurveyLapangan = false
-                },
-                butuhSurveyLapangan(){
-                    this.isGenerateKMKDoc = false
-                    this.isButuhKelengkapanData = false
-                    this.isButuhSurveyLapangan = true
-                },
-                //1
-                deleteRowKurangData(index){
-                    if(this.daftarKekuranganData.length>1){
-                        this.daftarKekuranganData.splice(index, 1);
-                    }
-                },
-                deleteRow(index){
-                    if(this.daftarTembusan.length>1){
-                        this.daftarTembusan.splice(index, 1);
-                    }
-                },
-
-
-                addRowKurangData(){
-                    this.daftarKekuranganData.push({'nama': ''});
-                },
-
-                addRowTembusan(){
-                    this.daftarTembusan.push({'nama': ''});
-                },
-                clearGenerateDoc(){
-                    this.showDocumentVerifikasiFinal = false
-                    this.showDocumentKekuranganFinal = false
-                    this.showDocumentSurveyFinal = false
                 },
                 clearAllForm(){
                     this.verifikasi={
@@ -610,167 +280,9 @@ Vue.component('hasil-pspbmn', {
                                 }
                     this.$emit('send-data', valueHide)
                 },
-                checklistVerifikasi($jenisButton,$value){
-                    if($jenisButton==='check_jenis_bmn'){
-                        this.verifikasi.check_jenis_bmn = $value
-                    }
-                    if($jenisButton==='check_nilai_bmn'){
-                        this.verifikasi.check_nilai_bmn = $value
-                    }
-                    if($jenisButton==='check_surat_permohonan'){
-                        this.verifikasi.check_surat_permohonan = $value
-                    }
-                    if($jenisButton==='check_rincian_usulan_bmn'){
-                        this.verifikasi.check_rincian_usulan_bmn = $value
-                    }
-                    if($jenisButton==='check_kib'){
-                        this.verifikasi.check_kib = $value
-                    }
-                    if($jenisButton==='check_foto_bmn'){
-                        this.verifikasi.check_foto_bmn = $value
-                    }
-                    if($jenisButton==='check_sk_delegasi'){
-                        this.verifikasi.check_sk_delegasi = $value
-                    }
-                    if($jenisButton==='check_dokumen_kepemilikan'){
-                        this.verifikasi.check_dokumen_kepemilikan = $value
-                    }
-                    if($jenisButton==='check_fc_dokumen_kepemilikan'){
-                        this.verifikasi.check_fc_dokumen_kepemilikan = $value
-                    }
-                    if($jenisButton==='check_sptjm_bermaterai'){
-                        this.verifikasi.check_sptjm_bermaterai = $value
-                    }
-                    if($jenisButton==='check_kebenaran_fc_dokumen_kepemilikan'){
-                        this.verifikasi.check_kebenaran_fc_dokumen_kepemilikan = $value
-                    }
-
-                },
-
-                //ubah ini semua
-                pickStatusJabatanKasiKPKNL(statusJabatan) {
-
-                     if(statusJabatan === this.temp_data_kepala_seksi_kpknl.status ){
-                        
-                           this.data_kepala_seksi_kpknl = {
-                                                        jabatan : this.temp_data_kepala_seksi_kpknl.jabatan,
-                                                        status : statusJabatan,
-                                                        nip : this.temp_data_kepala_seksi_kpknl.nip,          
-                                                        nama : this.temp_data_kepala_seksi_kpknl.nama 
-                                                    }
-                    }else{
-                            this.data_kepala_seksi_kpknl = {
-                                                        jabatan : this.temp_data_kepala_seksi_kpknl.jabatan,
-                                                        status : statusJabatan,
-                                                        nip : '',          
-                                                        nama : '' 
-                                                    }
-                    }
-                },
-                pickStatusJabatanKabidKPKNL(statusJabatan) {
-
-                    if(statusJabatan === this.temp_data_kepala_bidang_kpknl.status ){
-                            this.data_kepala_bidang_kpknl = {
-                                                       jabatan : this.temp_data_kepala_bidang_kpknl.jabatan,
-                                                       status : statusJabatan,
-                                                       nip : this.temp_data_kepala_bidang_kpknl.nip,          
-                                                       nama : this.temp_data_kepala_bidang_kpknl.nama 
-                                                    } 
-                    }else{
-                            this.data_kepala_bidang_kpknl = {
-                                                    jabatan :this.temp_data_kepala_bidang_kpknl.jabatan,
-                                                    status : statusJabatan,
-                                                    nip : '',          
-                                                    nama : ''}
-                    }
-                },        
-                //DATA KPKNL
-                setTempJabatanKepalaSeksiKPKNL() {
-                    this.temp_data_kepala_seksi_kpknl = {
-                                               jabatan : this.data_kepala_seksi_kpknl.jabatan,
-                                               status : this.data_kepala_seksi_kpknl.status,
-                                               nip : this.data_kepala_seksi_kpknl.nip,          
-                                               nama : this.data_kepala_seksi_kpknl.nama 
-                                          }
-
-                },       
-                //DATA KPKNL
-                setTempJabatanKepalaBidangKPKNL() {
-                    this.temp_data_kepala_bidang_kpknl = {
-                                               jabatan : this.data_kepala_bidang_kpknl.jabatan,
-                                               status : this.data_kepala_bidang_kpknl.status,
-                                               nip : this.data_kepala_bidang_kpknl.nip,          
-                                               nama : this.data_kepala_bidang_kpknl.nama 
-                                          }
-
-                }, 
-
-                
-                beforeTab1SwitchKPKNL: function() {
-
-                    let self = this
-                    return this.$validator.validateAll("step1").then((result) => {
-                        if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
-                            return false;
-                        } else {
-                            this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
-                            this.addVerifikasi("Proses by Verifikator")
-                            return true
-                        }
-
-                    })
-                },
-                beforeTab2SwitchKPKNL: function() {
-                     let self = this
-                    return this.$validator.validateAll("step2").then((result) => {
-                        if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
-                            return false;
-                        } else {
-                             this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
-                             this.addVerifikasi("Dokumen Fisik telah Dicek")
-                            return true
-                        }
-
-                    })
-                },
-                beforeTab3SwitchKPKNL: function() {
-                     let self = this
-                    return this.$validator.validateAll("step3").then((result) => {
-                        if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
-                            return false;
-                        } else {
-                            this.addVerifikasi("Keputusan Telah di buat")
-                            return true
-                        }
-
-                    })
-                },
-                beforeTab4SwitchKPKNL: function() {
-                    //this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
-                    this.addVerifikasi("Keputusan Telah di buat")
-                    return true
-                },
 
                 addVerifikasi:function(status) {
-                    //Assign Kepala Seksi
-                    this.verifikasi.jabatan_kepala_seksi = this.data_kepala_seksi_kpknl.jabatan
-                    this.verifikasi.status_kepala_seksi = this.data_kepala_seksi_kpknl.status
-                    this.verifikasi.nama_kepala_seksi = this.data_kepala_seksi_kpknl.nama
-                    this.verifikasi.nip_kepala_seksi = this.data_kepala_seksi_kpknl.nip
-
-                    //Assign Kepala Bidang
-                    this.verifikasi.jabatan_kepala_bidang = this.data_kepala_bidang_kpknl.jabatan
-                    this.verifikasi.status_kepala_bidang = this.data_kepala_bidang_kpknl.status
-                    this.verifikasi.nama_kepala_bidang = this.data_kepala_bidang_kpknl.nama
-                    this.verifikasi.nip_kepala_bidang = this.data_kepala_bidang_kpknl.nip
-                    this.verifikasi.idPengajuan = this.choosePengajuan.id
-
-                    this.status_pengajuan = status
-
-                    this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
+                  
 
                     var formData = this.formData(this.verifikasi);
                     let self = this

@@ -1462,186 +1462,52 @@
                 </wizard-step>
                 <h3 slot="title"></h3>
 
-                <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhkelengkapan" :before-change="beforeTabHasilVerifikasi">
+                <tab-content title="Input Dokumen" icon="fa fa-envelope-o" :before-change="beforeTabHasilVerifikasi" v-if="jenisForm.butuhsurvey||jenisForm.butuhkelengkapan||jenisForm.uploaddokumen">
 
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN BUTUH KELENGKAPAN DATA OKE</h3>
+                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINAL</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
                         <div class="form-horizontal">
                             <div class="box-body">
-                                <div v-if="!successUpload">
+                                <div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Surat Permohonan</label>
-                                            <div class="col-sm-10" v-if="!isuploadUlangSuratHasilVerifikasifinal">
+                                            <label for="exampleInputEmail1" class="col-sm-2 control-label">Upload Dokumen Verifikasi</label>
+                                            <div class="col-sm-10" v-if="!isuploadUlangDokumenVerifikasiFinal">
                                                 <div class="box-body2">
-                                                   <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratHasilVerifikasifinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratHasilVerifikasifinal}}
+                                                   <a class="btn btn-block btn-social btn-bitbucket" :href="hrefDokumenVerifikasiFinal" download>
+                                                                <i class="fa fa-download"></i> {{hrefDokumenVerifikasiFinal}}
                                                             </a>
                                                 </div>                                              
-                                                <button type="button" class="btn btn-success" @click="isuploadUlangSuratHasilVerifikasifinal=true;showformUploadHasilVerifikasifinal=true">
+                                                <button type="button" class="btn btn-success" @click="isuploadUlangDokumenVerifikasiFinal=true;isShowformUploadDokumenVerifikasiFinal=true">
                                                         Upload Ulang
                                                 </button>
                                             </div> 
 
-
-                                            <div class="col-sm-10" v-if="isuploadUlangSuratHasilVerifikasifinal">
-                                                <div v-if="showformUploadHasilVerifikasifinal">
-                                                    <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
-                                                    <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
+                                            <div class="col-sm-10" v-if="isuploadUlangDokumenVerifikasiFinal">
+                                                <div v-if="isShowformUploadDokumenVerifikasiFinal">
+                                                    <input type="file" id="suratHasilVerifikasifinal" ref="dokumenVerifikasiFinal" v-validate="'required|size:2000'" name="dokumenVerifikasiFinal" data-vv-scope="step1" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
+                                                    <span class="text-red">{{ errors.first('step1.dokumenVerifikasiFinal') }}</span>
                                                     <p class="help-block">Upload Document *.docx or *.pdf</p>
                                                     
                                                 </div>
-                                                <div v-if="isprosesUploadPermohonan">
+                                                <div v-else>
                                                     <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
                                                 </div>
-                                                <button type="button" class="btn btn-danger" @click="uploadFileHasilVerifikasiFinal();isprosesUploadPermohonan=true;showformUploadPermohonan=false">
+                                                <button type="button" class="btn btn-danger" @click="uploadFileDokumenVerifikasiFinal();isShowformUploadDokumenVerifikasiFinal=false">
                                                         Upload File
                                                 </button>
                                             </div>
 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
+                                            
 
 
-
-                                        <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
-                                            <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratHasilVerifikasifinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratHasilVerifikasifinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratHasilVerifikasifinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
 
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Permintaan Kelengkapan </label>
 
-                                        <div class="col-sm-8" v-if="uploadUlangSuratNDSPermintaanKelengkapanfinal">
-                                            <input type="file" id="suratNDSPermintaanKelengkapanfinal" ref="suratNDSPermintaanKelengkapanfinal" v-validate="'required|size:2000'" name="suratNDSPermintaanKelengkapanfinal" data-vv-scope="step2" v-on:change="">
-                                            <span class="text-red">{{ errors.first('step2.suratNDSPermintaanKelengkapanfinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratNDSPermintaanKelengkapanfinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratNDSPermintaanKelengkapanfinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratNDSPermintaanKelengkapanfinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group" v-if="successUpload">
-
-                                    <div class="col-sm-12">
-                                        <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" />
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group" v-if="!successUpload">
-                                    <div class="col-sm-12 ">
-                                        <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileKelengkapan();">Upload File!</button>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </tab-content>
-
-                <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.butuhsurvey" :before-change="beforeTabHasilVerifikasi">
-
-
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN SURVEY OKE </h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        <div class="form-horizontal">
-                            <div class="box-body">
-                                <div v-if="!successUpload">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
-
-                                        <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scop e="step2" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
-                                            <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratHasilVerifikasifinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratHasilVerifikasifinal}}
-                                                            </a>
-                                            </div>
-
-                                            <button type="button" class="btn btn-success" @click.prevent="uploadUlangSuratHasilVerifikasifinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Surat ND S Survey Lapangan </label>
-                                        <div class="col-sm-8" v-if="uploadUlangSuratNDSSurveyLapanganfinal">
-                                            <input type="file" id="suratNDSSurveyLapanganfinal" ref="suratNDSSurveyLapanganfinal" v-validate="'required|size:2000'" name="suratNDSSurveyLapanganfinal" data-vv-scope="step2" v-on:change="" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.msword">
-                                            <span class="text-red">{{ errors.first('step2.suratNDSSurveyLapanganfinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratNDSSurveyLapanganfinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratNDSSurveyLapanganfinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratNDSSurveyLapanganfinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group" v-if="successUpload">
-
-                                    <div class="col-sm-12">
-                                        <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" />
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group" v-if="!successUpload">
-                                    <div class="col-sm-12 ">
-                                        <button class="btn active btn-success col-sm-12" @click.prevent="uploadFileSurvey();">Upload Semua File!</button>
-                                    </div>
                                 </div>
 
 
@@ -1651,127 +1517,24 @@
                     </div>
                 </tab-content>
 
-                <tab-content title="Input Dokumen" icon="fa fa-envelope-o" v-if="jenisForm.uploaddokumen" :before-change="beforeTabHasilVerifikasi">
 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINAL OKE</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        <div class="form-horizontal">
-                            <div class="box-body">
-                                <div v-if="!successUpload">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat ND S Persetujuan </label>\
-
-                                        <div class="col-sm-8" v-if="uploadUlangSuratNDSPersetujuanfinal">
-                                            <input type="file" id="suratNDSPersetujuanfinal" ref="suratNDSPersetujuanfinal" v-validate="'required|size:2000'" name="suratNDSPersetujuanfinal" data-vv-scope="step2">
-                                            <span class="text-red">{{ errors.first('step2.suratNDSPersetujuanfinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratNDSPersetujuanfinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratNDSPersetujuanfinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratNDSPersetujuanfinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Hasil Verifikasi </label>
-
-                                        <div class="col-sm-8" v-if="uploadUlangSuratHasilVerifikasifinal">
-                                            <input type="file" id="suratHasilVerifikasifinal" ref="suratHasilVerifikasifinal" v-validate="'required|size:2000'" name="suratHasilVerifikasifinal" data-vv-scope="step2">
-                                            <span class="text-red">{{ errors.first('step2.suratHasilVerifikasifinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-                                        <div class="col-sm-8" v-else>
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratHasilVerifikasifinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratHasilVerifikasifinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratHasilVerifikasifinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Dokumen Kelengkapan Nama</label>
-                                        <div class="col-sm-8" v-if="!uploadUlangSuratKMKfinal">
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratKMKfinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratKMKfinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratKMKfinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-                                        <div class="col-sm-8" v-if="uploadUlangSuratKMKfinal">
-                                            <input type="file" id="suratKMKfinal" ref="suratKMKfinal" v-validate="'required|size:2000'" name="suratKMKfinal" data-vv-scope="step2">
-                                            <span class="text-red">{{ errors.first('step2.suratKMKfinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="col-sm-4 control-label">Upload Surat Salinan KMK </label>
-                                        <div class="col-sm-8" v-if="!uploadUlangSuratSalinanKMKfinal">
-                                            <div class="box-body2">
-                                                <a class="btn btn-block btn-social btn-bitbucket" :href="hrefsuratSalinanKMKfinal" download>
-                                                                <i class="fa fa-download"></i> {{hrefsuratSalinanKMKfinal}}
-                                                            </a>
-                                            </div>
-                                            <button type="button" class="btn btn-success" @click="uploadUlangSuratSalinanKMKfinal=true">
-                                                                Upload Ulang
-                                                        </button>
-                                        </div>
-                                        <div class="col-sm-8" v-if="uploadUlangSuratSalinanKMKfinal">
-                                            <input type="file" id="suratSalinanKMKfinal" ref="suratSalinanKMKfinal" v-validate="'required|size:2000'" name="suratSalinanKMKfinal" data-vv-scope="step2" v-on:change="">
-                                            <span class="text-red">{{ errors.first('step2.suratSalinanKMKfinal') }}</span>
-                                            <p class="help-block">Upload Document *.docx or *.pdf</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group" v-if="successUpload">
-
-                                    <div class="col-sm-12">
-                                        <img :src="hrefImageLoader" class="img-rounded img-responsive center-block" alt="Responsive Image" width="240" height="240" style="margin: 0 auto;" />
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <h2 class="text-center" style="margin-top: 0">File Sukses Terupload<br/> Silakan Klik Tombol Next di bawah </h2>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group" v-if="!successUpload">
-                                    <div class="col-sm-12 ">
-                                        <button class="btn active btn-success col-sm-12" @click="uploadFileComplete();">Upload Semua File!</button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </tab-content>
-                <tab-content title="Last step" icon="fa fa-check-circle" :before-change="beforeTab4SwitchHasil">
+                <tab-content title="Last step" icon="fa fa-check-circle" :before-change="finishVerifikasiProses" v-if="jenisForm.butuhsurvey||jenisForm.butuhkelengkapan||jenisForm.uploaddokumen">
                     <div class="callout callout-success">
                         <h4>Terima Kasih</h4>
                         <h4>Permohonan Verifikasi Dokumen Telah Selesai dilakukan.</h4>
+                    </div>
+                </tab-content>                
+
+                <tab-content title="Last step" icon="fa fa-check-circle" :before-change="finishVerifikasiProses" v-else>
+                    <div class="callout callout-danger">
+                        <h4>Belum Verifikasi</h4>
+                        <h4>Mohon Dilakukan Proses Verifikasi Dokumen Terlebih Dahulu.</h4>
                     </div>
                 </tab-content>
 
                 <template slot="footer" slot-scope="props">
                                 <div class="wizard-footer-right2">
-                                    <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Save & Next</wizard-button>
+                                    <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next Step</wizard-button>
                                     <wizard-button v-else @click.native="finishUploadHasil" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done yah' : 'Next'}}</wizard-button>
 
                                     <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" class="btn btn-warning" :style="props.fillButtonStyle">Back</wizard-button>

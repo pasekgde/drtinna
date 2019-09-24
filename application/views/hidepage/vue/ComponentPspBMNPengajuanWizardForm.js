@@ -297,7 +297,7 @@
                                                     <span class="text-red">{{ errors.first('step2.fileDaftarRincianName') }}</span>
                                                 </div>
 
-                                                <div v-show="isprosesUploadRincian">
+                                                <div v-if="isprosesUploadRincian">
                                                     <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
                                                 </div>
                                                 <button type="button" class="btn btn-danger" @click="uploadFileRincian();isprosesUploadRincian=true;showformUploadRincian=false">
@@ -333,7 +333,7 @@
                                                     <p class="help-block">Upload Document *.pdf or *.jpg or *.jpeg or *.png</p>
                                                 </div>
 
-                                                <div v-show="isprosesUploadDokumenKelengkapan">
+                                                <div v-if="isprosesUploadDokumenKelengkapan">
                                                     <span class="text-red">Mohon Menunggu, Sedang Proses Upload...</span>
                                                 </div>
                                                 <button type="button" class="btn btn-danger" @click="uploadFileDokumenKelengkapan();isprosesUploadDokumenKelengkapan=true;isuploadUlangDokumenKelengkapan=true;showformUploadDokumenKelengkapan=false">
@@ -609,12 +609,11 @@
                                                           <h3 class="widget-user-username">Silakan Download Dokumen Kurang Lengkap Data</h3>
                                                         </div>
                                                         <div class="widget-user-header bg-red" v-else>
-                                                          <h3 class="widget-user-username" >Verifikastor Belum Upload Dokumen</h3>
+                                                          <h3 class="widget-user-username" >Verifikator Belum Upload Dokumen</h3>
                                                         </div>
                                                         <div class="box-footer no-padding">
                                                           <ul class="nav nav-stacked" v-if="!isEmptyDokumenKelengkapanFinal()">
-                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            <li ><a :href="hreffileNDSPermintaanKelengkapan" download><i class="fa fa-download"></i> Download Dokumen Kurang Lekap Final<span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Dokumen Verifikasi<span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                           </ul>
                                                         </div>
 
@@ -665,12 +664,11 @@
                                                           <h3 class="widget-user-username">Silakan Download ND Survey Lapangan</h3>
                                                         </div>
                                                         <div class="widget-user-header bg-red" v-else>
-                                                          <h3 class="widget-user-username" >Verifikastor Belum Upload Dokumen</h3>
+                                                          <h3 class="widget-user-username" >Verifikator Belum Upload Dokumen</h3>
                                                         </div>
                                                         <div class="box-footer no-padding">
                                                           <ul class="nav nav-stacked" v-if="!isEmptyDokumenSurveyFinal()">
-                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            <li ><a :href="hreffileNDSSurveyLapangan" download><i class="fa fa-download"></i> Download Hasil File Survey Lapangan <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Dokumen Verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                           </ul>
                                                         </div>
                                                       </div>
@@ -700,11 +698,7 @@
 
                                                         <div class="box-footer no-padding" v-if="!isEmptyDokumenCompleteFinal()">
                                                           <ul class="nav nav-stacked">
-                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Hasil verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            <li ><a :href="hreffileNDSPersetujuan" download><i class="fa fa-download"></i> Download ND dan Surat <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            <li ><a :href="hreffileKMK" download><i class="fa fa-download"></i> Download Dokumen KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            <li ><a :href="hreffileSalinanKMK" download><i class="fa fa-download"></i> Download Salinan KMK <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
-                                                            </ul>
+                                                            <li ><a :href="hreffileHasilVerifikasi" download><i class="fa fa-download"></i> Download Dokumen Verifikasi <span class="pull-right badge bg-blue">1 Dokumen</span></a></li>
                                                         </div>
                                                       </div>
 
@@ -712,8 +706,7 @@
                                         </div>
                             </div>
                         </tab-content>
-
-                        <tab-content title="Last step" icon="fa fa-check-circle" v-if="jenisForm.butuhkelengkapan||jenisForm.butuhsurvey||jenisForm.uploaddokumen">
+                        <tab-content title="Last step" icon="fa fa-check-circle" v-if="(jenisForm.butuhkelengkapan||jenisForm.butuhsurvey||jenisForm.uploaddokumen)&&!isEmptyDokumenKelengkapanFinal()">
                             <div class="callout callout-success">
                                 <h4>Terima Kasih</h4>
                                 <h4>Permohonan Verifikasi Dokumen Telah Selesai dilakukan. Terima kasih sudah menggunakan sistem PSP BMN</h4>

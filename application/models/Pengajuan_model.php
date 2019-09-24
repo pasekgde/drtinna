@@ -25,12 +25,7 @@ class Pengajuan_Model extends CI_Model
       	$query = $this->db
               ->select('p.*,
                         v.hasil_verifikasi,
-                        v.suratNDSPersetujuanfinal,
                         v.suratHasilVerifikasifinal,
-                        v.suratKMKfinal,
-                        v.suratSalinanKMKfinal,
-                        v.suratNDSSurveyLapanganfinal,
-                        v.suratNDSPermintaanKelengkapanfinal,
                         v.daftarKekuranganData,
                         v.rencana_survey,
                         v.nama_survey,

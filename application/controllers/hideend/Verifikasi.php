@@ -56,27 +56,30 @@ class Verifikasi extends CI_Controller
 		 $nilai_bmn_ses=($this->input->post('check_nilai_bmn')==='sesuai')?'✓':'-';
 		 $nilai_bmn_tdkses=($this->input->post('check_nilai_bmn')==='tidak sesuai')?'✓':'-';		 
 
-		 $surat_permohonan_ada=($this->input->post('check_surat_permohonan')==='sesuai'||$this->input->post('check_surat_permohonan')==='ada')?'✓':'-';;
+		 $surat_permohonan_ada=($this->input->post('check_surat_permohonan')==='sesuai' || $this->input->post('check_surat_permohonan')==='tidak sesuai'||$this->input->post('check_surat_permohonan')==='ada')?'✓':'-';;
 		 $surat_permohonan_tdk=($this->input->post('check_surat_permohonan')==='tidak ada')?'✓':'-';
 		 $surat_permohonan_ses=($this->input->post('check_surat_permohonan')==='sesuai')?'✓':'-';
 		 $surat_permohonan_tdkses=($this->input->post('check_surat_permohonan')==='tidak sesuai')?'✓':'-';
-
-		 $data_rincian_ada=($this->input->post('check_rincian_usulan_bmn')==='sesuai'||$this->input->post('check_rincian_usulan_bmn')==='ada')?'✓':'-';;
+		 //------------
+		 $data_rincian_ada=($this->input->post('check_rincian_usulan_bmn')==='tidak sesuai'||$this->input->post('check_rincian_usulan_bmn')==='sesuai'||$this->input->post('check_rincian_usulan_bmn')==='ada')?'✓':'-';;
 		 $data_rincian_tdk=($this->input->post('check_rincian_usulan_bmn')==='tidak ada')?'✓':'-';
 		 $data_rincian_ses=($this->input->post('check_rincian_usulan_bmn')==='sesuai')?'✓':'-';
 		 $data_rincian_tdkses=($this->input->post('check_rincian_usulan_bmn')==='tidak sesuai')?'✓':'-';
 
-		 $kib_ada=($this->input->post('check_kib')==='sesuai'||$this->input->post('check_kib')==='ada')?'✓':'-';;
+		 //--------------
+		 $kib_ada=($this->input->post('check_kib')==='tidak sesuai'||$this->input->post('check_kib')==='sesuai'||$this->input->post('check_kib')==='ada')?'✓':'-';;
 		 $kib_tdk=($this->input->post('check_kib')==='tidak ada')?'✓':'-';
 		 $kib_ses=($this->input->post('check_kib')==='sesuai')?'✓':'-';
 		 $kib_tdkses=($this->input->post('check_kib')==='tidak sesuai')?'✓':'-';
 
-		 $foto_ada=($this->input->post('check_foto_bmn')==='sesuai'||$this->input->post('check_foto_bmn')==='ada')?'✓':'-';;
+		 //---------------------
+		 $foto_ada=($this->input->post('check_foto_bmn')==='tidak sesuai'||$this->input->post('check_foto_bmn')==='sesuai'||$this->input->post('check_foto_bmn')==='ada')?'✓':'-';;
 		 $foto_tdk=($this->input->post('check_foto_bmn')==='tidak ada')?'✓':'-';
 		 $foto_ses=($this->input->post('check_foto_bmn')==='sesuai')?'✓':'-';
 		 $foto_tdkses=($this->input->post('check_foto_bmn')==='tidak sesuai')?'✓':'-';
 
-		 $fc_sk_ada=($this->input->post('check_sk_delegasi')==='sesuai'||$this->input->post('check_sk_delegasi')==='ada')?'✓':'-';;
+		 //------------------
+		 $fc_sk_ada=($this->input->post('check_sk_delegasi')==='tidak sesuai'||$this->input->post('check_sk_delegasi')==='sesuai'||$this->input->post('check_sk_delegasi')==='ada')?'✓':'-';;
 		 $fc_sk_tdk=($this->input->post('check_sk_delegasi')==='tidak ada')?'✓':'-';
 		 $fc_sk_ses=($this->input->post('check_sk_delegasi')==='sesuai')?'✓':'-';
 		 $fc_sk_tdkses=($this->input->post('check_sk_delegasi')==='tidak sesuai')?'✓':'-';
@@ -126,13 +129,13 @@ class Verifikasi extends CI_Controller
 		 	$TemplateProcessor->setValue('no#2', '9.');
 
 
-			$fc_dokumen_kepemilikan_ada=($this->input->post('check_fc_dokumen_kepemilikan')==='sesuai'||$this->input->post('check_fc_dokumen_kepemilikan')==='ada')?'✓':'-';;
+			$fc_dokumen_kepemilikan_ada=($this->input->post('check_fc_dokumen_kepemilikan')==='tidak sesuai'||$this->input->post('check_fc_dokumen_kepemilikan')==='sesuai'||$this->input->post('check_fc_dokumen_kepemilikan')==='ada')?'✓':'-';;
 			$fc_dokumen_kepemilikan_tdk=($this->input->post('check_fc_dokumen_kepemilikan')==='tidak ada')?'✓':'-';
 			$fc_dokumen_kepemilikan_ses=($this->input->post('check_fc_dokumen_kepemilikan')==='sesuai')?'✓':'-';
 			$fc_dokumen_kepemilikan_tdkses=($this->input->post('check_fc_dokumen_kepemilikan')==='tidak sesuai')?'✓':'-';
 
 
-			$kebenaran_fc_dokumen_kepemilikan_ada=($this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='sesuai'||$this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='ada')?'✓':'-';
+			$kebenaran_fc_dokumen_kepemilikan_ada=($this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='sesuai'||$this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='tidak sesuai'||$this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='ada')?'✓':'-';
 			$kebenaran_fc_dokumen_kepemilikan_tdk=($this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='tidak ada')?'✓':'-';
 			$kebenaran_fc_dokumen_kepemilikan_ses=($this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='sesuai')?'✓':'-';
 			$kebenaran_fc_dokumen_kepemilikan_tdkses=($this->input->post('check_kebenaran_fc_dokumen_kepemilikan')==='tidak sesuai')?'✓':'-';
@@ -149,16 +152,16 @@ class Verifikasi extends CI_Controller
 			$TemplateProcessor->setValue('data_tdk#2', $kebenaran_fc_dokumen_kepemilikan_tdk);
 
 			$TemplateProcessor->setValue('data_ses#1', $fc_dokumen_kepemilikan_ses);
-			$TemplateProcessor->setValue('data_ses#2', $kebenaran_fc_dokumen_kepemilikan_tdkses);
+			$TemplateProcessor->setValue('data_ses#2', $kebenaran_fc_dokumen_kepemilikan_ses);
 
 			$TemplateProcessor->setValue('data_tdkses#1', $fc_dokumen_kepemilikan_tdkses);
 			$TemplateProcessor->setValue('data_tdkses#2', $kebenaran_fc_dokumen_kepemilikan_tdkses);
 
 		}else{
 			$TemplateProcessor->setValue('no', '8.');			
-			$TemplateProcessor->setValue('data#1', 'SPTJM bermaterai bahwa barang tersebut adalah BMN dan digunakan untuk tugas dan fungsi.');
+			$TemplateProcessor->setValue('data', 'SPTJM bermaterai bahwa barang tersebut adalah BMN dan digunakan untuk tugas dan fungsi.');
 
-			$sptjm_bermaterai_ada=($this->input->post('check_sptjm_bermaterai')==='sesuai'||$this->input->post('check_sptjm_bermaterai')==='ada')?'✓':'-';;
+			$sptjm_bermaterai_ada=($this->input->post('check_sptjm_bermaterai')==='tidak sesuai'||$this->input->post('check_sptjm_bermaterai')==='sesuai'||$this->input->post('check_sptjm_bermaterai')==='ada')?'✓':'-';;
 			$sptjm_bermaterai_tdk=($this->input->post('check_sptjm_bermaterai')==='tidak ada')?'✓':'-';
 			$sptjm_bermaterai_ses=($this->input->post('check_sptjm_bermaterai')==='sesuai')?'✓':'-';
 			$sptjm_bermaterai_tdkses=($this->input->post('check_sptjm_bermaterai')==='tidak sesuai')?'✓':'-';
@@ -379,14 +382,14 @@ class Verifikasi extends CI_Controller
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
 						"jumlah_unit" => $this->input->post('jumlah_unit'),
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
-						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
+						"nomor_surat_permohonan" => ($this->input->post("noSurat_pemohon")),
+						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
+						"perihal_surat_permohonan" => ($this->input->post("perihalSurat_pemohon")),
 						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
@@ -463,14 +466,14 @@ class Verifikasi extends CI_Controller
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"jumlah_unit" => $this->input->post('jumlah_unit'),
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
-						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
+						"nomor_surat_permohonan" => o($this->input->post("noSurat_pemohon")),
+						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
+						"perihal_surat_permohonan" => ($this->input->post("perihalSurat_pemohon")),
 						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
@@ -553,7 +556,7 @@ class Verifikasi extends CI_Controller
 
 		
 		//ubah sesuai nama template word
-		$file = 'KPKNL 3 KMK1.docx';
+		$file = 'Kanwil 3 KMK1.docx';
 
 		//biarkan ini
 		$targetFile = "./uploads/template/";		
@@ -565,10 +568,10 @@ class Verifikasi extends CI_Controller
 		//set seuai nama variable yang diganti
 		$dataArray=array(
 					"tahun_terbit" => $tahun_terbit,
-					"kementerian_lembaga" =>strtoupper($this->input->post("kementerian_lembaga")),
+					"kementerian_lembaga" =>ucfirst($this->input->post("kementerian_lembaga")),
 					"kementerian_pemohon" => "Direktorat Jendral Kekayaan Negara",
 					"jabatan_pemohon" => $this->input->post("jabatan_petugas"),
-					"nama_satker" => strtoupper($this->input->post("satuan_kerja")),
+					"nama_satker" => ucfirst($this->input->post("satuan_kerja")),
 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
 					"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
@@ -667,10 +670,10 @@ class Verifikasi extends CI_Controller
 		//set seuai nama variable yang diganti
 		$dataArray=array(
 					"tahun_terbit" => $tahun_terbit,
-					"kementerian_lembaga" =>strtoupper($this->input->post("kementerian_lembaga")),
+					"kementerian_lembaga" =>ucfirst($this->input->post("kementerian_lembaga")),
 					"kementerian_pemohon" => "Direktorat Jendral Kekayaan Negara",
 					"jabatan_pemohon" => $this->input->post("jabatan_petugas"),
-					"nama_satker" => strtoupper($this->input->post("satuan_kerja")),
+					"nama_satker" => ucfirst($this->input->post("satuan_kerja")),
 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
 					"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
@@ -686,7 +689,7 @@ class Verifikasi extends CI_Controller
 
 
 		//echo "<pre>"; print_r($dataArray);die;
-		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
+			$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		 $TemplateProcessor->setValue('kementerian_lembaga', $dataArray["kementerian_lembaga"]);	
 		 $TemplateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
 		 $TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -728,8 +731,9 @@ class Verifikasi extends CI_Controller
 		 $TemplateProcessor->setValue('nama_tembusan#'.($no+1), 'Direktur Pengelolaan Kekayaan Negara dan Sistem Informasi');
 		 $TemplateProcessor->setValue('nama_tembusan#'.($no+2), 'Kepala Kantor Wilayah DJKN Papua, Papua Barat dan Maluku');
 
-		$detail_djkn = json_decode($this->input->post("detail_djkn"));
+		 $detail_djkn = json_decode($this->input->post("detail_djkn"));
 		 $TemplateProcessor->setValue('nama_kpknl', $detail_djkn->kantor);
+		 $TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 
 
 
@@ -768,10 +772,10 @@ class Verifikasi extends CI_Controller
 		//set seuai nama variable yang diganti
 		$dataArray=array(
 					"tahun_terbit" => $tahun_terbit,
-					"kementerian_lembaga" =>strtoupper($this->input->post("kementerian_lembaga")),
+					"kementerian_lembaga" =>ucfirst($this->input->post("kementerian_lembaga")),
 					"kementerian_pemohon" => "Direktorat Jendral Kekayaan Negara",
 					"jabatan_pemohon" => $this->input->post("jabatan_petugas"),
-					"nama_satker" => strtoupper($this->input->post("satuan_kerja")),
+					"nama_satker" => ucfirst($this->input->post("satuan_kerja")),
 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
 					"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
@@ -876,10 +880,10 @@ class Verifikasi extends CI_Controller
 		//set seuai nama variable yang diganti
 		$dataArray=array(
 					"tahun_terbit" => $tahun_terbit,
-					"kementerian_lembaga" =>strtoupper($this->input->post("kementerian_lembaga")),
+					"kementerian_lembaga" =>ucfirst($this->input->post("kementerian_lembaga")),
 					"kementerian_pemohon" => "Direktorat Jendral Kekayaan Negara",
 					"jabatan_pemohon" => $this->input->post("jabatan_petugas"),
-					"nama_satker" => strtoupper($this->input->post("satuan_kerja")),
+					"nama_satker" => ucfirst($this->input->post("satuan_kerja")),
 					"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
 					"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
 					"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
@@ -969,14 +973,14 @@ class Verifikasi extends CI_Controller
 		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
 		$dataArray = array(
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
-						"tanggal_cetak" => $this->input->post("tglSurat_pemohon"), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
+						"tanggal_cetak" => ($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
 						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
+						"tanggal_surat_permohonan" => ($this->input->post("tglSurat_pemohon")),
 						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
-						"tanggal_penginputan" => $this->input->post("tglSurat_pemohon"), //kapan dokumen diajukan), masukin timestamp di database
+						"tanggal_penginputan" => ($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
 						"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
@@ -1055,6 +1059,9 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->saveAs($targetSaveFile.$fileSave);
 		return $targetSaveFile.$fileSave;
 	}
+
+
+
 	public function generateNDSPermintaanKelengkapanKANWIL() {
 		$file = 'Kanwil 5 ND S Permintaan Kelengkapan1.docx';
 		$targetFile = "./uploads/template/";		
@@ -1064,14 +1071,14 @@ class Verifikasi extends CI_Controller
 		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
 		$dataArray = array(
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
-						"tanggal_cetak" => $this->input->post("tglSurat_pemohon"), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
+						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
 						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
+						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
-						"tanggal_penginputan" => $this->input->post("tglSurat_pemohon"), //kapan dokumen diajukan), masukin timestamp di database
+						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
 						"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
@@ -1091,9 +1098,11 @@ class Verifikasi extends CI_Controller
 		);
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala Kanwil DJKN Papua, Papua Barat, dan Maluku':'Kepala Kantor';
 		
+		$bapak_ibu = (substr($this->input->post("nip_kepala_bidang"),-5,1)==='1')?'Bapak':'Ibu';	
+		$TemplateProcessor->setValue('bapak_ibu', $bapak_ibu);
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
-		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
+		$TemplateProcessor->setValue('nama_kl', ucfirst($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -1159,14 +1168,15 @@ class Verifikasi extends CI_Controller
 		$dataArray = array(
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
-						"nama_kpknl" => $this->input->post('status_proses'),
+						"nama_kpknl" => $this->input->post('status_proses'),						
+						"jumlah_unit" => $this->input->post('jumlah_unit'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
 						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
+						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
+						"perihal_surat_permohonan" => ($this->input->post("perihalSurat_pemohon")),
 						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
@@ -1184,12 +1194,13 @@ class Verifikasi extends CI_Controller
 						"nip_kepala_bidang" => $this->input->post("nip_kepala_bidang"),
 						"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
 						"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang"),
+						"nama_survei_lapangan" => $this->input->post("nama_survey"),
 						"waktu_survei" => $this->input->post("rencana_survey"),
 						"cp_survei_lapangan" => $this->input->post("cp_survey"),
 						"nama_KPKNL" => $this->input->post("status_proses")
 		);
 
-		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala '.$this->input->post('status_proses'):'Kepala Kantor';
+		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala Kanwil DJKN Papua, Papua Barat, dan Maluku,'.$this->input->post('status_proses'):'Kepala Kantor';
 
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
 		
@@ -1197,6 +1208,7 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
+		$TemplateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
 		$TemplateProcessor->setValue('nomor_surat_permohonan', $dataArray["nomor_surat_permohonan"]);
 		$TemplateProcessor->setValue('tanggal_surat_permohonan', $dataArray["tanggal_surat_permohonan"]);
@@ -1208,6 +1220,7 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
 		$TemplateProcessor->setValue('plh_plt', $dataArray["plh_plt"]);
 		$TemplateProcessor->setValue('waktu_survei', $dataArray["waktu_survei"]);
+		$TemplateProcessor->setValue('nama_survei_lapangan', $dataArray["nama_survei_lapangan"]);
 		$TemplateProcessor->setValue('cp_survei_lapangan', $dataArray["cp_survei_lapangan"]);
 		$TemplateProcessor->setValue('alamat_kantor_pemohon', $dataArray["alamat_kantor_pemohon"]);
 		$TemplateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
@@ -1240,14 +1253,15 @@ class Verifikasi extends CI_Controller
 		$dataArray = array(
 						"tahun_terbit" => $tahun_terbit, //diambil dari tanggal dokumen tergenerate
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
-						"nama_kl" => strtoupper($this->input->post('kementerian_lembaga')),
+						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
+						"jumlah_unit" => $this->input->post('jumlah_unit'),
 						"nama_satker" => $this->input->post('satuan_kerja'),
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //Berubah ketika tombol di Generate
-						"jabatan_pemohon" => $this->input->post("Sekretaris Daerah"),
+						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
 						"nomor_surat_permohonan" => $this->input->post("noSurat_pemohon"),
-						"tanggal_surat_permohonan" => $this->input->post("tglSurat_pemohon"),
-						"perihal_surat_permohonan" => $this->input->post("perihalSurat_pemohon"),
+						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
+						"perihal_surat_permohonan" => ($this->input->post("perihalSurat_pemohon")),
 						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), //kapan dokumen diajukan), masukin timestamp di database
 						"jenis_bmn" => $this->input->post("jenis_bmn"),
 						"total_nilai_bmn" => $this->common->formatIDR($this->input->post("totalnilai_bmn")),
@@ -1271,12 +1285,13 @@ class Verifikasi extends CI_Controller
 		);
 
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala '.$this->input->post('status_proses'):'Kepala Kantor';
-
+		$bapak_ibu = (substr($this->input->post("nip_kepala_bidang"),-5,1)==='1')?'Bapak':'Ibu';
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
 		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		$TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 		$TemplateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
 		$TemplateProcessor->setValue('telepon_dan_email_kpknl', $detail_djkn->email);
+		$TemplateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
@@ -1472,10 +1487,10 @@ class Verifikasi extends CI_Controller
 		$fileNDSPermintaanKelengkapanKPKNL=$this->generateNDSPermintaanKelengkapanKPKNL();
 		$dataArray = array(
 						'fileNDSPersetujuan'=>'',
-						'fileHasilVerifikasi'=>$fileHasilVerifikasiKANWIL,
+						'fileHasilVerifikasi'=>$fileHasilVerifikasiKPKNL,
 						'fileKMK'=>'',
 						'fileSalinanKMK'=>'',
-						'fileNDSPermintaanKelengkapan'=>$fileNDSPermintaanKelengkapanKANWIL,
+						'fileNDSPermintaanKelengkapan'=>$fileNDSPermintaanKelengkapanKPKNL,
 						'fileNDSSurveyLapangan'=>'',
 						'rencana_survey' => '',
 						'nama_survey' => '',
@@ -1717,12 +1732,7 @@ class Verifikasi extends CI_Controller
                 'rencana_survey' => $this->input->post('rencana_survey'),
 				'nama_survey' => $this->input->post('nama_survey'),
 				'cp_survey' => $this->input->post('cp_survey'),            
-                'suratNDSPersetujuanfinal' => $this->input->post('suratNDSPersetujuanfinal'),	            
                 'suratHasilVerifikasifinal' => $this->input->post('suratHasilVerifikasifinal'),	            
-                'suratKMKfinal' => $this->input->post('suratKMKfinal'),	            
-                'suratSalinanKMKfinal' => $this->input->post('suratSalinanKMKfinal'),	            
-                'suratNDSSurveyLapanganfinal' => $this->input->post('suratNDSSurveyLapanganfinal'),	            
-                'suratNDSPermintaanKelengkapanfinal' => $this->input->post('suratNDSPermintaanKelengkapanfinal'),	            
                 'alamat_kantor_pemohon' => $this->input->post('alamat_kantor_pemohon'),	            
                 'daftarKekuranganData' => $this->input->post('daftarKekuranganData'),	            
                 'updatedate' =>  date("Y/m/d")

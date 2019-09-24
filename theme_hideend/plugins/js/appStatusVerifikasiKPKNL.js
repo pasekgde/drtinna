@@ -10,8 +10,8 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     verifikasi:{
                         id: '',
                         idPengajuan : '',
-                        nama_verifikator : '123',
-                        nip_verifikator : '123',
+                        nama_verifikator : '',
+                        nip_verifikator : '',
                         nip_kepala_seksi:'',
                         nama_kepala_seksi:'',
                         jabatan_kepala_seksi:'',

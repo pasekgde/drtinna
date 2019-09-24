@@ -10,8 +10,8 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     verifikasi:{
                         id: '',
                         idPengajuan : '',
-                        nama_verifikator : '123',
-                        nip_verifikator : '123',
+                        nama_verifikator : '',
+                        nip_verifikator : '',
                         nip_kepala_seksi:'',
                         nama_kepala_seksi:'',
                         jabatan_kepala_seksi:'',
@@ -412,7 +412,7 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                     let self = this
 
                     axios.post(this.url + "/hideend/verifikasi/generateSurveyLapanganKANWIL/",formData).then(function(response) {
-                            if (trueq) {
+                            if (true) {
                                 self.verifikasi.fileNDSPersetujuan = response.data.dokumen.fileNDSPersetujuan
                                 self.verifikasi.fileHasilVerifikasi = response.data.dokumen.fileHasilVerifikasi
                                 self.verifikasi.fileKMK = response.data.dokumen.fileKMK
