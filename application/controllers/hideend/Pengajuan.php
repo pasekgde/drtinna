@@ -210,6 +210,7 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
+                'kuisioner' => $this->input->post('kuisioner'),
                 'userid' => $this->user->info->user_role_id,
                 'submitdate' =>  date("Y/m/d")//format to date
             );

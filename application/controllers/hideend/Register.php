@@ -11,7 +11,26 @@ class Register extends CI_Controller
 		$this->load->model("user_model");
 	}
 
-	public function index()
+	public function index(){
+		$vueComponent = $this->load->view("hidepage/vue/ComponentPspBMNRegister.js",'',true);
+		$this->template->loadExternal(
+			'<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">'.
+			'<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">'.
+			'<link rel="stylesheet" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css">'
+			);
+
+		$this->template->loadExternalJs(
+			'<script src="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.js"></script>'.
+			'<script src="https://cdn.jsdelivr.net/npm/vue-the-mask@0.11.1/dist/vue-the-mask.min.js"></script>'.
+			'<script src="https://unpkg.com/vee-validate@2.0.0-rc.21/dist/vee-validate.js"></script>'.
+			'<script src="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/vue-airbnb-style-datepicker.min.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/date_fns.js"></script>'.
+			$vueComponent.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/appLogin.js"></script>'
+			);
+	}
+	public function index2()
 	{
 
 		if ($this->user_model->check_block_ip()) {
@@ -286,7 +305,7 @@ class Register extends CI_Controller
 		);
 
 		$cap = create_captcha($vals);
-		$this->template->loadContent("hidepage/register/index2.php", array(
+		$this->template->loadContent("hidepage/register/index.php", array(
 			"cap" => $cap,
 			"email" => $email,
 			"first_name" => $first_name,

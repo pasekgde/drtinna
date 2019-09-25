@@ -111,7 +111,8 @@ Vue.component('pengajuan-pspbmn', {
                             perihalSurat_pemohon: '',
                             fileSuratPermohon: '',
                             fileDaftarRincian: '',
-                            fileDokumenKelengkapan: ''
+                            fileDokumenKelengkapan: '',
+                            kuisioner: 0
                         },
                         isShowSyaratKelengkapan:false,
                         fileSuratPermohon: '',
@@ -132,6 +133,7 @@ Vue.component('pengajuan-pspbmn', {
                         isuploadUlangFilePermohonan:false,
                         isuploadUlangDaftarRincian:false,
                         isuploadUlangDokumenKelengkapan:false,
+                        isIsiUlangKuisioner:false,
                         option_jenis_bmn: [
                                             {name: 'Tanah'},
                                             {name: 'Bangunan'},
@@ -147,6 +149,7 @@ Vue.component('pengajuan-pspbmn', {
                 this.showDatabyID()
                 this.getStepIndexForm()
                 this.isExistUploadFile()
+                this.cekKuisioner()
             },
             computed: {
                         valName() {
@@ -186,6 +189,20 @@ Vue.component('pengajuan-pspbmn', {
                         }
             },
             methods: {
+                cekKuisioner() {
+                    console.log("this.pengajuan.kuisioner")
+                    console.log(this.pengajuan.kuisioner)
+                    console.log("this.isIsiUlangKuisioner")
+                    console.log(this.isIsiUlangKuisioner)
+                    if(this.pengajuan.kuisioner===''||this.pengajuan.kuisioner==='0'||this.pengajuan.kuisioner===0){
+                        this.isIsiUlangKuisioner = true
+                    }else{
+                        this.isIsiUlangKuisioner=false
+                    }
+                },
+                setKuisioner(jawaban) {
+                    this.pengajuan.kuisioner = jawaban
+                },
                 uploadFile: function(e) {
                     let formData = new FormData();
                     if(typeof this.$refs.fileSuratPermohon !== 'undefined'){
@@ -397,6 +414,7 @@ Vue.component('pengajuan-pspbmn', {
                                 }          
                                 self.pengajuan.kabupaten = JSON.parse(response.data.pengajuan[0].detail_djkn)
                                 self.pengajuan.detail_djkn =  JSON.parse(response.data.pengajuan[0].detail_djkn)
+                                self.cekKuisioner()
                             }
                         })   
                     }

@@ -351,6 +351,45 @@
                                 <h4>Permohonan Pengajuan PSP BMN anda telah dikirimkan.</h4>
                                 <p>Kami akan segera memproses permohonan Anda.</p>
                             </div>
+                            <div v-if="isIsiUlangKuisioner">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title btn bg-maroon btn-flat margin">Mohon Mengisi Kuisioner</h3>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <div class="box-body2">
+                                                    <a @click="setKuisioner('3')" class="btn btn-block" :class="{'btn-success':(pengajuan.kuisioner === '3')}" >
+                                                                     <i class="fa  fa-smile-o fa-10x" ></i><br/>Sangat Memuaskan
+                                                                </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="box-body2">
+                                                    <a @click="setKuisioner('2')"  class="btn btn-block" :class="{'btn-success':(pengajuan.kuisioner === '2')}" >
+                                                                     <i class="fa fa-meh-o fa-10x" ></i><br/> Biasa Saja
+                                                                </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="box-body2">
+                                                    <a @click="setKuisioner('1')"  class="btn btn-block" :class="{'btn-success':(pengajuan.kuisioner === '1')}" >
+                                                                    <i class="fa fa-frown-o fa-10x" ></i><br/>Kurang Memuaskan
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="!isIsiUlangKuisioner">
+                                <button type="button" style="width:100%" class="btn btn-danger" @click="isIsiUlangKuisioner=true">
+                                                        Isi Ulang Kuisioner
+                                </button>
+                            </div>
+
+
                         </tab-content>
                            
 
