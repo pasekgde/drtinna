@@ -481,6 +481,7 @@ class Verifikasi extends CI_Controller
 						"jumlah_unit" => $this->input->post('jumlah_unit'),
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
 						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
+						"nama_kl_besar" => strtoupper($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), 
@@ -520,9 +521,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
 		$TemplateProcessor->setValue('cp_kpknl', $detail_djkn->email);
 		$TemplateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
-		
-		$TemplateProcessor->setValue('nama_KPKNL', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_KPKNL_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_KPKNL', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_KPKNL_besar', strtoupper($dataArray["nama_kpknl"]));
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
