@@ -807,7 +807,7 @@ class Verifikasi extends CI_Controller
 					"plh_plt_kabid" => ($this->input->post("status_kepala_bidang")==='definitif')?'':'Plt',
 					"plh_plt_kanwil" => ($this->input->post("status_kepala_kanwil")==='definitif')?'':'Plt',
 					"plh_plt_kasi" => ($this->input->post("status_kepala_kasi")==='definitif')?'':'Plt',
-					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang")
+					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang"),
 					"jabatan_salinan" => $this->input->post("jabatan_salinan"),
 					"nama_salinan" => $this->input->post("nama_salinan"),
 					"nip_salinan" => $this->input->post("nip_salinan")
@@ -1227,7 +1227,7 @@ class Verifikasi extends CI_Controller
 		);
 
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala Kanwil DJKN Papua, Papua Barat, dan Maluku,'.$this->input->post('status_proses'):'Kepala Kantor';
-		
+
 		$bapak_ibu = (substr($this->input->post("nip_kepala_bidang"),-5,1)==='1')?'Bapak':'Ibu';
 		$TemplateProcessor->setValue('bapak_ibu', $bapak_ibu);		
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);		
