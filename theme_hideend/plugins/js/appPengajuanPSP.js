@@ -568,7 +568,7 @@ Vue.component('pengajuan-pspbmn', {
                             if ((this.pengajuan.totalnilai_bmn >= 10000000000) && (this.pengajuan.totalnilai_bmn < 75000000000)) {
                                 console.log("masuk3")    
                                 this.KanwilProses = true
-                                this.areaProsesText = 'Kanwil DJKN Papua, Papua Barat dan Maluku'
+                                this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
                                 this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
                                 this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
                                 //------------------>insert DB Table status 
@@ -599,7 +599,7 @@ Vue.component('pengajuan-pspbmn', {
                             this.notifProses = true
                             if ((this.pengajuan.totalnilai_bmn >= 5000000000) && (this.pengajuan.totalnilai_bmn < 25000000000)) {
                                 this.KanwilProses = true
-                                this.areaProsesText = 'Kanwil DJKN Papua, Papua Barat dan Maluku'
+                                this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
                                 this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
                                 this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
                                 //------------------>insert DB Table status 
@@ -661,7 +661,21 @@ Vue.component('pengajuan-pspbmn', {
                     this.pengajuan.nama_kementerian_lembaga = this.pengajuan.kementerian_lembaga.nama_KL
                     this.pengajuan.nama_kabupaten = this.pengajuan.kabupaten.name
                     this.pengajuan.nama_jenis_bmn = this.pengajuan.jenis_bmn.name                      
-                    this.pengajuan.nama_kabupaten = this.pengajuan.kabupaten.name                  
+                    this.pengajuan.nama_kabupaten = this.pengajuan.kabupaten.name
+
+                    this.pengajuan.prosesid = this.pengajuan.kabupaten.kode
+                    if(this.pengajuan.status_proses === "KPKNL Ambon"){
+                        this.pengajuan.prosesid = 1
+                    }else if(this.pengajuan.status_proses === "KPKNL Jayapura"){
+                        this.pengajuan.prosesid = 2
+                    }else if(this.pengajuan.status_proses === "KPKNL Sorong"){
+                        this.pengajuan.prosesid = 3
+                    }else if(this.pengajuan.status_proses === "KPKNL Biak"){
+                        this.pengajuan.prosesid = 4
+                    }else if(this.pengajuan.status_proses ==="KANWIL Papua, Papua Barat dan Maluku"){
+                        this.pengajuan.prosesid = 5
+                    }
+
                     this.pengajuan.detail_djkn = JSON.stringify(this.pengajuan.kabupaten)
                     if(this.pengajuan.id===''){
                         var formData = this.formData(this.pengajuan);

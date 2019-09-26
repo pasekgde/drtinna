@@ -21,9 +21,9 @@ class Pengajuan_Model extends CI_Model
 	}
 
 	public function showUserData($userid=''){
-    
+
   }
-  public function showAll($userid=''){
+  public function showAllbyProsesID($prosesID=''){
 		    $status = array('DJKN Pusat', 'PKNSI');
       	$query = $this->db
               ->select('p.*,
@@ -34,14 +34,42 @@ class Pengajuan_Model extends CI_Model
                         v.nama_survey,
                         v.cp_survey')
        				->where_not_in('status_proses',$status);
-        if($userid!==''){                 
-              $query = $query->where('userid',$userid);
+        if($prosesID!==''){                 
+              $query = $query->where('prosesid',$prosesID);
         } 
 
        	$query = $query->order_by('id', 'DESC')
                       ->from('pengajuan_pspbmn p')
                       ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')
                				->get();
+                      
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else{
+            return false;
+        }
+    } 
+
+
+  public function showAll($userid=''){
+        $status = array('DJKN Pusat', 'PKNSI');
+        $query = $this->db
+              ->select('p.*,
+                        v.hasil_verifikasi,
+                        v.suratHasilVerifikasifinal,
+                        v.daftarKekuranganData,
+                        v.rencana_survey,
+                        v.nama_survey,
+                        v.cp_survey')
+              ->where_not_in('status_proses',$status);
+        if($userid!==''){                 
+              $query = $query->where('userid',$userid);
+        } 
+
+        $query = $query->order_by('id', 'DESC')
+                      ->from('pengajuan_pspbmn p')
+                      ->join('verifikasi_pspbmn v', 'p.id = v.idPengajuan', 'left')
+                      ->get();
                       
         if($query->num_rows() > 0){
             return $query->result();

@@ -84,8 +84,8 @@
                             </div>
                             <div class="col-xs-1">
                                 <div class="pull-right">
-                                    <a href="<?php echo site_url(" hideend/content/add_gallery ") ?>" class="btn btn-primary">
-                                        <?php echo lang("ctn_495") ?>
+                                    <a href="<?php echo site_url("/hideend/pengajuan/") ?>" class="btn btn-primary">
+                                        Add Pengajuan
                                     </a>
                                 </div>
                             </div>

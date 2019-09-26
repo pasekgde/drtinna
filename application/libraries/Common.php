@@ -40,9 +40,9 @@ class Common
 		} else if ($nilai < 1000000000) {
 			$temp = $this->penyebut($nilai/1000000) . " juta" . $this->penyebut($nilai % 1000000);
 		} else if ($nilai < 1000000000000) {
-			$temp = $this->penyebut($nilai/1000000000) . " milyar" . $this->penyebut(fmod($nilai,1000000000));
+			$temp = $this->penyebut($nilai/1000000000) . " miliar" . $this->penyebut(fmod($nilai,1000000000));
 		} else if ($nilai < 1000000000000000) {
-			$temp = $this->penyebut($nilai/1000000000000) . " trilyun" . $this->penyebut(fmod($nilai,1000000000000));
+			$temp = $this->penyebut($nilai/1000000000000) . " triliun" . $this->penyebut(fmod($nilai,1000000000000));
 		}     
 		return $temp;
 	}

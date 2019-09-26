@@ -103,6 +103,18 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
+	public function showAllbyIDProses($jenisAkun=''){
+
+		$userid=$this->user->info->ID;
+       	$query =  $this->pengajuan_model->showAllbyProsesID($userid);
+       	$result = [];
+        if($query){
+            $result['pengajuan'] = $query;
+        }
+        echo json_encode($result);	
+	}
+
+
 	public function showAll($jenisAkun=''){
 		$userid = '';
 		if($jenisAkun!=="verify"){
@@ -120,9 +132,12 @@ class Pengajuan extends CI_Controller
     {	
 
     	if(true){
-            
-            
-            
+    		// $detail_djkn = $this->input->post('detail_djkn');
+    		// $detail_djkn =  json_decode($detail_djkn);
+    		// $prosesid = (int)$detail_djkn->kode;
+    		// if($detail_djkn->kantor==='Kanwil DJKN'){
+    		// 	$prosesid = 5;
+    		// }
             $data = array(
                 'jenis_bmn' => $this->input->post('nama_jenis_bmn'),
                 'totalnilai_bmn' => $this->input->post('totalnilai_bmn'),
@@ -149,6 +164,7 @@ class Pengajuan extends CI_Controller
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
                 'userid' => $this->user->info->ID,
+                'prosesid' => $this->input->post('prosesid'),
                 'submitdate' =>  date("Y/m/d")
             );
             
@@ -195,7 +211,7 @@ class Pengajuan extends CI_Controller
     {	
 
     	if(true){
-            
+
             
             $id = $this->input->post('id');
             $data = array(
@@ -224,14 +240,16 @@ class Pengajuan extends CI_Controller
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
                 'kuisioner' => $this->input->post('kuisioner'),
-                'userid' => $this->user->info->ID,
+                'userid' => $this->user->info->ID,                
+                'prosesid' => $this->input->post('prosesid'),
                 'submitdate' =>  date("Y/m/d")//format to date
             );
             
             
             if ($this->pengajuan_model->update($id, $data)) {
+            	//echo $this->db->last_query();die;
                 $result['error'] = false;
-                $result['msg']   = 'Booking added successfully';
+                $result['msg']   = 'Booking Updated successfully';
                
 
                 

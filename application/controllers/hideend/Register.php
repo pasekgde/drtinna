@@ -140,7 +140,7 @@ class Register extends CI_Controller
 					$email_template = $email_template->row();
 
 					$email_template->message = $this->common->replace_keywords(array(
-						"[NAME]" => $username,
+						"[NAME]" => $fullname,
 						"[SITE_URL]" => site_url(),
 						"[EMAIL_LINK]" => 
 							site_url("hideend/register/activate_account/" . $activate_code . 

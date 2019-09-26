@@ -29,7 +29,7 @@ class Home extends CI_Controller
 			// $this->admin();
 		}else{
 
-           	redirect(site_url('/hideend/pengajuan/'),'refresh');
+           	redirect(site_url('/hideend/pengajuan/status'),'refresh');
 			// $this->memberpage();;			
 		}
 	}
