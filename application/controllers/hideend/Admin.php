@@ -22,11 +22,13 @@ class Admin extends CI_Controller
 
 	public function index()
 	{
-		$this->template->loadData("activeLink",
-			array("admin" => array("general" => 1)));
-		$this->template->loadContent("hidepage/admin/index.php", array(
-			)
-		);
+		// $this->template->loadData("activeLink",
+		// 	array("admin" => array("general" => 1)));
+		// $this->template->loadContent("hidepage/admin/index.php", array(
+		// 	)
+		// );
+		redirect(site_url("hideend/"));
+
 
 	}
 
