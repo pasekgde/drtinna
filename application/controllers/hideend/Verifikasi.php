@@ -217,7 +217,7 @@ class Verifikasi extends CI_Controller
 						"sesuai_catatan_khusus" => $this->input->post('noteDokumen'),						
 						"plh_plt_kabid" => ($this->input->post('status_kepala_bidang')==='definitif')?'':'Plt',
 						"plh_plt_kanwil" => ($this->input->post('status_kepala_kanwil')==='definitif')?'':'Plt',
-						"plh_plt_kasi" => ($this->input->post('status_kepala_kanwil')==='definitif')?'':'Plt',
+						"plh_plt_kasi" => ($this->input->post('status_kepala_seksi')==='definitif')?'':'Plt',
 						"nama_kepala_seksi" => $this->input->post('nama_kepala_seksi'),
 						"nip_kepala_seksi" => $this->input->post('nip_kepala_seksi'),
 						"nama_verifikator" => $this->input->post('nama_verifikator'),
@@ -368,6 +368,7 @@ class Verifikasi extends CI_Controller
 		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		$TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 		$TemplateProcessor->setValue('nama_kpknl', $detail_djkn->kantor);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($detail_djkn->kantor));
 		$TemplateProcessor->setValue('alamat_kpknl', $detail_djkn->alamat);
 		$TemplateProcessor->setValue('cp_kpknl',$detail_djkn->email);
 
