@@ -138,7 +138,8 @@ class Register extends CI_Controller
 						$this->template->error(lang("error_48"));
 					}
 					$email_template = $email_template->row();
-
+					echo "<pre>"; print_r(site_url("hideend/register/activate_account/" . $activate_code . 
+								"/" . $email));die;
 					$email_template->message = $this->common->replace_keywords(array(
 						"[NAME]" => $username,
 						"[SITE_URL]" => site_url(),

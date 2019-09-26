@@ -27,7 +27,7 @@
       </div>      
 
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" id="email-in" name="email" value="<?php if(isset($email)) echo $email; ?>">
+        <input type="email" class="form-control" placeholder="Email" id="email-in" name="email" value="<?php if(isset($email)) echo $email; ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
