@@ -250,11 +250,11 @@ class User_Model extends CI_Model
         	->set("points", "points+$points", FALSE)->update("users");
     }
 
-    public function get_verify_user($code, $username) 
+    public function get_verify_user($code, $email) 
     {
     	return $this->db
     		->where("activate_code", $code)
-    		->where("username", $username)
+    		->where("email", $email)
     		->get("users");
     }
 

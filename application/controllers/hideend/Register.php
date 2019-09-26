@@ -11,7 +11,7 @@ class Register extends CI_Controller
 		$this->load->model("user_model");
 	}
 
-	public function index(){
+	public function index2(){
 		$vueComponent = $this->load->view("hidepage/vue/ComponentPspBMNRegister.js",'',true);
 		$this->template->loadExternal(
 			'<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">'.
@@ -30,7 +30,7 @@ class Register extends CI_Controller
 			'<script src="'.$this->common->theme_hideend().'plugins/js/appLogin.js"></script>'
 			);
 	}
-	public function index2()
+	public function index()
 	{
 
 		if ($this->user_model->check_block_ip()) {
@@ -58,7 +58,10 @@ class Register extends CI_Controller
 		$this->load->helper('email');
 
 		$email = "";
-		$name = "";
+		$fullname = "";
+		$jabatan = "";
+		$nip = "";
+		$phone = "";
 		$username = "";
 		$fail = "";
 		$first_name = "";
@@ -66,48 +69,38 @@ class Register extends CI_Controller
 
 		if (isset($_POST['s'])) {
 			$email = $this->input->post("email", true);
-			$first_name = $this->common->nohtml(
-				$this->input->post("first_name", true));
-			$last_name = $this->common->nohtml(
-				$this->input->post("last_name", true));
+			$fullname = $this->common->nohtml(
+				$this->input->post("fullname", true));
+			$jabatan = $this->common->nohtml($this->input->post("jabatan", true));
+			$nip = $this->common->nohtml($this->input->post("nip", true));
+			$phone = $this->common->nohtml($this->input->post("phone", true));
 			$pass = $this->common->nohtml(
 				$this->input->post("password", true));
 			$pass2 = $this->common->nohtml(
 				$this->input->post("password2", true));
 			$captcha = $this->input->post("captcha", true);
-			$username = $this->common->nohtml(
-				$this->input->post("username", true));
 
 
-			if (strlen($username) < 3) $fail = "error_31";
 
-			if (!preg_match("/^[a-z0-9_]+$/i", $username)) {
-				$fail = lang("error_15");
-			}
-
-			if (!$this->register_model->check_username_is_free($username)) {
-				$fail = lang("error_16");
-			}
-
-			if (!$this->settings->info->disable_captcha) {
-				if ($captcha != $_SESSION['sc']) {
-					$fail = lang("error_55");
-				}
-			}
 			if ($pass != $pass2) $fail = lang("error_22");
 
 			if (strlen($pass) <= 5) {
 				$fail = lang("error_17");
 			}
 
-			if (strlen($first_name) > 25) {
-				$fail = lang("error_56");
+
+			if (empty($jabatan)) {
+				$fail = lang("error_110");
 			}
-			if (strlen($last_name) > 30) {
-				$fail = lang("error_57");
+			if (empty($nip)) {
+				$fail = lang("error_111");
 			}
 
-			if (empty($first_name) || empty($last_name)) {
+			if (empty($phone)) {
+				$fail = lang("error_112");
+			}
+
+			if (empty($fullname)) {
 				$fail = lang("error_58");
 			}
 
@@ -126,101 +119,6 @@ class Register extends CI_Controller
 			// Custom Fields
 			// Process fields
 			$answers = array();
-			foreach($fields->result() as $r) {
-				$answer = "";
-				if($r->type == 0) {
-					// Look for simple text entry
-					$answer = $this->common->nohtml($this->input->post("cf_" . $r->ID));
-
-					if($r->required && empty($answer)) {
-						$fail = lang("error_78") . $r->name;
-					}
-					// Add
-					$answers[] = array(
-						"fieldid" => $r->ID,
-						"answer" => $answer
-					);
-				} elseif($r->type == 1) {
-					// HTML
-					$answer = $this->common->nohtml($this->input->post("cf_" . $r->ID));
-
-					if($r->required && empty($answer)) {
-						$fail = lang("error_78") . $r->name;
-					}
-					// Add
-					$answers[] = array(
-						"fieldid" => $r->ID,
-						"answer" => $answer
-					);
-				} elseif($r->type == 2) {
-					// Checkbox
-					$options = explode(",", $r->options);
-					foreach($options as $k=>$v) {
-						// Look for checked checkbox and add it to the answer if it's value is 1
-						$ans = $this->common->nohtml($this->input->post("cf_cb_" . $r->ID . "_" . $k));
-						if($ans) {
-							if(empty($answer)) {
-								$answer .= $v;
-							} else {
-								$answer .= ", " . $v;
-							}
-						}
-					}
-
-					if($r->required && empty($answer)) {
-						$fail = lang("error_78") . $r->name;
-					}
-					$answers[] = array(
-						"fieldid" => $r->ID,
-						"answer" => $answer
-					);
-
-				} elseif($r->type == 3) {
-					// radio
-					$options = explode(",", $r->options);
-					if(isset($_POST['cf_radio_' . $r->ID])) {
-						$answer = intval($this->common->nohtml($this->input->post("cf_radio_" . $r->ID)));
-						
-						$flag = false;
-						foreach($options as $k=>$v) {
-							if($k == $answer) {
-								$flag = true;
-								$answer = $v;
-							}
-						}
-						if($r->required && !$flag) {
-							$fail = lang("error_78") . $r->name;
-						}
-						if($flag) {
-							$answers[] = array(
-								"fieldid" => $r->ID,
-								"answer" => $answer
-							);
-						}
-					}
-
-				} elseif($r->type == 4) {
-					// Dropdown menu
-					$options = explode(",", $r->options);
-					$answer = intval($this->common->nohtml($this->input->post("cf_" . $r->ID)));
-					$flag = false;
-					foreach($options as $k=>$v) {
-						if($k == $answer) {
-							$flag = true;
-							$answer = $v;
-						}
-					}
-					if($r->required && !$flag) {
-						$fail = lang("error_78") . $r->name;
-					}
-					if($flag) {
-						$answers[] = array(
-							"fieldid" => $r->ID,
-							"answer" => $answer
-						);
-					}
-				}
-			}
 
 			if (empty($fail)) {
 
@@ -246,7 +144,7 @@ class Register extends CI_Controller
 						"[SITE_URL]" => site_url(),
 						"[EMAIL_LINK]" => 
 							site_url("hideend/register/activate_account/" . $activate_code . 
-								"/" . $username),
+								"/" . $email),
 						"[SITE_NAME]" =>  $this->settings->info->site_name
 						),
 					$email_template->message);
@@ -256,10 +154,11 @@ class Register extends CI_Controller
 				}
 
 				$userid = $this->register_model->add_user(array(
-					"username" => $username,
+					"fullname" => $fullname,
+					"jabatan" => $jabatan,
+					"phone" => $phone,
+					"nip" => $nip,
 					"email" => $email,
-					"first_name" => $first_name,
-					"last_name" => $last_name,
 					"password" => $pass,
 					"user_role" => $this->settings->info->default_user_role,
 					"IP" => $_SERVER['REMOTE_ADDR'],
@@ -286,7 +185,7 @@ class Register extends CI_Controller
 					);
 				}
 				$this->session->set_flashdata("globalmsg", $success);
-				redirect(site_url("backend/login"));
+				redirect(site_url("hideend/login"));
 			}
 
 		}
@@ -308,11 +207,11 @@ class Register extends CI_Controller
 		$this->template->loadContent("hidepage/register/index.php", array(
 			"cap" => $cap,
 			"email" => $email,
-			"first_name" => $first_name,
-			"last_name" => $last_name,
+			"fullname" => $fullname,
+			"jabatan" => $jabatan,
+			"nip" => $nip,
+			"phone" => $phone,
 		    'fail' => $fail,
-		    "username" => $username,
-		    "fields" => $fields
 		    )
 		);
 	}
@@ -429,12 +328,12 @@ class Register extends CI_Controller
 		exit();
 	}
 
-	public function activate_account($code, $username) 
+	public function activate_account($code, $email) 
 	{
 		$code = $this->common->nohtml($code);
-		$username = $this->common->nohtml($username);
+		$username = $this->common->nohtml($email);
 
-		$code = $this->user_model->get_verify_user($code, $username);
+		$code = $this->user_model->get_verify_user($code, $email);
 		if($code->num_rows() == 0) {
 			$this->template->error(lang("error_69"));
 		}
@@ -451,7 +350,7 @@ class Register extends CI_Controller
 
 		$this->session->set_flashdata("globalmsg", 
 			lang("success_34"));
-		redirect(site_url("backend/login"));
+		redirect(site_url("hideend/login"));
 	}
 
 	public function send_activation_code($userid, $email) 

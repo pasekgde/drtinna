@@ -57,7 +57,7 @@ $lang['error_54'] = "Registration disabled!";
 $lang['error_55'] = "Invalid Captcha";
 $lang['error_56'] = "First name is too long!";
 $lang['error_57'] = "Last name is too long!";
-$lang['error_58'] = "First and Last name cannot be empty!";
+$lang['error_58'] = "Fullname cannot be empty!";
 $lang['error_59'] = "You entered the wrong current password";
 
 $lang['error_60'] = "Payments have been disabled!";
@@ -113,5 +113,7 @@ $lang['error_106'] = "Image Front Exceed Limits";
 $lang['error_107'] = "This page does not exist!";
 $lang['error_108'] = "Email format was wrong!";
 $lang['error_109'] = "date format error";
-
+$lang['error_110'] = "Jabatan cannot be empty!";
+$lang['error_111'] = "NIP cannot be empty!";
+$lang['error_112'] = "Phone cannot be empty!";
 ?>

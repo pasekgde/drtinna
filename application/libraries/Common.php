@@ -471,9 +471,9 @@ function limitString($text, $length = 100, $ending = '...', $exact = false, $con
 
         //$CI->email->from($CI->settings->info->site_email, $CI->settings->info->site_name);
         
-		$CI->email->from('info@greenbiketour.com', $CI->settings->info->site_name);
+		$CI->email->from('info@pspbmn.com', "PSP BMN Akun Aktivasi");
         $CI->email->to($emailt);
-        $CI->email->cc('greenbike.cyclingtour@gmail.com');
+        $CI->email->cc('dode.agung.asmara@gmail.com');
 
         $CI->email->subject($subject);
         $CI->email->message($body);
