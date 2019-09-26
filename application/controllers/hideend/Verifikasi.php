@@ -482,7 +482,7 @@ class Verifikasi extends CI_Controller
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), 
 						"jabatan_pemohon" => $this->input->post("jabatan_pemohon"),
-						"nomor_surat_permohonan" => o($this->input->post("noSurat_pemohon")),
+						"nomor_surat_permohonan" => ($this->input->post("noSurat_pemohon")),
 						"tanggal_surat_permohonan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 						"perihal_surat_permohonan" => ($this->input->post("perihalSurat_pemohon")),
 						"tanggal_penginputan" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), 
