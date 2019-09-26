@@ -146,6 +146,7 @@ Vue.component('pengajuan-pspbmn', {
             created() {
                 this.getKementerianLembaga()
                 this.getKabupaten()
+                this.showDataUserPengajuan()
                 this.showDatabyID()
                 this.getStepIndexForm()
                 this.isExistUploadFile()
@@ -189,6 +190,23 @@ Vue.component('pengajuan-pspbmn', {
                         }
             },
             methods: {
+
+                showDataUserPengajuan(){ 
+                    let self = this
+                    let idPengajuan = document.getElementById("idPengajuan").value
+                    if(idPengajuan===""){
+                        axios.post(this.url+"/hideend/pengajuan/showUser/").then(function(response){
+                   
+                                self.pengajuan.nama_petugas = response.data.nama_petugas
+                                self.pengajuan.nip_petugas = response.data.nip_petugas
+                                self.pengajuan.jabatan_petugas = response.data.jabatan_petugas
+                                self.pengajuan.kontak_petugas = response.data.kontak_petugas
+                                self.pengajuan.email_petugas = response.data.email_petugas
+                            
+                        })   
+                    }
+
+                },    
                 cekKuisioner() {
                     console.log("this.pengajuan.kuisioner")
                     console.log(this.pengajuan.kuisioner)

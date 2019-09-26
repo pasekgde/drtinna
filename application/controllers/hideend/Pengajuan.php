@@ -77,7 +77,24 @@ class Pengajuan extends CI_Controller
 		);
 	}
 
-	public function show($id){
+	public function showUser(){
+       	$userid=$this->user->info->ID;
+       	$query =  $this->user_model->get_user_by_id($userid);
+       	$data= $query->result();
+       	$data= $data[0];
+       	$result = [];
+        if($query){
+            $result['nama_petugas'] = $data->fullname;
+            $result['nip_petugas'] = $data->nip;
+            $result['jabatan_petugas'] = $data->jabatan;
+            $result['kontak_petugas'] = $data->phone;
+            $result['email_petugas'] = $data->email;
+        }
+  
+        echo json_encode($result);
+    }	
+
+    public function show($id){
        	$query =  $this->pengajuan_model->showAllbyID($id);
        	$result = [];
         if($query){
@@ -89,7 +106,7 @@ class Pengajuan extends CI_Controller
 	public function showAll($jenisAkun=''){
 		$userid = '';
 		if($jenisAkun!=="verify"){
-			$userid=$this->user->info->user_role_id;
+			$userid=$this->user->info->ID;
 		}
 		
        	$query =  $this->pengajuan_model->showAll($userid);
@@ -99,10 +116,6 @@ class Pengajuan extends CI_Controller
         }
         echo json_encode($result);
     }
-
-	public function test(){
-		echo $this->user->info->user_role_id;
-	}
 	public function add()
     {	
 
@@ -135,7 +148,7 @@ class Pengajuan extends CI_Controller
                 'fileSuratPermohon' => $this->input->post('fileSuratPermohon'),
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
-                'userid' => $this->user->info->user_role_id,
+                'userid' => $this->user->info->ID,
                 'submitdate' =>  date("Y/m/d")
             );
             
@@ -211,7 +224,7 @@ class Pengajuan extends CI_Controller
                 'fileDaftarRincian' => $this->input->post('fileDaftarRincian'),
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
                 'kuisioner' => $this->input->post('kuisioner'),
-                'userid' => $this->user->info->user_role_id,
+                'userid' => $this->user->info->ID,
                 'submitdate' =>  date("Y/m/d")//format to date
             );
             
