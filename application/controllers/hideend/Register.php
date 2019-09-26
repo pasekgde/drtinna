@@ -138,7 +138,7 @@ class Register extends CI_Controller
 						$this->template->error(lang("error_48"));
 					}
 					$email_template = $email_template->row();
-					
+
 					$email_template->message = $this->common->replace_keywords(array(
 						"[NAME]" => $username,
 						"[SITE_URL]" => site_url(),
@@ -227,7 +227,7 @@ class Register extends CI_Controller
 				lang("error_1")
 			);
 		}
-		$this->template->loadContent("register/add_username.php", array());
+		$this->template->loadContent("hidepage/register/add_username.php", array());
 	}
 
 	public function add_username_pro() 

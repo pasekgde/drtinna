@@ -97,7 +97,7 @@ class User
 				$this->loggedin=true;
 				$this->info = $user->row();
 
-				if( (empty($this->info->username) || empty($this->info->email)) && ($CI->router->fetch_class() != "register")) {
+				if( (empty($this->info->email)) && ($CI->router->fetch_class() != "register")) {
 					redirect(site_url("hideend/register/add_username"));
 				}
 
