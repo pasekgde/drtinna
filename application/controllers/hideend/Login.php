@@ -601,7 +601,7 @@ class Login extends CI_Controller
 	public function resetpw($token,$userid)
 	{
 		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
 		$user = $this->login_model->getResetUser($token, $userid);
@@ -614,7 +614,7 @@ class Login extends CI_Controller
 			$this->template->error(lang("error_43"));
 		}
 
-		$this->template->loadContent("login/resetpw.php",
+		$this->template->loadContent("hidepage/login/resetpw.php",
 			array(
 				"token" => $token,
 				 "userid" => $userid
@@ -664,8 +664,8 @@ class Login extends CI_Controller
 	public function forgotpw()
 	{
 		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
-		$this->template->loadContent("login/forgotpw.php", array());
+		$this->template->set_layout("hidepage/layout/login_layout.php");
+		$this->template->loadContent("hidepage/login/forgotpw.php", array());
 	}
 
 	public function forgotpw_pro()
