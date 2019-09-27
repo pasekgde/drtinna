@@ -69,7 +69,7 @@
       <div class="wrapper">
          <header class="main-header">
             <!-- Logo -->
-            <a href="<?php echo $this->common->theme_hideend();?>ltetheme/index2.html" class="logo">
+            <a href="<?php echo site_url();?>" class="logo">
                <!-- mini logo for sidebar mini 50x50 pixels -->
                <span class="logo-mini"><b>A</b>DM</span>
                <!-- logo for regular state and mobile devices -->
@@ -78,13 +78,13 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                <!-- Sidebar toggle button-->
-               <a href="<?php echo $this->common->theme_hideend();?>ltetheme/#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+               <a href="<?php echo site_url();?>" class="sidebar-toggle" data-toggle="push-menu" role="button">
                <span class="sr-only">Toggle navigation</span>
                </a>
                <div class="navbar-custom-menu">
                   <ul class="nav navbar-nav">
                      <li class="dropdown user user-menu">
-                        <a href="<?php echo $this->common->theme_hideend();?>ltetheme/#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="<?php echo site_url();?>" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo base_url() ?><?php echo $this->settings->info->upload_path_relative ?>/<?php echo $this->user->info->avatar ?>" class="user-image" alt="User Image">
                         <span class="hidden-xs"><?php echo $this->user->info->username ?></span>
                         </a>
@@ -93,8 +93,9 @@
                            <li class="user-header">
                               <img src="<?php echo base_url() ?><?php echo $this->settings->info->upload_path_relative ?>/<?php echo $this->user->info->avatar ?>" class="img-circle" alt="User Image">
                               <p>
-                                 <?php echo $this->user->info->username ?>
-                                 <small>Member since Nov. 2012</small>
+
+                                 <?php echo $this->user->info->fullname ?>
+                                 <small> <?php echo $this->user->info->email?></small>
                               </p>
                            </li>
                            <!-- Menu Footer-->
@@ -123,19 +124,10 @@
                   </div>
                   <div class="pull-left info">
                      <p><?php echo $this->user->info->username ?></p>
-                     <a href="<?php echo $this->common->theme_hideend();?>ltetheme/#"><i class="fa fa-circle text-success"></i> Online</a>
+                     <a href="<?php echo site_url()?>"><i class="fa fa-circle text-success"></i> Online</a>
                   </div>
                </div>
-               <!-- search form -->
-               <form action="#" method="get" class="sidebar-form">
-                  <div class="input-group">
-                     <input type="text" name="q" class="form-control" placeholder="Search...">
-                     <span class="input-group-btn">
-                     <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                     </button>
-                     </span>
-                  </div>
-               </form>
+
                <!-- /.search form -->
                <!-- sidebar menu: : style can be found in sidebar.less -->
                <ul class="sidebar-menu" data-widget="tree">

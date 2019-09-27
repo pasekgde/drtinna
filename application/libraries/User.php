@@ -29,6 +29,7 @@ class User
 
  		$select = "users.`ID`, users.`username`, users.`email`, 
 				users.first_name, 
+				users.fullname, 
 				users.last_name, users.`online_timestamp`, users.avatar,
 				users.email_notification, users.aboutme, users.points,
 				users.premium_time, users.active, users.activate_code,
