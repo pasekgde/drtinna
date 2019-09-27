@@ -266,7 +266,7 @@ class Pengajuan extends CI_Controller
     }
 
 	public function finishPengajuan($emailto){
-		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih"
+		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih";
         $dataEmail = array(
                     "email_send" => $emailto,
                     "email_cc" => $this->user->info->email.',aplikasiapuse@gmail.com',
