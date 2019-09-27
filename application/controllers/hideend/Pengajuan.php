@@ -12,8 +12,9 @@ class Pengajuan extends CI_Controller
 		$this->load->model("pengajuan_model");
 	//	$this->load->helper(array('form', 'url'));
 		if (!$this->user->loggedin) 	redirect(site_url("hideend/login"));
+//		echo "<pre>"; print_r($this->user);die;
 		if(!$this->common->has_permissions(array(
-				"admin", "content_manager", "content_worker"), $this->user)) {
+				"admin", "content_manager", "content_worker","admin_members"), $this->user)) {
 				$this->template->error(lang("error_81"));
 		}
 	}

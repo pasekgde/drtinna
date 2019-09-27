@@ -20,6 +20,10 @@ class Verifikasi extends CI_Controller
 		$this->load->model("pengajuan_model");
 		$this->load->model("verifikasi_model");
 		if (!$this->user->loggedin) 	redirect(site_url("hideend/login"));
+		if(!$this->common->has_permissions(array(
+				"admin", "content_manager", "content_worker","admin_members"), $this->user)) {
+				$this->template->error(lang("error_81"));
+		}
 	}
 
 	//Generate document fix
