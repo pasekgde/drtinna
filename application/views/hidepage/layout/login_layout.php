@@ -28,9 +28,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page" style="background-image: url('../uploads/papua.jpg');background-repeat: no-repeat;background-size: cover;">
-<div class="login-box" style="background: #3C8DBC!important">
-  <div class="login-logo" style="padding:10px">
-    <a href="<?=site_url("hideend/hideend/login") ?>" style="color:white"><b>PSP BMN SYSTEM</b></a>
+<div class="login-box" style="background: #D4D4D4!important">
+  <div class="login-logo" style="padding:10px;padding-bottom: 0px;margin-bottom: 0px">
+    <a href="<?=site_url("hideend/login") ?>" style="color:white"><b>
+            <img src="<?php echo base_url() ?>/uploads/logo-apuse.png" style="width: 100%">
+          </b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

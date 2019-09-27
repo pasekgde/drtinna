@@ -16,12 +16,12 @@
         
         <!-- /.col -->
         <div class="col-xs-4 pull-right">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
     <?php echo form_close() ?>
-    <a href="<?php echo site_url("hideend/login/forgotpw") ?>">I forgot my password</a><br>
-    <a href="<?php echo site_url("hideend/register") ?>" class="text-center">Register a new membership</a>
+    <a href="<?php echo site_url("hideend/login/forgotpw") ?>">Lupa Password</a><br>
+    <a href="<?php echo site_url("hideend/register") ?>" class="text-center">Daftar Akun Baru</a>
 
 

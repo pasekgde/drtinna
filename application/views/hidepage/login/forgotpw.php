@@ -9,9 +9,9 @@
               <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
               <input type="text" name="email" class="form-control">
           </div><br />
-          <input type="submit" class="btn btn-primary form-control" value=" <?php echo lang("ctn_176") ?>">
+          <input type="submit" class="btn btn-primary form-control" value="Kirim">
           <?php echo form_close() ?>
-    <p class="decent-margin align-center"><a href="<?php echo site_url("hideend/login") ?>"> <?php echo lang("ctn_177") ?></a></p>
+    <p class="decent-margin align-center"><a href="<?php echo site_url("hideend/login") ?>"> Kembali ke halaman Login</a></p>
 </div>
 
 
