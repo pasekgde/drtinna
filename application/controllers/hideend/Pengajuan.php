@@ -291,19 +291,11 @@ class Pengajuan extends CI_Controller
         $dataEmail = $this->book_model->get_emailQueue();
         foreach ($dataEmail->result() as $res) {
            //SEND ke CUSTOMER
-            $replayto             = "ubudserendipityvillas@gmail.com";
+            $replayto             = "aplikasiapuse@gmail.com";
             $emailCustomer = $res->email_send;
             $body = $res->message;
             $subject = $res->subject;
            	$this->common->send_email($subject, $body, $emailCustomer, $replayto);
-
-
-           //SEND ke ADMIN WEB
-            // $replayto             = $res->email_send;
-            $emailAdmin = "ubudserendipityvillas@gmail.com";
-            $body = $res->message;
-            $subject = $res->subject;
-            $this->common->send_email($res->subject, $res->message, $emailAdmin, $replayto); 
 
             $dataEmail = array(
                             "status" => 1
