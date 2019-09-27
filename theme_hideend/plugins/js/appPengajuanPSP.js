@@ -864,7 +864,7 @@ Vue.component('hasil-pengajuan-pspbmn-kanwil', {
                 // a computed getter
                 hreffileHasilVerifikasi: function () {
                  // `this` points to the vm instance
-                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")?"":(this.url+'upload'+this.choosePengajuan.suratHasilVerifikasifinal)
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")?"":(this.url+'uploads'+this.choosePengajuan.suratHasilVerifikasifinal)
                     //return this.url
                  },
 
@@ -995,7 +995,7 @@ Vue.component('hasil-pengajuan-pspbmn-kpknl', {
                 // a computed getter
                 hreffileHasilVerifikasi: function () {
                     // `this` points to the vm instance
-                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")?"":(this.url+'upload'+this.choosePengajuan.suratHasilVerifikasifinal)
+                    return (this.choosePengajuan.suratHasilVerifikasifinal==="null"||this.choosePengajuan.suratHasilVerifikasifinal==="")?"":(this.url+'uploads'+this.choosePengajuan.suratHasilVerifikasifinal)
                     //return this.url
                 },
 
