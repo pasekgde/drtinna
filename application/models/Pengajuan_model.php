@@ -11,7 +11,11 @@ class Pengajuan_Model extends CI_Model
     return $this->db->trans_status() ;
 	}
 
-
+  public function add_emailQueue($data)
+  {
+    $this->db->insert("email_queue", $data);
+    return $this->db->insert_id();
+  }
 
 	public function insert($data) 
 	{

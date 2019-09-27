@@ -50,6 +50,7 @@ class Pengajuan extends CI_Controller
 	}
 
 
+
 	public function status()
 	{
 		$this->template->loadData("activeLink",
@@ -264,6 +265,52 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
+	public function finishPengajuan($emailto){
+		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih"
+        $dataEmail = array(
+                    "email_send" => $emailto,
+                    "email_cc" => $this->user->info->email.',aplikasiapuse@gmail.com',
+                    "replayTo" => 'aplikasiapuse@gmail.com',
+                    "subject" => 'Pengajuan PSP BMN Online',
+                    "message" => $msg,
+                    "createdAt" => date("Y/m/d")
+                );
+		$idEmailQueue = $this->sendEmailQueueTable($dataEmail);
+
+	}
+
+	public function sendEmailQueueTable($dataEmail)
+    {   
+       
+        return $this->pengajuan_model->add_emailQueue($dataEmail);
+        
+    } 
+
+    public function sendEmail() 
+    {
+        $dataEmail = $this->book_model->get_emailQueue();
+        foreach ($dataEmail->result() as $res) {
+           //SEND ke CUSTOMER
+            $replayto             = "ubudserendipityvillas@gmail.com";
+            $emailCustomer = $res->email_send;
+            $body = $res->message;
+            $subject = $res->subject;
+           	$this->common->send_email($subject, $body, $emailCustomer, $replayto);
+
+
+           //SEND ke ADMIN WEB
+            // $replayto             = $res->email_send;
+            $emailAdmin = "ubudserendipityvillas@gmail.com";
+            $body = $res->message;
+            $subject = $res->subject;
+            $this->common->send_email($res->subject, $res->message, $emailAdmin, $replayto); 
+
+            $dataEmail = array(
+                            "status" => 1
+                        );
+            $this->book_model->update_emailQueue($res->id,$dataEmail);
+        }
+    }
 	public function uploadFile()
 	{	
 		$dataArray = array();

@@ -100,11 +100,8 @@
                            </li>
                            <!-- Menu Footer-->
                            <li class="user-footer">
-                              <div class="pull-left">
-                                 <a href="<?php echo $this->common->theme_hideend();?>ltetheme/#" class="btn btn-default btn-flat">Profile</a>
-                              </div>
                               <div class="pull-right">
-                                 <a href="<?php echo site_url("hideend/login/logout/" . $this->security->get_csrf_hash()) ?>" class="btn btn-default btn-flat">Sign out</a>
+                                 <a href="<?php echo site_url("hideend/login/logout/" . $this->security->get_csrf_hash()) ?>" class="btn btn-default btn-flat">Sign Out</a>
                               </div>
                            </li>
                         </ul>
