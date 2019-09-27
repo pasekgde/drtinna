@@ -331,17 +331,17 @@ class Register extends CI_Controller
 	public function activate_account($code, $email) 
 	{
 		$code = $this->common->nohtml($code);
-		$username = $this->common->nohtml($email);
+		$email = $this->common->nohtml($email);
 
 		$code = $this->user_model->get_verify_user($code, $email);
 		if($code->num_rows() == 0) {
-			
-			$this->template->set_error_view("/hidepage/error/login_error.php");
-			$this->template->error(lang("error_69"));
+			redirect(site_url("hideend/login"));
+			// $this->template->set_error_view("/hidepage/error/login_error.php");
+			// $this->template->error(lang("error_69"));
 		}
 		$code = $code->row();
 		if($code->active) {
-			$this->template->error(lang("error_69"));
+			redirect(site_url("hideend/login"));
 		}
 
 		$this->user_model->update_user($code->ID, array(
@@ -352,7 +352,7 @@ class Register extends CI_Controller
 
 		$this->session->set_flashdata("globalmsg", 
 			lang("success_34"));
-		redirect(site_url("hideend/login"));
+			redirect(site_url("hideend/login"));
 	}
 
 	public function send_activation_code($userid, $email) 
@@ -398,11 +398,11 @@ class Register extends CI_Controller
 		$email_template = $email_template->row();
 
 		$email_template->message = $this->common->replace_keywords(array(
-			"[NAME]" => $user->username,
+			"[NAME]" => $user->fullname,
 			"[SITE_URL]" => site_url(),
 			"[EMAIL_LINK]" => 
 				site_url("backend/register/activate_account/" . $user->activate_code . 
-					"/" . $user->username),
+					"/" . $user->email),
 			"[SITE_NAME]" =>  $this->settings->info->site_name
 			),
 		$email_template->message);
