@@ -1535,7 +1535,7 @@
                 <template slot="footer" slot-scope="props">
                                 <div class="wizard-footer-right2">
                                     <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next Step</wizard-button>
-                                    <wizard-button v-else @click.native="finishUploadHasil" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done yah' : 'Next'}}</wizard-button>
+                                    <wizard-button v-else @click.native="finishVerifikasiSendEmail();finishUploadHasil();;" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done' : 'Next'}}</wizard-button>
 
                                     <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" class="btn btn-warning" :style="props.fillButtonStyle">Back</wizard-button>
                                 </div>
@@ -1555,21 +1555,19 @@
                                     <th class="text-white">ID</th>
                                     <th class="text-white">No Surat</th>
                                     <th class="text-white">Tanggal Surat</th>
-                                    <th class="text-white">Tgl Input</th>
                                     <th class="text-white">Kementrian Lembaga</th>
-                                    <th class="text-white">Satuan Kerja</th>
                                     <th class="text-white">Status Pengajuan</th>
                                     <th class="text-white">Hasil Verifikasi</th>
                                     <th class="text-white">Action</th>
                                 </thead>
                                 <tbody class="table-light">
                                     <tr v-for="data in pengajuan" class="table-default">
-                                        <td>{{data.id}}</td>
-                                        <td>{{data.noSurat_pemohon}}</td>
-                                        <td>{{data.tglSurat_pemohon}}</td>
-                                        <td>{{data.submitdate}}</td>
+                                        <td>{{data.id}}</td>                                       
+                                        <td v-if="data.noSurat_pemohon===''">Not Set</td>
+                                        <td v-else>{{data.noSurat_pemohon}}</td> 
+                                        <td v-if="data.tglSurat_pemohon==='0000-00-00'">Not Set</td>
+                                        <td v-else>{{data.tglSurat_pemohon}}</td> 
                                         <td>{{data.kementerian_lembaga}}</td>
-                                        <td>{{data.satuan_kerja}}</td>
                                         <td>{{data.status_pengajuan}} 
                                         </td>
                                         <td>

@@ -251,31 +251,36 @@ class Pengajuan extends CI_Controller
             if ($this->pengajuan_model->update($id, $data)) {
             	//echo $this->db->last_query();die;
                 $result['error'] = false;
-                $result['msg']   = 'Booking Updated successfully';
+                $result['msg']   = 'Pengajuan Updated successfully';
                
 
                 
             }else{
             	
                 $result['error'] = false;
-                $result['msg']   = 'Booking added successfully';
+                $result['msg']   = 'Pengajuan Added successfully';
             }
             
         }
         echo json_encode($result);
     }
 
-	public function finishPengajuan($emailto){
-		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih";
+	public function finishPengajuan($emailto,$nama_surat){
+		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN untuk surat ".$nama_surat." yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih";
         $dataEmail = array(
                     "email_send" => $emailto,
                     "email_cc" => $this->user->info->email.',aplikasiapuse@gmail.com',
                     "replayTo" => 'aplikasiapuse@gmail.com',
-                    "subject" => 'Pengajuan PSP BMN Online',
+                    "subject" => 'Sukses Pengajuan APUSE - '.$nama_surat,
                     "message" => $msg,
                     "createdAt" => date("Y/m/d")
                 );
 		$idEmailQueue = $this->sendEmailQueueTable($dataEmail);
+		$result['error'] = false;
+        $result['msg']   = 'Pengajuan Added successfully';
+        $result['id']   = $idEmailQueue;
+
+		echo json_encode($result);
 
 	}
 
@@ -288,7 +293,7 @@ class Pengajuan extends CI_Controller
 
     public function sendEmail() 
     {
-        $dataEmail = $this->book_model->get_emailQueue();
+        $dataEmail = $this->pengajuan_model->get_emailQueue();
         foreach ($dataEmail->result() as $res) {
            //SEND ke CUSTOMER
             $replayto             = "aplikasiapuse@gmail.com";
@@ -300,7 +305,7 @@ class Pengajuan extends CI_Controller
             $dataEmail = array(
                             "status" => 1
                         );
-            $this->book_model->update_emailQueue($res->id,$dataEmail);
+            $this->pengajuan_model->update_emailQueue($res->id,$dataEmail);
         }
     }
 	public function uploadFile()

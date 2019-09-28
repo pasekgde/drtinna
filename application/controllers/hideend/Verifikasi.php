@@ -26,6 +26,50 @@ class Verifikasi extends CI_Controller
 		}
 	}
 
+	public function finishPengajuan($emailto,$nama_surat){
+		$msg = "Permohonan PSP BMN ".$nama_surat." yang Bapak/Ibu ajukan melalui Aplikasi APUSE telah kami Proses. Silahkan Download dokumen tindak lanjutnya.<br/>Dokumen hardcopy akan segera kami kirimkan setelah kami menerima berkas Pengajuan Permohonan PSP BMN dari Bapak/Ibu dalam bentuk hardcopy.<br/>Terima Kasih";
+        $dataEmail = array(
+                    "email_send" => $emailto,
+                    "email_cc" => $this->user->info->email.',aplikasiapuse@gmail.com',
+                    "replayTo" => 'aplikasiapuse@gmail.com',
+                    "subject" => 'Sukses Verifikasi APUSE - '.$nama_surat,
+                    "message" => $msg,
+                    "createdAt" => date("Y/m/d")
+                );
+		$idEmailQueue = $this->sendEmailQueueTable($dataEmail);
+
+		$result['error'] = false;
+        $result['msg']   = 'Verifikasi Added successfully';
+        $result['id']   = $idEmailQueue;
+
+		echo json_encode($result);
+
+	}
+
+	public function sendEmailQueueTable($dataEmail)
+    {   
+       
+        return $this->verifikasi_model->add_emailQueue($dataEmail);
+        
+    } 
+
+    public function sendEmail() 
+    {
+        $dataEmail = $this->verifikasi_model->get_emailQueue();
+        foreach ($dataEmail->result() as $res) {
+           //SEND ke CUSTOMER
+            $replayto             = "aplikasiapuse@gmail.com";
+            $emailCustomer = $res->email_send;
+            $body = $res->message;
+            $subject = $res->subject;
+           	$this->common->send_email($subject, $body, $emailCustomer, $replayto);
+
+            $dataEmail = array(
+                            "status" => 1
+                        );
+            $this->verifikasi_model->update_emailQueue($res->id,$dataEmail);
+        }
+    }
 	//Generate document fix
 	public function generateHasilVerifikasiKANWIL(){
 		$file = 'Kanwil 1 Hasil Verifikasi.docx';
@@ -397,6 +441,7 @@ class Verifikasi extends CI_Controller
 						"nama_kasi_pkn" => $this->input->post('nama_kepala_seksi'),
 						"jumlah_unit" => $this->input->post('jumlah_unit'),
 						"nama_kl" => ucfirst($this->input->post('kementerian_lembaga')),
+						"nama_kl_besar" => ucfirst($this->input->post('kementerian_lembaga')),
 						"nama_satker" => $this->input->post('satuan_kerja'),
 						"nama_kpknl" => $this->input->post('status_proses'),
 						"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")), 
@@ -433,8 +478,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
 		$TemplateProcessor->setValue('nama_kasi_pkn', $dataArray["nama_kasi_pkn"]);
 		
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
 		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
@@ -599,7 +644,7 @@ class Verifikasi extends CI_Controller
 					"jenis_bmn" => $this->input->post("jenis_bmn"),
 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
 					"nama_tembusan" => $strTembusan,
-					"nama_KPKNL" => $this->input->post("status_proses"),
+					"nama_kpknl" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt_kabid" => ($this->input->post("status_kepala_bidang")==='definitif')?'':'Plt',
 					"plh_plt_kanwil" => ($this->input->post("status_kepala_kanwil")==='definitif')?'':'Plt',
@@ -618,8 +663,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
 		$TemplateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
 		
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('plh_plt_kabid', $dataArray["plh_plt_kabid"]);
 		$TemplateProcessor->setValue('plh_plt_kanwil', $dataArray["plh_plt_kanwil"]);
@@ -699,7 +744,7 @@ class Verifikasi extends CI_Controller
 					"jenis_bmn" => $this->input->post("jenis_bmn"),
 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
 					"nama_tembusan" => $strTembusan,
-					"nama_KPKNL" => $this->input->post("status_proses"),
+					"nama_kpknl" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt_kabid" => ($this->input->post("status_kepala_bidang")==='definitif')?'':'Plt',
 					"plh_plt_kanwil" => ($this->input->post("status_kepala_kanwil")==='definitif')?'':'Plt',
@@ -722,8 +767,8 @@ class Verifikasi extends CI_Controller
 		 $TemplateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
 		 $TemplateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
 		 
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 		 $TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		 $TemplateProcessor->setValue('plh_plt_kabid', $dataArray["plh_plt_kabid"]);
 		 $TemplateProcessor->setValue('plh_plt_kanwil', $dataArray["plh_plt_kanwil"]);
@@ -807,7 +852,7 @@ class Verifikasi extends CI_Controller
 					"jenis_bmn" => $this->input->post("jenis_bmn"),
 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
 					"nama_tembusan" => $strTembusan,
-					"nama_KPKNL" => $this->input->post("status_proses"),
+					"nama_kpknl" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt_kabid" => ($this->input->post("status_kepala_bidang")==='definitif')?'':'Plt',
 					"plh_plt_kanwil" => ($this->input->post("status_kepala_kanwil")==='definitif')?'':'Plt',
@@ -833,8 +878,8 @@ class Verifikasi extends CI_Controller
 		 $TemplateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
 		 $TemplateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
 		 
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 		 $TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		 $TemplateProcessor->setValue('plh_plt_kabid', $dataArray["plh_plt_kabid"]);
 		 $TemplateProcessor->setValue('plh_plt_kanwil', $dataArray["plh_plt_kanwil"]);
@@ -914,7 +959,7 @@ class Verifikasi extends CI_Controller
 					"jenis_bmn" => $this->input->post("jenis_bmn"),
 					"huruf_total_nilai_bmn" => $this->common->terbilang($this->input->post("totalnilai_bmn")),
 					"nama_tembusan" => $strTembusan,
-					"nama_KPKNL" => $this->input->post("status_proses"),
+					"nama_kpknl" => $this->input->post("status_proses"),
 					"tanggal_cetak" => $this->common->tgl_indo($this->input->post("tglSurat_pemohon")),
 					"plh_plt_kabid" => ($this->input->post("status_kepala_bidang")==='definitif')?'':'Plt',
 					"plh_plt_kanwil" => ($this->input->post("status_kepala_kanwil")==='definitif')?'':'Plt',
@@ -939,8 +984,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('total_nilai_bmn', $dataArray["total_nilai_bmn"]);
 		$TemplateProcessor->setValue('huruf_total_nilai_bmn', $dataArray["huruf_total_nilai_bmn"]);
 		
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('plh_plt_kabid', $dataArray["plh_plt_kabid"]);
 		$TemplateProcessor->setValue('plh_plt_kanwil', $dataArray["plh_plt_kanwil"]);
@@ -1228,7 +1273,7 @@ class Verifikasi extends CI_Controller
 						"nama_survei_lapangan" => $this->input->post("nama_survey"),
 						"waktu_survei" => $this->input->post("rencana_survey"),
 						"cp_survei_lapangan" => $this->input->post("cp_survey"),
-						"nama_KPKNL" => $this->input->post("status_proses")
+						"nama_kpknl" => $this->input->post("status_proses")
 		);
 
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala Kanwil DJKN Papua, Papua Barat, dan Maluku,'.$this->input->post('status_proses'):'Kepala Kantor';
@@ -1268,8 +1313,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
 		$TemplateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
 		
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 
 
 
@@ -1320,7 +1365,7 @@ class Verifikasi extends CI_Controller
 						"nip_kepala_kantor" => $this->input->post("nip_kepala_bidang"),
 						"waktu_survei" => $this->input->post("rencana_survey"),
 						"cp_survei_lapangan" => $this->input->post("cp_survey"),
-						"nama_KPKNL" => $this->input->post("status_proses")
+						"nama_kpknl" => $this->input->post("status_proses")
 		);
 
 		$plt_plh_spesial = ($this->input->post("plt_plh")==='plt_plh')?'Kepala '.$this->input->post('status_proses'):'Kepala Kantor';
@@ -1361,8 +1406,8 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('nama_kepala_kantor', $dataArray["nama_kepala_kantor"]);
 		$TemplateProcessor->setValue('nip_kepala_kantor', $dataArray["nip_kepala_kantor"]);
 		
-		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_KPKNL"]);
-		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_KPKNL"]));
+		$TemplateProcessor->setValue('nama_kpknl', $dataArray["nama_kpknl"]);
+		$TemplateProcessor->setValue('nama_kpknl_besar', strtoupper($dataArray["nama_kpknl"]));
 
 
 

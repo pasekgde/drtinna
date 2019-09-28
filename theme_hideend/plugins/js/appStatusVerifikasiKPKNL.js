@@ -217,6 +217,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                 }
             },
             methods:{
+                
                 beforeTabHasilVerifikasi: function() {
 
                     let self = this

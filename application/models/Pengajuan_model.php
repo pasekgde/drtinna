@@ -10,13 +10,21 @@ class Pengajuan_Model extends CI_Model
     $this->db->trans_complete();
     return $this->db->trans_status() ;
 	}
-
+  public function update_emailQueue($id, $data)
+  {
+    $this->db->where("id", $id)->update("email_queue", $data);
+  }
   public function add_emailQueue($data)
   {
     $this->db->insert("email_queue", $data);
     return $this->db->insert_id();
   }
-
+  public function get_emailQueue()
+  {
+    return $this->db
+          ->where("status", 0)
+          ->get("email_queue");
+  }
 	public function insert($data) 
 	{
 		$this->db->insert("pengajuan_pspbmn", $data);

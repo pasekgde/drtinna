@@ -693,6 +693,24 @@ Vue.component('pengajuan-pspbmn', {
                     }
 
                 },
+                finishPengajuan() {
+                    let namaSurat = this.pengajuan.nama_kementerian_lembaga+'-'+this.pengajuan.noSurat_pemohon
+                    let tujuanEmail = this.pengajuan.email_djkn
+                    
+                    if(this.pengajuan.id!==''){
+                        let self = this;
+                        axios.post(this.url + "/hideend/pengajuan/finishPengajuan/"+tujuanEmail+"/"+namaSurat).then(function(response) {
+                            
+                            if (response.data.id!='') {
+                                //console.log("kirim email")
+                                self.clearPengajuanData()
+                            } 
+
+                        })
+                    }
+
+
+                },
                 formData(obj) {
                     var formData = new FormData();
                     for (var key in obj) {
@@ -726,6 +744,9 @@ Vue.component('table-status-pengajuan-pspbmn', {
                     },
                     
                  }
+
+            },
+            computed(){
 
             },
             created(){

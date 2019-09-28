@@ -155,6 +155,25 @@ Vue.component('hasil-pspbmn', {
             },
             methods:{
 
+                finishVerifikasiSendEmail() {
+                    let namaSurat = this.datapengajuan.kementerian_lembaga+'-'+this.datapengajuan.noSurat_pemohon
+                    let tujuanEmail = this.datapengajuan.email_petugas
+                    
+                    if(this.datapengajuan.id!==''){
+                        let self = this;
+                        axios.post(this.url + "/hideend/verifikasi/finishPengajuan/"+tujuanEmail+"/"+namaSurat).then(function(response) {
+                            
+                            if (response.data.id!='') {
+                                console.log("kirim email")
+                                
+                            } 
+
+                        })
+                    }
+
+
+                },
+
                 getDataVerifikasiDokumen:function(){
                     let self = this
                     axios.post(this.url + "/hideend/verifikasi/checkDocumentVerifikasi/"+this.choosePengajuan.id).then(function(response) {
@@ -359,6 +378,9 @@ Vue.component('table-verifikasi-pspbmn', {
             },
             created(){
                 this.showAll()
+            },
+            computed:{
+
             },
             methods:{
 
