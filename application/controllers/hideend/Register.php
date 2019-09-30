@@ -306,7 +306,7 @@ class Register extends CI_Controller
 		$this->register_model
 			->update_username($this->user->info->ID, $username, $email);
 		
-		redirect(site_url("/backend"));
+		redirect(site_url("/hideend"));
 	}
 
 	public function check_username() 
@@ -401,7 +401,7 @@ class Register extends CI_Controller
 			"[NAME]" => $user->fullname,
 			"[SITE_URL]" => site_url(),
 			"[EMAIL_LINK]" => 
-				site_url("backend/register/activate_account/" . $user->activate_code . 
+				site_url("hideend/register/activate_account/" . $user->activate_code . 
 					"/" . $user->email),
 			"[SITE_NAME]" =>  $this->settings->info->site_name
 			),
@@ -411,7 +411,7 @@ class Register extends CI_Controller
 			 $email_template->message, $user->email);
 		$this->session->set_flashdata("globalmsg", 
 			lang("success_35"));
-		redirect(site_url("backend/login"));
+		redirect(site_url("hideend/login"));
 	}
 }
 
