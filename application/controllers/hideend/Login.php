@@ -605,7 +605,7 @@ class Login extends CI_Controller
 		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
-		echo "<pre>"; print_r($token);die;
+		//echo "<pre>"; print_r($token);die;
 		$user = $this->login_model->getResetUser($token, $userid);
 		if ($user->num_rows() == 0) {
 			$this->template->error(lang("error_42"));
