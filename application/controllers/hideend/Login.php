@@ -167,7 +167,7 @@ class Login extends CI_Controller
 	public function google_login()
 	{
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -311,7 +311,7 @@ class Login extends CI_Controller
 	{
 		//echo '<pre>'; print_r( "masuk" );die; //test
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -419,7 +419,7 @@ class Login extends CI_Controller
 	public function twitter_login()
 	{
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -462,7 +462,7 @@ class Login extends CI_Controller
 	public function twitter_login_pro()
 	{
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -605,6 +605,7 @@ class Login extends CI_Controller
 		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
+		echo "<pre>"; print_r($token);die;
 		$user = $this->login_model->getResetUser($token, $userid);
 		if ($user->num_rows() == 0) {
 			$this->template->error(lang("error_42"));
@@ -627,7 +628,7 @@ class Login extends CI_Controller
 	public function resetpw_pro($token, $userid)
 	{
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
 		$user = $this->login_model->getResetUser($token, $userid);
@@ -671,7 +672,7 @@ class Login extends CI_Controller
 
 	public function forgotpw_pro()
 	{
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$this->template->set_error_view("hidepage/error/login_error.php");
 		$email = $this->input->post("email", true);
 
@@ -731,8 +732,8 @@ class Login extends CI_Controller
 	public function banned()
 	{
 		$this->template->set_error_view("hidepage/error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
-		$this->template->loadContent("login/banned.php", array());
+		$this->template->set_layout("hidepage/layout/login_layout.php");
+		$this->template->loadContent("hidepage/login/banned.php", array());
 	}
 
 
