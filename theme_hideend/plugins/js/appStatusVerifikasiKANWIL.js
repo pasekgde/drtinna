@@ -623,7 +623,11 @@ Vue.component('verifikasi-pspbmn-kanwil', {
                                 self.verifikasi.nama_salinan = (response.data.dokumen[0].nama_salinan === "null")?'':response.data.dokumen[0].nama_salinan
                                 self.verifikasi.nip_salinan = (response.data.dokumen[0].nip_salinan === "null")?'':response.data.dokumen[0].nip_salinan
                                 self.verifikasi.peraturan_pendelegasian_wewenang_KL = (response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL === "null")?'':response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL
- 
+                                
+                                if(response.data.dokumen[0].check_dokumen_kepemilikan==='tidak ada'){
+                                    console.log("check_dokumen_kepemilikan")
+                                    self.isAdaDokumenKepemilikan = false
+                                }    
                                 if(response.data.dokumen[0].daftarKekuranganData==="null" || response.data.dokumen[0].daftarKekuranganData===""){
                                     self.daftarKekuranganData = [{
                                                                 nama:''

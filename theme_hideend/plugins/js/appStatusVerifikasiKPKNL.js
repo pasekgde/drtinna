@@ -584,6 +584,9 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                                 self.verifikasi.peraturan_pendelegasian_wewenang_KL = (response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL === "null")?'':response.data.dokumen[0].peraturan_pendelegasian_wewenang_KL
                                 console.log(response.data.dokumen[0].daftarKekuranganData)    
                                 console.log("null? KPKNL")      
+                                if(response.data.dokumen[0].check_dokumen_kepemilikan==='tidak ada'){
+                                    self.isAdaDokumenKepemilikan = false
+                                }
 
                                  if(response.data.dokumen[0].daftarKekuranganData==="null" || response.data.dokumen[0].daftarKekuranganData===""){
                                     self.daftarKekuranganData = [{
