@@ -1466,7 +1466,7 @@
 
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINAL</h3>
+                            <h3 class="box-title btn bg-maroon btn-flat margin">UPLOAD DOKUMEN VERIFIKASI FINA OKE</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->

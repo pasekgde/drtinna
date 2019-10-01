@@ -293,24 +293,25 @@ Vue.component('hasil-pspbmn', {
 
                 },
                 finishVerifikasiProses(){
-                    this.clearAllForm()
+                    
                     let valueHide ={
                                     isShowFormKPKNL : false                                    
                                 }
                     this.$emit('send-data', valueHide)
+                    this.clearAllForm()
                 },
 
                 addVerifikasi:function(status) {
                   
-
-                    var formData = this.formData(this.verifikasi);
+                    this.verifikasi.status_pengajuan = status
+                    var formData = this.formData(this.verifikasi)
                     let self = this
                     if(this.verifikasi.id!=''){
                         axios.post(this.url + "/hideend/verifikasi/update", formData).then(function(response) {
                             if (response.data.error) {
                                 console.log(response.data.msg);
                             } else {
-                                self.updateStatusPengajuan()
+                                self.updateStatusPengajuan(status)
                             }
                          })
                     }else{
@@ -319,17 +320,17 @@ Vue.component('hasil-pspbmn', {
                                 console.log(response.data.msg);
                             } else {
                                 self.verifikasi.id =response.data.id
-                                self.updateStatusPengajuan()
+                                self.updateStatusPengajuan(status)
                             }
                         })
                     }
                     
 
                 },
-                updateStatusPengajuan(){
+                updateStatusPengajuan(status){
                     let pengajuan= {
                                 idPengajuan:this.choosePengajuan.id,
-                                status_pengajuan: this.status_pengajuan
+                                status_pengajuan:status
                               }
                     var formData = this.formData(pengajuan);
                     axios.post(this.url + "/hideend/pengajuan/updateStatusPengajuan", formData).then(function(response) {

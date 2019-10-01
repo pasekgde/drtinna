@@ -848,6 +848,7 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     this.verifikasi.idPengajuan = this.choosePengajuan.id
 
                     this.status_pengajuan = status
+                    this.verifikasi.status_pengajuan = status
 
                     this.verifikasi.daftar_tembusan = JSON.stringify(this.daftarTembusan)
 
