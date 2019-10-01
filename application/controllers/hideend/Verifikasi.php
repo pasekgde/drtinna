@@ -726,7 +726,9 @@ class Verifikasi extends CI_Controller
 		//biarkan ini
 		$targetFile = "./uploads/template/";		
 		$targetSaveFile = "./uploads/verifikasi/kpknl/";
+		
 
+		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		//Inisiasi Awal (biarkan ini)
 		$TemplateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($targetFile.$file);
 		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
@@ -799,8 +801,6 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('no#'.($no+2), ($no+2).'.');
 		$TemplateProcessor->setValue('nama_tembusan#'.($no+1), 'Direktur Pengelolaan Kekayaan Negara dan Sistem Informasi');
 		$TemplateProcessor->setValue('nama_tembusan#'.($no+2), 'Kepala Kantor Wilayah DJKN Papua, Papua Barat dan Maluku');
-
-		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		$TemplateProcessor->setValue('nama_kpknl', $detail_djkn->kantor);
 		$TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 
@@ -834,7 +834,8 @@ class Verifikasi extends CI_Controller
 		//biarkan ini
 		$targetFile = "./uploads/template/";		
 		$targetSaveFile = "./uploads/verifikasi/kpknl/";
-
+		
+		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		//Inisiasi Awal (biarkan ini)
 		$TemplateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($targetFile.$file);
 		$tahun_terbit=substr($this->input->post('tglSurat_pemohon'), 0, 4); 
@@ -911,7 +912,6 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('nama_tembusan#'.($no+1), 'Direktur Pengelolaan Kekayaan Negara dan Sistem Informasi');
 		$TemplateProcessor->setValue('nama_tembusan#'.($no+2), 'Kepala Kantor Wilayah DJKN Papua, Papua Barat dan Maluku');
 
-		$detail_djkn = json_decode($this->input->post("detail_djkn"));
 		$TemplateProcessor->setValue('nama_kpknl', $detail_djkn->kantor);
 		$TemplateProcessor->setValue('kode_kpknl', $detail_djkn->kode);
 

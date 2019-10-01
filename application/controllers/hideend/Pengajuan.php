@@ -265,17 +265,30 @@ class Pengajuan extends CI_Controller
         echo json_encode($result);
     }
 
-	public function finishPengajuan($emailto,$nama_surat){
+	public function finishPengajuan($emailtoUser,$emailtoKantor, $nama_surat){
 		$msg = "Terimakasih telah mewujudkan pengelolaan BMN yang tertib administrasi, tertib fisik dan tertib hukum. Permohonan PSP BMN untuk surat ".$nama_surat." yang Bapak/Ibu ajukan melalui Aplikasi APUSE akan segera kami Proses.<br/><br/>Terima Kasih";
         $dataEmail = array(
-                    "email_send" => $emailto,
-                    "email_cc" => $this->user->info->email.',aplikasiapuse@gmail.com',
-                    "replayTo" => 'aplikasiapuse@gmail.com',
-                    "subject" => 'Sukses Pengajuan APUSE - '.$nama_surat,
+                    "email_send" => $emailtoUser,
+                    "email_cc" => 'aplikasiapuse@gmail.com',
+                    "replayTo" => $emailtoKantor,
+                    "subject" => '[APUSE NOTIF]Sukses Pengajuan PSP BMN - '.$nama_surat,
                     "message" => $msg,
                     "createdAt" => date("Y/m/d")
                 );
-		$idEmailQueue = $this->sendEmailQueueTable($dataEmail);
+		$idEmailQueue = $this->sendEmailQueueTable($dataEmail);      
+
+
+         $msg = "Terdapat Pengajuan Permohonan PSP dari ".$nama_surat.", mohon segera cek Aplikasi APUSE.<br/>Terima Kasih";
+        $dataEmail = array(
+                    "email_send" => $emailtoKantor,
+                    "email_cc" => 'aplikasiapuse@gmail.com',
+                    "replayTo" => $emailtoUser,
+                    "subject" => '[APUSE NOTIF]Pengajuan PSP BMN Baru - '.$nama_surat,
+                    "message" => $msg,
+                    "createdAt" => date("Y/m/d")
+                );
+        $idEmailQueue = $this->sendEmailQueueTable($dataEmail);
+
 		$result['error'] = false;
         $result['msg']   = 'Pengajuan Added successfully';
         $result['id']   = $idEmailQueue;

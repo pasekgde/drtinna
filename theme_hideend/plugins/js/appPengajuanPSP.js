@@ -695,11 +695,13 @@ Vue.component('pengajuan-pspbmn', {
                 },
                 finishPengajuan() {
                     let namaSurat = this.pengajuan.nama_kementerian_lembaga+'-'+this.pengajuan.noSurat_pemohon
-                    let tujuanEmail = this.pengajuan.email_djkn
+                    let tujuanEmailKantor = this.pengajuan.email_djkn
+                    let tujuanEmail = this.pengajuan.email_petugas
+
                     
                     if(this.pengajuan.id!==''){
                         let self = this;
-                        axios.post(this.url + "/hideend/pengajuan/finishPengajuan/"+tujuanEmail+"/"+namaSurat).then(function(response) {
+                        axios.post(this.url + "/hideend/pengajuan/finishPengajuan/"+tujuanEmail+"/"+tujuanEmailKantor+"/"+namaSurat).then(function(response) {
                             
                             if (response.data.id!='') {
                                 //console.log("kirim email")
