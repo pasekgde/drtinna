@@ -482,7 +482,7 @@ class Verifikasi extends CI_Controller
 				$TemplateProcessor->setValue('nama_kpknl_besar', str_replace('KPKNL ', '', strtoupper($detail_djkn->kantor)));
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
+		$TemplateProcessor->setValue('nama_kl_besar', strtoupper($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -575,7 +575,7 @@ class Verifikasi extends CI_Controller
 				$TemplateProcessor->setValue('nama_kpknl_besar', str_replace('KPKNL ', '', strtoupper($detail_djkn->kantor)));
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
+		$TemplateProcessor->setValue('nama_kl_besar', strtoupper($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -754,9 +754,7 @@ class Verifikasi extends CI_Controller
 					"nama_kepala_kantor" => $this->input->post("nama_kepala_bidang")
 					);
 
-
-		//echo "<pre>"; print_r($dataArray);die;
-			$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
+		 $TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		 $TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);	
 		 $TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl"]);	
 		 $TemplateProcessor->setValue('kementerian_pemohon', $dataArray["kementerian_pemohon"]);
@@ -1079,7 +1077,7 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
+		$TemplateProcessor->setValue('nama_kl_besar', strtoupper($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $this->common->tgl_indo($dataArray["tanggal_cetak"]));
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
@@ -1283,7 +1281,7 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('plt_plh_spesial', $plt_plh_spesial);		
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
+		$TemplateProcessor->setValue('nama_kl_besar', strtoupper($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
@@ -1378,7 +1376,7 @@ class Verifikasi extends CI_Controller
 		$TemplateProcessor->setValue('jumlah_unit', $dataArray["jumlah_unit"]);
 		$TemplateProcessor->setValue('tahun_terbit', $dataArray["tahun_terbit"]);
 		$TemplateProcessor->setValue('nama_kl', $dataArray["nama_kl"]);
-		$TemplateProcessor->setValue('nama_kl_besar', $dataArray["nama_kl_besar"]);
+		$TemplateProcessor->setValue('nama_kl_besar', strtoupper($dataArray["nama_kl"]));
 		$TemplateProcessor->setValue('nama_satker', $dataArray["nama_satker"]);
 		$TemplateProcessor->setValue('tanggal_cetak', $dataArray["tanggal_cetak"]);
 		$TemplateProcessor->setValue('jabatan_pemohon', $dataArray["jabatan_pemohon"]);
