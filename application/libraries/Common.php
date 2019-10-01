@@ -5,6 +5,10 @@ require_once("PasswordHash.php");
 
 class Common
 {
+	function makeTitleText($string){
+		return ucwords(strtolower($string));
+
+	}
 	function cleanString($string)
 	{
 	  // allow only letters
