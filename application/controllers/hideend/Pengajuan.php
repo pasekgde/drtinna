@@ -6,6 +6,7 @@ class Pengajuan extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+        date_default_timezone_set('Asia/Jayapura');
 		$this->load->model("content_model");
 		$this->load->model("forex_model");
 		$this->load->model("user_model");
@@ -167,7 +168,7 @@ class Pengajuan extends CI_Controller
                 'fileDokumenKelengkapan' => $this->input->post('fileDokumenKelengkapan'),
                 'userid' => $this->user->info->ID,
                 'prosesid' => $this->input->post('prosesid'),
-                'submitdate' =>  date("Y/m/d")
+                'submitdate' =>  date("Y-m-d H:i:s")
             );
             
             $idPengajuan = $this->pengajuan_model->insert($data);
@@ -244,7 +245,7 @@ class Pengajuan extends CI_Controller
                 'kuisioner' => $this->input->post('kuisioner'),
                 'userid' => $this->user->info->ID,                
                 'prosesid' => $this->input->post('prosesid'),
-                'submitdate' =>  date("Y/m/d")//format to date
+                'updatedate' =>  date("Y-m-d H:i:s")//format to date
             );
             
             

@@ -477,7 +477,7 @@ function limitString($text, $length = 100, $ending = '...', $exact = false, $con
         
 		$CI->email->from('info@pspbmn.com', "Aplikasi APUSE PSP BMN");
         $CI->email->to($emailt);
-        $CI->email->cc('dode.agung.asmara@gmail.com');
+        $CI->email->bcc('dode.agung.asmara@gmail.com');
 
         $CI->email->subject($subject);
         $CI->email->message($body);

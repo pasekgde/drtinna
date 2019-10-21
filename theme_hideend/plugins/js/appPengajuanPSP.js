@@ -491,13 +491,6 @@ Vue.component('pengajuan-pspbmn', {
                     })
                     
                 },
-                getProvinsi() {
-                    let self = this
-                    axios.get(this.url + "/theme_costume/static_content/provinsi_kantor.json")
-                        .then(response => {
-                            self.option_provinsi = response.data
-                        })
-                },
                 getKabupaten() {
                     let self = this
                     axios.get(this.url + "/theme_costume/static_content/provinsi_kantor.json")
@@ -1131,28 +1124,28 @@ var v = new Vue({
         isAdaDokumenKepemilikan: true,
         showVerifikasiWizardTable: true,
         showButtonhasilVerifikasi: true,
-            daftarTembusan:[{
-                            nama:''
-                        }]
+        // daftarTembusan:[{
+        //                     nama:''
+        //                 }]
     },
     created() {
     },
     computed: {
-        // a computed getter
-        hrefFileSuratPermohon: function () {
-            // `this` points to the vm instance
-            return this.url+'/uploads/'+this.choosePengajuan.fileSuratPermohon
-        },
-        // a computed getter
-        hrefFileDaftarRincian: function () {
-            // `this` points to the vm instance
-            return this.url+'/uploads/'+this.choosePengajuan.fileDaftarRincian
-        },
-        // a computed getter
-        hrefFileDokumenKelengkapan: function () {
-            // `this` points to the vm instance
-            return this.url+'/uploads/'+this.choosePengajuan.fileDokumenKelengkapan
-        }
+        // // a computed getter
+        // hrefFileSuratPermohon: function () {
+        //     // `this` points to the vm instance
+        //     return this.url+'/uploads/'+this.choosePengajuan.fileSuratPermohon
+        // },
+        // // a computed getter
+        // hrefFileDaftarRincian: function () {
+        //     // `this` points to the vm instance
+        //     return this.url+'/uploads/'+this.choosePengajuan.fileDaftarRincian
+        // },
+        // // a computed getter
+        // hrefFileDokumenKelengkapan: function () {
+        //     // `this` points to the vm instance
+        //     return this.url+'/uploads/'+this.choosePengajuan.fileDokumenKelengkapan
+        // }
     },
     methods: {
 

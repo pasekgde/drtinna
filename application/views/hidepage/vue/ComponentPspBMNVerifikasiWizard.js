@@ -1554,7 +1554,7 @@
                                 <thead class="text-white bg-dark">
                                     <th class="text-white">ID</th>
                                     <th class="text-white">No Surat</th>
-                                    <th class="text-white">Tanggal Surat</th>
+                                    <th class="text-white">Tanggal Create</th>
                                     <th class="text-white">Kementrian Lembaga</th>
                                     <th class="text-white">Status Pengajuan</th>
                                     <th class="text-white">Hasil Verifikasi</th>
@@ -1565,8 +1565,8 @@
                                         <td>{{data.id}}</td>                                       
                                         <td v-if="data.noSurat_pemohon===''">Not Set</td>
                                         <td v-else>{{data.noSurat_pemohon}}</td> 
-                                        <td v-if="data.tglSurat_pemohon==='0000-00-00'">Not Set</td>
-                                        <td v-else>{{data.tglSurat_pemohon}}</td> 
+                                        <td v-if="data.submitdate==='0000-00-00'">Not Set</td>
+                                        <td v-else>{{data.submitdate}}</td> 
                                         <td>{{data.kementerian_lembaga}}</td>
                                         <td>{{data.status_pengajuan}} 
                                         </td>

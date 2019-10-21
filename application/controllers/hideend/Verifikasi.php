@@ -1762,7 +1762,7 @@ class Verifikasi extends CI_Controller
                 'nama_kepala_kanwil' => $this->input->post('nama_kepala_kanwil'),
                 'jabatan_kepala_kanwil' => $this->input->post('jabatan_kepala_kanwil'),
                 'status_kepala_kanwil' => $this->input->post('status_kepala_kanwil'),
-                'submitdate' =>  date("Y/m/d")
+                'submitdate' =>  date("Y-m-d H:i:s")
             );
             
             $idPengajuan = $this->verifikasi_model->insert($data);
@@ -1832,7 +1832,7 @@ class Verifikasi extends CI_Controller
                 'suratHasilVerifikasifinal' => $this->input->post('suratHasilVerifikasifinal'),	            
                 'alamat_kantor_pemohon' => $this->input->post('alamat_kantor_pemohon'),	            
                 'daftarKekuranganData' => $this->input->post('daftarKekuranganData'),	            
-                'updatedate' =>  date("Y/m/d")
+                'updatedate' => date("Y-m-d H:i:s")
             );
             
             $this->verifikasi_model->update($id, $data);
