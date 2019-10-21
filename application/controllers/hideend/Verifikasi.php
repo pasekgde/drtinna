@@ -383,7 +383,7 @@ class Verifikasi extends CI_Controller
 
 		}else{
 			$TemplateProcessor->setValue('no', '8.');			
-			$TemplateProcessor->setValue('data#1', 'SPTJM bermaterai bahwa barang tersebut adalah BMN dan digunakan untuk tugas dan fungsi.');
+			$TemplateProcessor->setValue('data', 'SPTJM bermaterai bahwa barang tersebut adalah BMN dan digunakan untuk tugas dan fungsi.');
 
 			$sptjm_bermaterai_ada=($this->input->post('check_sptjm_bermaterai')==='sesuai'||$this->input->post('check_sptjm_bermaterai')==='ada')?'✓':'-';;
 			$sptjm_bermaterai_tdk=($this->input->post('check_sptjm_bermaterai')==='tidak ada')?'✓':'-';
