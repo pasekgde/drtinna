@@ -752,11 +752,11 @@
     <div>
         <div class="col-md-8">
             <div class="nav-tabs-custom">
-                <form-wizard :start-index.sync="stepIndex">
+                <form-wizard :start-index.sync="stepIndex" shape="tab">
                     <wizard-step slot-scope="props" slot="step" :tab="props.tab" :transition="props.transition" :index="props.index">
                     </wizard-step>
                     <h3 slot="title"></h3>
-                    <tab-content title="Inital Input" icon="fa fa-user" :before-change="beforeTab1SwitchKPKNL" v-if="jenisForm.verifikasi">
+                    <tab-content title="Inital Input" icon="fa fa-first-order" :before-change="beforeTab1SwitchKPKNL" v-if="jenisForm.verifikasi">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title btn bg-maroon margin">IDENTITAS PETUGAS KPKNL</h3>
@@ -883,7 +883,7 @@
 
                         </div>
                     </tab-content>
-                    <tab-content title="Pengecekan Dokumen" icon="fa fa-certificate" v-if="jenisForm.verifikasi">
+                    <tab-content title="Cek Dokumen" icon="fa fa-file" v-if="jenisForm.verifikasi">
                         <div class="box-header with-border">
                             <h3 class="box-title btn bg-maroon btn-flat margin">PROSES PENGECEKAN DOKUMEN</h3>
                         </div>
@@ -917,7 +917,7 @@
 
                     </tab-content>
 
-                    <tab-content title="Input Dokumen" icon="fa fa-envelope-o" :before-change="beforeTab2SwitchKPKNL" v-if="jenisForm.verifikasi">
+                    <tab-content title="Input Dokumen" icon="fa fa-upload" :before-change="beforeTab2SwitchKPKNL" v-if="jenisForm.verifikasi">
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
@@ -1549,27 +1549,26 @@
 
 <script type="text/x-template" id="pspTableVerifikasiWizard">
     <div>
-                  <div class="box-body">
-                            <table class="table is-bordered is-hoverable">
+                  <div class="box-body table-responsive no-padding">
+                            <table class="table table-striped table-hover">
                                 <thead class="text-white bg-dark">
-                                    <th class="text-white">ID</th>
-                                    <th class="text-white">No Surat</th>
-                                    <th class="text-white">Tanggal Create</th>
-                                    <th class="text-white">Kementrian Lembaga</th>
-                                    <th class="text-white">Status Pengajuan</th>
-                                    <th class="text-white">Hasil Verifikasi</th>
-                                    <th class="text-white">Action</th>
+                                    <th class="text-white" style="width: 10px;padding-left: 8px">#</th>
+                                    <th class="text-white" style="width: 140px;padding-left: 8px">Surat</th>
+                                    <th class="text-white hidemobile" style="width: 140px;padding-left: 8px">Waktu</th>
+                                    <th class="text-white hidemobile" style="width: 140px;padding-left: 8px">Satker</th>
+                                    <th class="text-white hidemobile" style="width: 140px;padding-left: 8px">Verifikator</th>
+                                    <th class="text-white hidemobile" style="width: 140px;padding-left: 8px">Hasil</th>
+                                    <th class="text-white" style="width: 140px;padding-left: 8px">Action</th>
                                 </thead>
                                 <tbody class="table-light">
                                     <tr v-for="data in pengajuan" class="table-default">
                                         <td>{{data.id}}</td>                                       
                                         <td v-if="data.noSurat_pemohon===''">Not Set</td>
                                         <td v-else>{{data.noSurat_pemohon}}</td> 
-                                        <td>{{data.submitdate}}</td> 
-                                        <td>{{data.kementerian_lembaga}}</td>
-                                        <td>{{data.status_pengajuan}} 
-                                        </td>
-                                        <td>
+                                        <td class="hidemobile">{{data.submitdate}}</td> 
+                                        <td class="hidemobile">{{data.satuan_kerja}}</td>
+                                        <td class="hidemobile">{{data.nama_petugas}}</td>
+                                        <td class="hidemobile">
                                             <div v-if="data.hasil_verifikasi!==null">
                                                 <button type="button" 
                                                         class="btn" 
@@ -1603,17 +1602,17 @@
                                             <button type="button" 
                                                     class="btn btn-success" 
                                                     @click=
-                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm('verifikasi');getJenisForm()">
+                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm('verifikasi');getJenisForm()" title="Verifikasi">
 
-                                                Verifikasi
+                                               <i class="fa fa-check-square "></i>
                                             </button>
 
                                             <button type="button" 
                                                     class="btn btn-info" 
                                                     @click=
-                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm(data.hasil_verifikasi);getJenisForm();showHasilVerifikasi()">
+                                                        "selectPengajuan(data);getDataChoosePengajuan();selectJenisForm(data.hasil_verifikasi);getJenisForm();showHasilVerifikasi()" title="Upload Dokumen">
 
-                                                Cek Hasil
+                                                <i class="fa fa-cloud-upload"></i>
                                             </button>
 
                                             

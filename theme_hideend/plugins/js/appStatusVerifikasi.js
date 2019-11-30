@@ -6,6 +6,7 @@ Vue.use(VueFormWizard)
 Vue.use(VeeValidate)
 Vue.use(VueTheMask)
 Vue.use(VueMultiselect)
+Vue.use(VuejsDialog.main.default)
 Vue.component('vue-multiselect', window.VueMultiselect.default)
 
 //dynamic url

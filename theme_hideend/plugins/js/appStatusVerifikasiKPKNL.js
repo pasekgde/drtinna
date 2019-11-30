@@ -223,7 +223,10 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     let self = this
                     return this.$validator.validateAll("step2").then((result) => {
                         if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
+                            
+                            this.$dialog.alert('Mohon Isi Semua Form!').then(function(dialog) {
+                              console.log('Closed');
+                            });
                             return false;
                         } else {
                             this.addVerifikasi("Dokumen Final Telah Diupload oleh Verifikator")
@@ -251,7 +254,10 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                             })
                             .then(function(response) {
                                 if (!response.data) {
-                                    alert('File not uploaded All. Please check one of your file');
+
+                                    this.$dialog.alert('File not uploaded All. Please check one of your file!').then(function(dialog) {
+                                      console.log('Closed');
+                                    });
                                 } else {
                                     self.verifikasi.suratHasilVerifikasifinal = response.data.file[0]
                                     self.verifikasi.suratNDSPermintaanKelengkapanfinal = response.data.file[1]
@@ -789,7 +795,9 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                     let self = this
                     return this.$validator.validateAll("step1").then((result) => {
                         if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
+                            this.$dialog.alert('Mohon Isi Semua Form!').then(function(dialog) {
+                              console.log('Closed');
+                            });
                             return false;
                         } else {
                             this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
@@ -803,7 +811,10 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                      let self = this
                     return this.$validator.validateAll("step2").then((result) => {
                         if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
+                            
+                            this.$dialog.alert('Mohon Isi Semua Form!').then(function(dialog) {
+                              console.log('Closed');
+                            });
                             return false;
                         } else {
                              this.verifikasi.hasil_verifikasi = "Dokumen sedang diproses"
@@ -817,7 +828,10 @@ Vue.component('verifikasi-pspbmn-kpknl', {
                      let self = this
                     return this.$validator.validateAll("step3").then((result) => {
                         if (!result) {
-                            alert('mohon melengkapi seluruh form diatas')
+                            
+                            this.$dialog.alert('Mohon Isi Semua Form!').then(function(dialog) {
+                              console.log('Closed');
+                            });
                             return false;
                         } else {
                             console.log("this.btnGenerateKMKDoc()")

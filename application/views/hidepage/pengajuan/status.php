@@ -38,47 +38,7 @@
                                     <input type="text" class="form-control" placeholder="Search" id="form-search-input">
                                     <div class="input-group-btn">
                                         <input type="hidden" id="search_type" value="0">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                        </button>
-                                        <ul class="dropdown-menu small-text" style="min-width: 90px !important; left: -90px;">
-                                            <li>
-                                                <a href="#" onclick="change_search(0)">
-                                                    <span class="glyphicon glyphicon-ok" id="search-like"></span>
-                                                    <?php echo lang("ctn_337") ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" onclick="change_search(1)">
-                                                    <span class="glyphicon glyphicon-ok no-display" id="search-exact"></span>
-                                                    <?php echo lang("ctn_338") ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" onclick="change_search(2)">
-                                                    <span class="glyphicon glyphicon-ok no-display" id="user-exact"></span>
-                                                    <?php echo lang("ctn_339") ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" onclick="change_search(3)">
-                                                    <span class="glyphicon glyphicon-ok no-display" id="title-exact"></span>
-                                                    <?php echo lang("ctn_401") ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" onclick="change_search(4)">
-                                                    <span class="glyphicon glyphicon-ok no-display" id="summary-exact"></span>
-                                                    <?php echo lang("ctn_402") ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" onclick="change_search(5)">
-                                                    <span class="glyphicon glyphicon-ok no-display" id="category-exact"></span>
-                                                    <?php echo lang("ctn_406") ?>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                       
                                     </div>
                                 </div>
                             </div>

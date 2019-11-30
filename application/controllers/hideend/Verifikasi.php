@@ -1701,7 +1701,8 @@ class Verifikasi extends CI_Controller
 		$this->template->loadExternal(
 			'<link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">'.
 			'<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">'.
-			'<link rel="stylesheet" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css">'
+			'<link rel="stylesheet" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css">'.
+			'<link rel="stylesheet" href="'.$this->common->theme_hideend().'plugins/js/vuejs-dialog-master/dist/vuejs-dialog.min.css">'
 			);
 
 		$this->template->loadExternalJs(
@@ -1709,6 +1710,8 @@ class Verifikasi extends CI_Controller
 			'<script src="https://cdn.jsdelivr.net/npm/vue-the-mask@0.11.1/dist/vue-the-mask.min.js"></script>'.
 			'<script src="https://unpkg.com/vee-validate@2.0.0-rc.21/dist/vee-validate.js"></script>'.
 			'<script src="https://unpkg.com/vue-multiselect@2.1.6/dist/vue-multiselect.min.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/vuejs-dialog-master/dist/vuejs-dialog.min.js"></script>'.
+			'<script src="'.$this->common->theme_hideend().'plugins/js/vuejs-dialog-master/dist/vuejs-dialog-mixin.min.js"></script>'.
 			'<script src="'.$this->common->theme_hideend().'plugins/js/vue-airbnb-style-datepicker.min.js"></script>'.
 			'<script src="'.$this->common->theme_hideend().'plugins/js/date_fns.js"></script>'.
 			$vueComponent.
