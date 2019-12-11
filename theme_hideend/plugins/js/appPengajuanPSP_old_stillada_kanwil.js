@@ -540,28 +540,30 @@ Vue.component('pengajuan-pspbmn', {
                 ShowOtherTabDJKN() {
                         this.clearNotif()
                     if (this.pengajuan.jenis_bmn.name === 'Tanah' || this.pengajuan.jenis_bmn.name === 'Bangunan' || this.pengajuan.jenis_bmn.name === 'Tanah dan Bangunan') {
-                        if (true) {
-                        //     this.isShowOtherTabDJKN = false
-                        //     if ((this.pengajuan.totalnilai_bmn >= 75000000000) && (this.pengajuan.totalnilai_bmn <= 100000000000)) {
-                        //         this.notif75M = true
-                        //         this.pengajuan.status_proses = 'DJKN Pusat'
-                        //         //------------------>insert DB Table status 
-                        //     } else {
-                        //         this.notif100M = true
-                        //         this.pengajuan.status_proses = 'PKNSI'
-                        //         //------------------>insert DB Table status 
-                        //     }
-                        // } else {
+                        if (this.pengajuan.totalnilai_bmn >= 75000000000) {
+                            this.isShowOtherTabDJKN = false
+                            if ((this.pengajuan.totalnilai_bmn >= 75000000000) && (this.pengajuan.totalnilai_bmn <= 100000000000)) {
+                                this.notif75M = true
+                                this.pengajuan.status_proses = 'DJKN Pusat'
+                                //------------------>insert DB Table status 
+                            } else {
+                                this.notif100M = true
+                                this.pengajuan.status_proses = 'PKNSI'
+                                //------------------>insert DB Table status 
+                            }
+                        } else {
                             //pilah akan dikelola kanwil atau KPKNL
                             this.isShowOtherTabDJKN = true
                             this.notifProses = true
-                            if (true) {
-                            //     this.KanwilProses = true
-                            //     this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
-                            //     this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
-                            //     this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
-                            //     //------------------>insert DB Table status 
-                            // } else {
+                            console.log("masuk2")
+                            if ((this.pengajuan.totalnilai_bmn >= 10000000000) && (this.pengajuan.totalnilai_bmn < 75000000000)) {
+                                console.log("masuk3")    
+                                this.KanwilProses = true
+                                this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
+                                this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
+                                this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
+                                //------------------>insert DB Table status 
+                            } else {
                                 this.DjknProses = true
                                 this.areaProsesText = this.pengajuan.kabupaten.kantor
                                 this.pengajuan.status_proses = this.pengajuan.kabupaten.kantor                                
@@ -571,28 +573,28 @@ Vue.component('pengajuan-pspbmn', {
 
                         }
                     }else{
-                        if (true) {
-                        //     this.isShowOtherTabDJKN = false
-                        //     if ((this.pengajuan.totalnilai_bmn > 50000000000)) {
-                        //         this.notif75M = true
-                        //         this.pengajuan.status_proses = 'DJKN Pusat'
-                        //         //------------------>insert DB Table status 
-                        //     } else {
-                        //         this.notif100M = true
-                        //         this.pengajuan.status_proses = 'PKNSI'
-                        //         //------------------>insert DB Table status 
-                        //     }
-                        // } else {
+                        if (this.pengajuan.totalnilai_bmn >= 25000000000) {
+                            this.isShowOtherTabDJKN = false
+                            if ((this.pengajuan.totalnilai_bmn > 50000000000)) {
+                                this.notif75M = true
+                                this.pengajuan.status_proses = 'DJKN Pusat'
+                                //------------------>insert DB Table status 
+                            } else {
+                                this.notif100M = true
+                                this.pengajuan.status_proses = 'PKNSI'
+                                //------------------>insert DB Table status 
+                            }
+                        } else {
                             //pilah akan dikelola kanwil atau KPKNL
                             this.isShowOtherTabDJKN = true
                             this.notifProses = true
-                            if (true) {
-                            //     this.KanwilProses = true
-                            //     this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
-                            //     this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
-                            //     this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
-                            //     //------------------>insert DB Table status 
-                            // } else {
+                            if ((this.pengajuan.totalnilai_bmn >= 5000000000) && (this.pengajuan.totalnilai_bmn < 25000000000)) {
+                                this.KanwilProses = true
+                                this.areaProsesText = 'KANWIL DJKN Papua, Papua Barat dan Maluku'
+                                this.pengajuan.status_proses = 'KANWIL Papua, Papua Barat dan Maluku'
+                                this.pengajuan.email_djkn = 'pknkanwil17@gmail.com'
+                                //------------------>insert DB Table status 
+                            } else {
                                 this.DjknProses = true
                                 this.areaProsesText = this.pengajuan.kabupaten.kantor
                                 this.pengajuan.status_proses = this.pengajuan.kabupaten.kantor                                
