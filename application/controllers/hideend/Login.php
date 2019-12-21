@@ -65,6 +65,8 @@ class Login extends CI_Controller
 		}
 
 		$login = $this->login_model->getUserByEmail($email);
+
+		
 		if ($login->num_rows() == 0) {
 			$login = $this->login_model->getUserByUsername($email);
 			if($login->num_rows() == 0) {
@@ -77,6 +79,10 @@ class Login extends CI_Controller
 		$email = $r->email;
 
 		$phpass = new PasswordHash(12, false);
+		// echo "<pre>"; print_r($pass);
+		// $pass = $this->common->encrypt($pass);
+		
+		// echo "<pre>"; print_r($pass);die;
     	if (!$phpass->CheckPassword($pass, $r->password)) {
     		$this->login_protect($email);
     		$this->template->error(lang("error_29"));

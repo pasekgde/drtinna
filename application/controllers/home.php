@@ -44,13 +44,10 @@ class Home extends CI_Controller
 
 		$post_num = 3;  
 
-		
 
-		$contentDir = base_url(). '/theme_costume/static_content/';
-		$tourOptionFiles = $contentDir . 'tour-option.json';
-		$tourOptions = file_get_contents($tourOptionFiles);
-		if (!empty($tourOptions)) $tourOptions = json_decode($tourOptions);
 
+		$submenu = 0;
+		$menu = 1;
 		$this->templatefront->loadData("activeLink",array("home" => 1));
 		
 		//echo '<pre>'; print_r( $tourOptions );die; //test
@@ -59,64 +56,39 @@ class Home extends CI_Controller
  			"og_title" => "BossForexSignal",
  			"og_desc" => "Forex Signal Provider",
  			"og_url" => "https://bossforexsignal.com",
- 			"tourOptions" => $tourOptions
+ 			"menu" => $menu,
+ 			"submenu" => $submenu
 			));
 
 	}	
 
-	public function tour($id)
+	public function training($id)
 	{
 		
-		$contentDir = base_url(). '/theme_costume/static_content/';
-		$tourDetailFiles = $contentDir . 'tour-details.json';
-		$tourDetails = file_get_contents($tourDetailFiles);
-		if (!empty($tourDetails)) $tourDetails = json_decode($tourDetails,TRUE);
+		// $contentDir = base_url(). '/theme_costume/static_content/';
+		// $tourDetailFiles = $contentDir . 'tour-details.json';
+		// $tourDetails = file_get_contents($tourDetailFiles);
+		// if (!empty($tourDetails)) $tourDetails = json_decode($tourDetails,TRUE);
 
-
-   //      	$contentDir = base_url(). '/theme_costume/static_content/';
-			// $tourDetailFiles = $contentDir . 'tour-details.json';
-			// $tourDetails = file_get_contents($tourDetailFiles);
-   //     	 	$collection = collect(json_decode($tourDetails, true));
-			// $data = $collection->where('id', $id);
-
-			// $pickup = $data->pluck("pickup");
-			// $packages = $data->pluck("package");
-
-
-			// $pickup = collect($pickup->first());
-			// $package = collect($packages->first());
-
-			// $pickupPrice = 	collect($pickup->where('area', 'Nusa Dua / Jimbaran'))->pluck("price")->first();
-			// $prices = collect($package->where('id', $id))->pluck("price");
-
-			// $typePrice = collect($prices->first());
-			// $infantPrice = $typePrice->where('type', "Infant")->pluck("price")->first(); 
-			// $childPrice = $typePrice->where('type', "Child")->pluck("price")->first(); 
-			// $adultPrice = $typePrice->where('type', "Adult")->pluck("price")->first(); 
-
-
-			//echo '<pre>'; print_r( $pickupPrice );die; //test
-
-		//get Tour Details
-		$selectTour = $tourDetails[$id];
+		// //get Tour Details
+		// $selectTour = $tourDetails[$id];
 		if($id=="1"){
-			$page="frontpage/tour/downhill";
+			$page="frontpage/training/reg_acls";
 		}elseif($id=="2"){
-			$page="frontpage/tour/electric";
+			$page="frontpage/training/reg_pals";
 		}elseif($id=="3"){
-			$page="frontpage/tour/comboATV";
+			$page="frontpage/training/ons_bls";
 		}elseif($id=="4"){
-			$page="frontpage/tour/comboRafting";
-		}elseif($id=="5"){
-			$page="frontpage/tour/sunrise";
-		}elseif($id=="6"){
-			$page="frontpage/tour/greentrek";
+			$page="frontpage/training/ons_acls";
+		}elseif($id=="5"){			
+			$page="frontpage/training/ons_pals";
+		}elseif($id=="6"){			
+			$page="frontpage/training/private";
 		}elseif($id=="7"){
-			$page="frontpage/tour/classic";
-		}elseif($id=="8"){
-			$page="frontpage/tour/tamblingan";
+			$page="frontpage/training/ons_fa_cpr_aed";
+		}elseif($id=="8"){			
+			$page="frontpage/training/ons_heartsaver";
 		}
-		$this->templatefront->set_layout("frontpage/layout/layout_tour");
 		$this->templatefront->loadData("activeLink",array("home" => 1));
 
 		$this->templatefront->loadExternal(
@@ -128,6 +100,10 @@ class Home extends CI_Controller
 			''			
 		); 
 
+
+		$submenu = $id;
+		$menu = 2;
+	
 		//$this->templatefront->loadExternalJs(
 		// 	'<script src="'.base_url().'/theme_costume/plugins/js/vue.min.js"></script>'.
 		// 	'<script src="'.base_url().'/theme_costume/plugins/js/pagination.js"></script>'.
@@ -140,7 +116,8 @@ class Home extends CI_Controller
  			"og_title" => "Greenbike Tour",
  			"og_desc" => "Forex Signal Provider",
  			"og_url" => "https://greenbiketour.com",
- 			"selectTour" => $selectTour,
+ 			"menu" => $menu,
+ 			"submenu" => $submenu,
 
 			));
 

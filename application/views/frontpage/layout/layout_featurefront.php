@@ -1,151 +1,156 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
-
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="xmlrpc.html">
-    <title>Homepage 4 - Travel Tour</title>
-
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;subset=latin%2Clatin-ext%2Cdevanagari%2Ccyrillic-ext%2Cvietnamese%2Ccyrillic%2Cgreek-ext%2Cgreek&amp;ver=4.9.8' type='text/css' media='all' />
-   
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>plugins/tourmaster/plugins/elegant-font/style.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>plugins/tourmaster/tourmaster.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>css/tourmaster-style-custom.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>css/style-core.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>css/traveltour-style-custom.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>plugins/goodlayers-core/plugins/combine/style.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='<?php echo $this->common->theme_custome(); ?>plugins/goodlayers-core/include/css/page-builder.css' type='text/css' media='all' />
-    <?php echo $cssincludes; ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Medic || Authorized training site dari American Heart Association </title>
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <link rel="manifest" href="<?php echo $this->common->theme_custome(); ?>/assets/images/resources/preloader.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="<?php echo $this->common->theme_custome(); ?>/assets/css\style.css">
+    <link rel="stylesheet" href="<?php echo $this->common->theme_custome(); ?>/assets/css\responsive.css">    
+    <link rel="stylesheet" href="<?php echo $this->common->theme_custome(); ?>/assets/css\custom.css">
 </head>
 
-<body class="home page-template-default page page-id-2039 gdlr-core-body tourmaster-body woocommerce-no-js traveltour-body traveltour-body-front traveltour-full  traveltour-with-sticky-navigation gdlr-core-link-to-lightbox">
-    <div class="traveltour-mobile-header-wrap">
-        <div class="traveltour-mobile-header traveltour-header-background traveltour-style-slide" id="traveltour-mobile-header">
-            <div class="traveltour-mobile-header-container traveltour-container">
-                <div class="traveltour-logo  traveltour-item-pdlr">
-                    <div class="traveltour-logo-inner">
-                        <a href="index-2.html"><img src="<?php echo $this->common->theme_custome(); ?>images/logo.png" alt="" /></a>
-                    </div>
-                </div>
-                <div class="traveltour-mobile-menu-right">
-                    <div class="traveltour-main-menu-search" id="traveltour-mobile-top-search"><i class="fa fa-search"></i></div>
-                    <div class="traveltour-top-search-wrap">
-                        <div class="traveltour-top-search-close"></div>
-                        <div class="traveltour-top-search-row">
-                            <div class="traveltour-top-search-cell">
-                                <form role="search" method="get" class="search-form" action="#">
-                                    <input type="text" class="search-field traveltour-title-font" placeholder="Search..." value="" name="s">
-                                    <div class="traveltour-top-search-submit"><i class="fa fa-search"></i></div>
-                                    <input type="submit" class="search-submit" value="Search">
-                                    <div class="traveltour-top-search-close"><i class="icon_close"></i></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="traveltour-mobile-menu"><a class="traveltour-mm-menu-button traveltour-mobile-menu-button traveltour-mobile-button-hamburger-with-border" href="#traveltour-mobile-menu"><i class="fa fa-bars" ></i></a>
-                        <?php $this->load->view("frontpage/layout/layout_menu_mobile"); ?>   
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="traveltour-body-outer-wrapper ">
-        <div class="traveltour-body-wrapper clearfix  traveltour-with-transparent-header traveltour-with-frame">
-            <div class="traveltour-header-background-transparent">
-                <header class="traveltour-header-wrap traveltour-header-style-plain  traveltour-style-menu-right traveltour-sticky-navigation traveltour-style-slide">
-                    <div class="traveltour-header-background"></div>
-                    <div class="traveltour-header-container  traveltour-container">
-                        <div class="traveltour-header-container-inner clearfix">
-                            <div class="traveltour-navigation traveltour-item-pdlr clearfix ">
-                                <?php $this->load->view("frontpage/layout/layout_menu");?>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
-            <?php  echo $content;?>
-            <footer>
-                <div class="traveltour-footer-wrapper  traveltour-with-column-divider">
-                    <div class="traveltour-footer-container traveltour-container clearfix">
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="text-1" class="widget widget_text traveltour-widget">
-                                <div class="textwidget"><img src="<?php echo $this->common->theme_custome(); ?>images/logo.png" alt="" /> <span class="gdlr-core-space-shortcode" id="span_fd3f_15"></span> GREENBIKE has unique concepts “Work with your heart to serve better”. We ride trough historical Taro village with all of its important history for Hinduism in Bali and the culture explanation of our professional guides will ensure your trip more enjoyable. <span class="gdlr-core-space-shortcode" id="span_fd3f_16"></span> </div>
-                            </div>
-                        </div>
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="tourmaster-widget-tour-category-6" class="widget widget_tourmaster-widget-tour-category traveltour-widget">
-                                <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Top Actvities</span></h3><span class="clear"></span>
-                                <div class="tourmaster-widget-tour-category">
-                                    <div class="tourmaster-tour-category-widget-holder clearfix">
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<?php echo $this->common->theme_custome(); ?>images/cycling.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Downhill Cycling</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<?php echo $this->common->theme_custome(); ?>images/classic.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Classic Tour</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<?php echo $this->common->theme_custome(); ?>images/electric.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Electric Bike</a></h3></div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="text-2" class="widget widget_text traveltour-widget">
-                                <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Contact Info</span></h3><span class="clear"></span>
-                                <div class="textwidget">
-                                    <p>Address : Br. Pejengaji, Tegallang, Gianyar, Bali
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_fd3f_17"></span>
-                                        <br /> Phone : +6285101699692 
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_fd3f_18"></span>
-                                        <br /> greenbike.cyclingtour@gmail.com</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="traveltour-copyright-wrapper">
-                    <div class="traveltour-copyright-container traveltour-container">
-                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright 2020 Greenbike Team, All Right Reserved</div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+<body>
+    <div class="preloader"><span></span></div><!-- /.preloader -->
+    <div class="page-wrapper">
+        <section class="topbar-one">
+            <div class="container">
+                <div class="topbar-one__left-text">Upcoming Schedule: ACLS Training (24 Desember 2019)</div><!-- /.left-text -->
+                <div class="topbar-one__right-content">
+                    <div class="topbar-one__social">
+                        <a href="facebook.com/firstmedic"><i class="fa fa-facebook-f"></i></a>
+                        <a href="instagram.com/first_medic"><i class="fa fa-instagram"></i></a>
+                    </div><!-- /.topbar-one__social -->
 
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/jquery/jquery-migrate.min.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/jquery/ui/core.min.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/jquery/ui/datepicker.min.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/jquery/ui/effect.min.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>plugins/tourmaster/tourmaster.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>js/plugins.js'></script>
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>plugins/goodlayers-core/plugins/combine/script.js'></script>
-
-    <script type='text/javascript' src='<?php echo $this->common->theme_custome(); ?>plugins/goodlayers-core/include/js/page-builder.js'></script>
-
-    <?php echo $jsincludes;?>
-
+                    <a href="mailto:info.firstmedic@gmail.com" class="topbar-one__btn">Send us an Email</a>
+                </div><!-- /.right-content -->
+            </div><!-- /.container -->
+        </section><!-- /.topbar-one -->
+        <header class="site-header header-one">
+            <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
+                <div class="container clearfix">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="logo-box clearfix">
+                        <a class="navbar-brand" href="<?=site_url('/')?>">
+                            <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\logo-1-1.png" class="main-logo" alt="First Medic Logo">
+                            <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\logo-1-1.png" class="stick-logo" alt="First Medic Logo">
+                        </a>
+                        <button class="menu-toggler" data-target=".main-navigation">
+                            <span class="fa fa-bars"></span>
+                        </button>
+                    </div><!-- /.logo-box -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="main-navigation">
+                        <?php
+                            $data=array(
+                                    "menu" => $menu,
+                                    "submenu" => $submenu,
+                                ); 
+                            $this->load->view('frontpage/layout/layout_menu',$data);?>
+                    </div><!-- /.navbar-collapse -->
+                    <div class="right-side-box">
+                        <a href="tel:+62877 8222 0555" class="header-one__cta">
+                            <span class="header-one__cta-icon">
+                                <i class="dentallox-icon-call-answer"></i>
+                            </span>
+                            <span class="header-one__cta-content">
+                                <span class="header-one__cta-text">Call Us for query:</span>
+                                <span class="header-one__cta-number">0877 8222 0555</span>
+                            </span>
+                        </a>
+                    </div><!-- /.right-side-box -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        </header><!-- /.header-one -->
+        <?=$content?>
+        
+        <footer class="site-footer">
+            <div class="container ">
+                <div class="footer-col">
+                    <div class="footer-widget footer-widget__about">
+                        <a class="footer-widget__logo" href="index.html"><img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\logo-1-2.png" alt="Awesome Image"></a>
+                        <p class="footer-widget__text">First medic merupakan authorized training site dari American Heart association berlokasi di Bali. First Medic berdiri sejak 2018 dibawah PT. Aditama Medika Nusantara</p>
+                    </div><!-- /.footer-widget -->
+                    <div class="footer-widget">
+                        <h3 class="footer-widget__title">
+                            Healtcare Professional
+                        </h3>
+                        <ul class="footer-widget__links-list">
+                            <li class="footer-widget__links-list-item"> <a href="<?=site_url('/')?>">Home</a> </li><!-- /.footer-widget__links-list-item -->
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/1')?>">Regular ACLS</a></li>
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/2')?>">Regular PALS</a></li>
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/3')?>">Onsite Basic Life Support</a></li>
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/4')?>">Onsite ACLS</a></li>
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/5')?>">Onsite PALS</a></li>
+                            <li class="footer-widget__links-list-item"><a href="<?=$this->common->slug_link('/home/training/6')?>">Private Class</a></li>
+                            <!-- /.footer-widget__links-list-item -->
+                        </ul><!-- /.footer-widget__links-list -->
+                    </div><!-- /.footer-widget -->
+                    <div class="footer-widget">
+                        <h3 class="footer-widget__title">
+                            Lay rescuer Professional
+                        </h3>
+                        <ul class="footer-widget__time-list">
+                              <li class="footer-widget__time-list-item"><a href="<?=$this->common->slug_link('/home/training/7')?>">Onsite First Aid, CPR & AED</a></li>
+                            <li class="footer-widget__time-list-item"><a href="<?=$this->common->slug_link('/home/training/8')?>">Onsite Heartsaver</a></li><!-- /.footer-widget__time-list-item -->
+                        </ul><!-- /.footer-widget__time-list -->
+                    </div><!-- /.footer-widget -->
+                    <div class="footer-widget">
+                        <h3 class="footer-widget__title">
+                            Get In Touch
+                        </h3>
+                        <ul class="footer-widget__time-list no-margin">
+                            <li class="footer-widget__time-list-item">Jl. Katalia No. 5</li><!-- /.footer-widget__time-list-item -->
+                            <li class="footer-widget__time-list-item">Denpasar, Bali</li><!-- /.footer-widget__time-list-item -->
+                            <li class="footer-widget__time-list-item">Phone : <a href="tel:+6281805510887 ">+6281 8055 10887 </a></li><!-- /.footer-widget__time-list-item -->
+                            <li class="footer-widget__time-list-item">Email : <a href="mailto:info.firstmedic@gmail.com">info@dentallox.com</a></li><!-- /.footer-widget__time-list-item -->
+                        </ul><!-- /.footer-widget__time-list -->
+                        <div class="footer-widget__social">
+                            
+                        <a href="facebook.com/firstmedic"><i class="fa fa-facebook-f"></i></a>
+                        <a href="instagram.com/first_medic"><i class="fa fa-instagram"></i></a>
+                        </div><!-- /.footer-widget__social -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.footer-col -->
+            </div><!-- /.container -->
+            <div class="bottom-footer">
+                <div class="container">
+                    <hr class="bottom-footer__line">
+                    <div class="bottom-footer__wrap">
+                        <p class="bottom-footer__text">&copy; Copyright First Medic 2019 . All right reserved.</p><!-- /.bottom-footer__text -->
+                        <p class="bottom-footer__text">Created by <a href="#">FirstMedic</a></p><!-- /.bottom-footer__text -->
+                    </div><!-- /.bottom-footer__wrap -->
+                </div><!-- /.container -->
+            </div><!-- /.bottom-footer -->
+        </footer><!-- /.site-footer -->
+    </div><!-- /.page-wrapper -->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+    <!-- /.scroll-to-top -->
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\jquery.js"></script>
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\bootstrap.bundle.min.js"></script>
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\bootstrap-select.min.js"></script>
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\bootstrap-datepicker.min.js"></script>
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\owl.carousel.min.js"></script>
+    <script src="<?php echo $this->common->theme_custome(); ?>/assets/js\theme.js"></script>
 </body>
 
 </html>

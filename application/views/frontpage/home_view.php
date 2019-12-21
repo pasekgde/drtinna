@@ -1,262 +1,307 @@
-            <div class="traveltour-page-title-wrap  traveltour-style-medium traveltour-center-align">
-                <div class="traveltour-header-transparent-substitute"></div>
-                <div class="traveltour-page-title-overlay"></div>
-                <div class="traveltour-page-title-container traveltour-container">
-                    <div class="traveltour-page-title-content traveltour-item-pdlr">
-                        <h1 class="traveltour-page-title">Greenbike Adventure</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="traveltour-page-wrapper" id="traveltour-page-wrapper">
-                <div class="gdlr-core-page-builder-body">
-                    <div class="gdlr-core-pbf-wrapper " id="div_7425_0">
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-portfolio-item gdlr-core-item-pdb clearfix  gdlr-core-portfolio-item-style-modern" id="div_7425_1">
-                                        <div class="gdlr-core-portfolio-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
-                                            <?php foreach ($tourOptions as $key => $tour) :
-                                                $name = $tour->name;
-                                                $img =  $this->common->theme_custome()."/images/". $tour->img;
-                                                $link = base_url($tour->link); ; 
-                                                $category = $tour->category; 
-                                                ?>
-                                                <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15">
-                                                    <div class="gdlr-core-portfolio-modern">
-                                                        <div class="gdlr-core-portfolio-thumbnail gdlr-core-media-image  gdlr-core-style-icon-title-tag">
-                                                            <div class="gdlr-core-portfolio-thumbnail-image-wrap  gdlr-core-zoom-on-hover">
-                                                                <img src="<?=$img?>" alt="" width="900" height="500" /><span class="gdlr-core-image-overlay  gdlr-core-portfolio-overlay gdlr-core-image-overlay-center-icon gdlr-core-js">
-                                                                    <span class="gdlr-core-image-overlay-content" >
-                                                                        <span class="gdlr-core-portfolio-title gdlr-core-title-font " id="span_7425_0" style="margin-top: 0px;"> <a href="<?=$link?>" ><?=$name?></a>
-                                                                        </span>
-                                                                        <span class="gdlr-core-portfolio-info gdlr-core-portfolio-info-tag gdlr-core-info-font">
-                                                                             <a href="<?=$link?>" rel="tag"><input type="submit" class="tourmaster-button" value="Book Now" /> </a>
-                                                                        </span>
-                                                                    </span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-
-
-  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="banner-wrapper">
+            <section class="banner-one banner-carousel__one no-dots owl-theme owl-carousel">
+                <div class="item">
+                    <div class="banner-one__slide  banner-one__slide-one" style="background-image: url(<?php echo $this->common->theme_custome(); ?>/assets/images/slider/slider-1-1.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-left">
+                                    <span class="banner-one__tag-line banner-one__light-color">First Medic ... Authorized</span>
+                                    <h3 class="banner-one__title banner-one__light-color">Emergency training<br> for Hospital Accreditation</h3>
+                                    <p class="banner-one__text banner-one__light-color">Our goal to help hospitalyty industry learn <br/> Emergency Training Accredition.</p>
+                                    <div class="banner-one__btn-block">
+                                        <a href="#" class="thm-btn banner-one__btn">Ask for Details</a>
+                                    </div><!-- /.btn-block -->
+                                </div><!-- /.col-lg-12 -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div><!-- /.banner-one__slide -->
+                </div><!-- /.item -->
+                <div class="item">
+                    <div class="banner-one__slide  banner-one__slide-two" style="background-image: url(<?php echo $this->common->theme_custome(); ?>/assets/images/slider/slider-1-2.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-left">
+                                    <span class="banner-one__tag-line banner-one__light-color">First Medic ... Authorized Training</span>
+                                    <h3 class="banner-one__title banner-one__light-color">Most Accepted <br> Certification All Over the World</h3>
+                                    <p class="banner-one__text banner-one__light-color">Most Accepted Certification All Over the World </p>
+                                    <div class="banner-one__btn-block">
+                                        <a href="#" class="thm-btn banner-one__btn">Ask for Details</a>
+                                    </div><!-- /.btn-block -->
+                                </div><!-- /.col-lg-12 -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div><!-- /.banner-one__slide -->
+                </div><!-- /.item -->
+                <div class="item">
+                    <div class="banner-one__slide  banner-one__slide-three" style="background-image: url(<?php echo $this->common->theme_custome(); ?>/assets/images/slider/slider-1-3.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-left">
+                                    <span class="banner-one__tag-line banner-one__light-color">First Medic ... Authorized Training</span>
+                                    <h3 class="banner-one__title banner-one__light-color">First Aid Training <br/> for your Hospitallity Business</h3>
+                                    <p class="banner-one__text banner-one__light-color">First aid training for your hospitallity business</p>
+                                    <div class="banner-one__btn-block">
+                                        <a href="#" class="thm-btn banner-one__btn">Ask for Details</a>
+                                    </div><!-- /.btn-block -->
+                                </div><!-- /.col-lg-12 -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container -->
+                    </div><!-- /.banner-one__slide -->
+                </div><!-- /.item -->
+            </section><!-- /.banner-one -->
+            <div class="carousel-btn-block banner-carousel-btn">
+                <span class="carousel-btn left-btn"><i class="fa fa-angle-left"></i></span>
+                <span class="carousel-btn right-btn"><i class="fa fa-angle-right"></i></span>
+            </div><!-- /.carousel-btn-block banner-carousel-btn -->
+        </div><!-- /.banner-wrapper -->
+        <section class="cta-two">
+            <div class="container">
+                <h2 class="cta-two__title">Conduct a Training : Call us at <a href="tel:+6281805510887" class="cta-two__highlight">+62 818-0551-0887</a> or send <a href="mailto:someone@example.com" class="cta-two__highlight cta-two__link">an Email</a></h2><!-- /.cta-two__title -->
+            </div><!-- /.container -->
+        </section><!-- /.cta-two -->
+        <section class="service-one">
+            <div class="container">
+                <div class="block-title text-center">
+                    <h2 class="block-title__title">Why Choose Us</h2><!-- /.block-title__title -->
+                    <p class="block-title__text">For the greater part of us, we have many advantages to tell you:</p><!-- /.block-title__text -->
+                </div><!-- /.block-title -->
                
-                    <div class="gdlr-core-pbf-wrapper " id="div_fd3f_0">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_fd3f_1"></div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_2">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_fd3f_3"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-6.png" alt="" width="44" height="44" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_4">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_fd3f_0">Tropical Adventure</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_5">
-                                                            <p>We get many tropical adventure.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_6">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_fd3f_7"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-2.png" alt="" width="41" height="49" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_8">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_fd3f_1">Best Price, No Hidden Fee</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_9">
-                                                            <p>Best Price for Adventure in Bali</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_10">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_fd3f_11"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-14.png" alt="" width="35" height="45" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_12">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_fd3f_2">Professional Team</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_13">
-                                                            <p>Professional Guide and Team Experience</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<div class="gdlr-core-pbf-wrapper " id="div_0576_33" data-skin="Blue Column Service">
-                        <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_0576_34" data-parallax-speed="0"></div>
-                        </div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr"  id="gdlr-core-title-item-id-30372">
-                                        <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_0576_7"><span class="gdlr-core-title-item-left-icon" id="span_0576_3"  ></span>
-                                                Who are we?
-                                                <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span>
-                                            </h3>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-60 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " id="div_0576_35">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align" id="div_0576_36">
-                                                    <div class="gdlr-core-text-box-item-content">
-                                                        <p>GREENBIKE has unique concepts “Work with your heart to serve better”. We ride trough historical Taro village with all of its important history for Hinduism in Bali and the culture explanation of our professional guides will ensure your trip more enjoyable.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_fd3f_51" data-skin="Blue Column Service">
-                        <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_fd3f_52" data-parallax-speed="0"></div>
-                        </div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15 gdlr-core-column-first" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-left" id="div_fd3f_53" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-background-wrap" id="div_fd3f_54"></div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_fd3f_55">
-                                                    <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_fd3f_16">Why Book With Us?<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_fd3f_56" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_57">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-10.png" alt="" width="37" height="39" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_58">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">4,000+ Adventuors Plan</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_59">
-                                                            <p>Over 4K Trip was planned for People all around world </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_fd3f_60" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_61">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-11.png" alt="" width="34" height="43" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_62">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">3x TA Winners</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_63">
-                                                            <p>Winner 3 times Excellence Service on Trip Advisor</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_fd3f_64" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_fd3f_65">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<?php echo $this->common->theme_custome(); ?>upload/icon-2.png" alt="" width="27" height="37" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_fd3f_66">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Best Price Trou</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_fd3f_67">
-                                                            <p>Best Price for Adventurous Service</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\1.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="filling.html">Sertifikat Diakui Internasional</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Training yang dilakukan langsung dari American Heart Association(AHA) sehingga diterima di seluruh dunia</p>
+                                <!-- /.service-two__text -->
+                                <a href="filling.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\2.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="root-canal.html">Durasi Pelatihan Singkat</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Pelatihan hanya berlangsung 2 hari untuk ACLS dan PALS, sehingga memudahkan peserta dalam mengatur jadwal jaga di tempat bekerja.</p>
+                                <!-- /.service-two__text -->
+                                <a href="braces.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\3.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="braces.html">Kelas Regular tiap Bulan</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Kelas dijadwalkan setiap bulan sehingga peserta dapat mengatur waktu pelatihan sesuai dengan kebutuhan waktu masing-masing peserta.</p>
+                                <!-- /.service-two__text -->
+                                <a href="braces.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\4.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="implant.html">Jumlah Peserta Terbatas</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Hanya 6 orang per instruktur sehingga instruktur dapat membantu serta memastikan peserta memahami materi pelatihan dengan baik</p>
+                                <!-- /.service-two__text -->
+                                <a href="implant.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\5.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="dentures.html">Mayoritas Praktek Langsung</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Setiap peserta akan melakukan hands on BLS, airway management, IO insertion langsung pada manikin.</p>
+                                <!-- /.service-two__text -->
+                                <a href="dentures.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\6.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="bridges.html">Pendampingan hingga Lulus</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Instruktur akan memastikan pemahaman setiap peserta terutama dalam proses remedial peserta yang belum lulus ujian praktek dan tulis di waktu pelatihan. </p>
+                                <!-- /.service-two__text -->
+                                <a href="bridges.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\7.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="kids-dental.html">Free Reseat dalam Durasi 2 Tahun</a></h3>
+                                <!-- /.service-two__title -->
+                                <p class="service-two__text">Setiap peserta yang ingin mengikuti kembali tanpa sertifikasi tidak dikenakan biaya dalam jangka waktu 2 tahun.</p>
+                                <!-- /.service-two__text -->
+                                <a href="kids-dental.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\8.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="advanced-gum.html">Free basic ECG Interpretation </a></h3><!-- /.service-two__title -->
+                                <p class="service-two__text">Setiap peserta memperoleh video tutorial basic ECG interpretation sebelum memasuki kelas sehingga mudah menerima materi pelatihan tingkat lanjut.</p><!-- /.service-two__text -->
+                                <a href="advanced-gum.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\9.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="advanced-gum.html">Kesempatan Training Gratis </a></h3><!-- /.service-two__title -->
+                                <p class="service-two__text">Peserta yang berhasil lulus ujian tulis ACLS dengan nilai 100, mendapat training PALS AHA gratis, sementara itu peserta yang lulus ujian tulis PALS dengan nilai 100, mendapat training ACLS AHA gratis.</p><!-- /.service-two__text -->
+                                <a href="advanced-gum.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\10.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="advanced-gum.html">Pembiayaan yang Fleksible </a></h3><!-- /.service-two__title -->
+                                <p class="service-two__text">Peserta dapat mencicil pelunasan sebanyak 3 kali tanpa bunga </p><!-- /.service-two__text -->
+                                <a href="advanced-gum.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\11.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="advanced-gum.html">Bergabung Dalam Komunitas </a></h3><!-- /.service-two__title -->
+                                <p class="service-two__text">Setiap peserta akan bergabung dalam WA group first medic class bersama tenaga kesehatan lain sehingga dapat memperluas jaringan.</p><!-- /.service-two__text -->
+                                <a href="advanced-gum.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="service-two__single">
+                            <div class="service-two__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\services\8.jpg" alt="Awesome Image">
+                            </div><!-- /.service-two__image -->
+                            <div class="service-two__content">
+                                <h3 class="service-two__title"><a href="advanced-gum.html">Akses Network Luas</a></h3><!-- /.service-two__title -->
+                                <p class="service-two__text">Kami membangun jaringan dengan rumah sakit dan klinik di Bali. Sehingga peserta dapat memanfaatkan akses ini untuk berkarir di rumah sakit dan klinik di Bali</p><!-- /.service-two__text -->
+                                <a href="advanced-gum.html" class="service-two__link">Read More</a>
+                            </div><!-- /.service-two__content -->
+                        </div><!-- /.service-two__single -->
+                    </div><!-- /.col-lg-3 -->
+                </div><!-- /.row -->
+               
+            </div><!-- /.container -->
+        </section><!-- /.service-one -->
+        <section class="doctor-one">
+            <div class="container">
+                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\doctor-1-1.png" class="doctor-one__person" alt="Awesome Image">
+                <div class="row no-gutters justify-content-end">
+                    <div class="col-lg-7">
+                        <div class="doctor-one__content">
+                            <span class="doctor-one__tag-line">Meet Founder</span>
+                            <h3 class="doctor-one__title">Dr. Taufan Halim</h3><!-- /.doctor-one__title -->
+                            <p class="doctor-one__text">Apakah anda pernah mendengar orang yg meninggal mendadak? Apakah anda tahu ttg henti jantung dan bagaimana berespon terhadap henti jantung terlebih jika itu terjadi pada orang yg anda sayangi? Jika jawabannya tidak, maka ini adalah sebuah masalah. </p>
+                            <p class="doctor-one__text"> 
+                            Oleh karena itu, First medic hadir berkomitment merangkai semua rantai keselamatan melalui training kegawat daruratan baik untuk orang awam, petugas ambulance dan rumah sakit. </p>
+                            <p class="doctor-one__text">
+                            Kami yakin suatu saat akan ada korban henti jantung yg survive di Indonesia. This is our big dream for Indonesia. Welcome to life saver community, <br/> Welcome to first medic</p><!-- /.doctor-one__text -->
+                        </div><!-- /.doctor-one__content -->
+                    </div><!-- /.col-lg-7 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.doctor-one -->
+        <section class="cta-one">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <p class="cta-one__tag-line">Our Mission to</p><!-- /.cta-one__tag-line -->
+                        <h3 class="cta-one__title">Deliver Basic & Advanced<br> Emergency Training</h3><!-- /.cta-one__title -->
+                    </div><!-- /.col-lg-7 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.cta-one -->
+        <section class="testimonials-one">
+            <div class="container">
+                <div class="block-title text-center">
+                    <h2 class="block-title__title block-title__lite-color">What Our Clients Says</h2><!-- /.block-title__title -->
+                    <div class="block-title__line block-title__lite-bg"></div><!-- /.block-title__line -->
+                </div><!-- /.block-title -->
+                <div class="testimonials-one__carousel owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="testimonials-one__single">
+                            <div class="testimonials-one__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images/testimony\wahyudi.jpg" alt="Awesome Image">
+                            </div><!-- /.testimonials-one__image -->
+                            <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\testi-qoute-1-1.png" class="testimonials-one__qoute" alt="Awesome Image">
+                            <h3 class="testimonials-one__title">dr. Wahyudi Apriawan</h3><!-- /.testimonials-one__title -->
+                            <span class="testimonials-one__designation">Head of emergency depatment Siloam Hospitals Bali</span>
+                            <p class="testimonials-one__text">Training cukup efisien dari segi waktu. 
+Jumlah peserta tidak terlalu banyak dalam satu kelas, memungkinkan untuk diskusi interaktif. 
+Pelatihan PALS juga tidak perlu keluar Bali, karena setahu saya first medic satu-satunya provider PALS yg tersertifikasi AHA di Bali. 
+Sukses terus first medic.</p><!-- /.testimonials-one__text -->
+                        </div><!-- /.testimonials-one__single -->
+                    </div><!-- /.item -->
+                    <div class="item">
+                        <div class="testimonials-one__single">
+                            <div class="testimonials-one__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\testimony\julie.jpg" alt="Awesome Image">
+                            </div><!-- /.testimonials-one__image -->
+                            <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\testi-qoute-1-1.png" class="testimonials-one__qoute" alt="Awesome Image">
+                            <h3 class="testimonials-one__title">Julie Ahlrich, MSN CNS FNP-BC</h3><!-- /.testimonials-one__title -->
+                            <span class="testimonials-one__designation">Clinical director of the light house bali</span>
+                            <p class="testimonials-one__text">Our yayasan has used First Medic for all of our staff CPR training and as a consultant for developing an emergency response system.  We have been extremely pleased with the level of professionalism, knowledge and responsiveness First Medic provides.  It is always a pleasure to work with Dr. Taufan and his team!</p><!-- /.testimonials-one__text -->
+                        </div><!-- /.testimonials-one__single -->
+                    </div><!-- /.item -->
+                    <div class="item">
+                        <div class="testimonials-one__single">
+                            <div class="testimonials-one__image">
+                                <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\testimony\duwagung.jpg" alt="Awesome Image">
+                            </div><!-- /.testimonials-one__image -->
+                            <img src="<?php echo $this->common->theme_custome(); ?>/assets/images\resources\testi-qoute-1-1.png" class="testimonials-one__qoute" alt="Awesome Image">
+                            <h3 class="testimonials-one__title">dr. A.A Duwagung Dalem Dwi Putra,.S.ked</h3><!-- /.testimonials-one__title -->
+                            <span class="testimonials-one__designation">Head of emergency room RS Bintang Bangli</span>
+                            <p class="testimonials-one__text">Attending various emergency training in this place is very effective, efficient, structured, easy to understand, and fun. The teaching and learning system is very modern and dynamic.</p><!-- /.testimonials-one__text -->
+                        </div><!-- /.testimonials-one__single -->
+                    </div><!-- /.item -->
 
-                    <div class="gdlr-core-pbf-wrapper " id="div_fd3f_37">
-                        <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_fd3f_38" data-parallax-speed="0.2"></div>
-                        </div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first" data-skin="White Text">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_fd3f_39">
-                                                    <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_fd3f_8">Discount <span id="span_fd3f_11">10% Off</span><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_fd3f_40">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_fd3f_41">
-                                                        <p>We are glad to inform you that we are giving you best discount for our repeater guest in Downhill Cycling</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="http://max-themes.net/demos/popular-deals/index.html" id="gdlr-core-button-id-84996"><span class="gdlr-core-content" >Get Discount Tours</span></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js "></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+                </div><!-- /.testimonials-one__carousel -->
+            </div><!-- /.container -->
+        </section><!-- /.testimonials-one -->
+      
