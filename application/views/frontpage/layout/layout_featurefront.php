@@ -36,8 +36,8 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="logo-box clearfix">
                         <a class="navbar-brand" href="index.html">
-                            <img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logo-2-1.png" class="main-logo" alt="Awesome Image">
-                            <img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logo-3-1.png" class="stick-logo" alt="Awesome Image">
+                            <img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logodrtinna.png" class="main-logo" alt="Awesome Image">
+                            <img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logodrtinna2.png" class="stick-logo" alt="Awesome Image">
                         </a>
                         <button class="menu-toggler" data-target=".main-navigation">
                             <span class="fa fa-bars"></span>
@@ -65,7 +65,7 @@
             <div class="container ">
                 <div class="footer-col">
                     <div class="footer-widget footer-widget__about">
-                        <a class="footer-widget__logo" href="index.html"><img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logo-2-1.png" alt="Awesome Image"></a>
+                        <a class="footer-widget__logo" href="index.html"><img src="<?php echo $this->common->theme_custome(); ?>\assets\images\resources\logodrtinna.png" alt="Awesome Image"></a>
                         <p class="footer-widget__text">Dentallox is a HTML Template to build Dentist Website. It has
                             good features and you will love.</p>
                         <a href="#" class="footer-widget__link">Read more ...</a>
