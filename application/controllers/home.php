@@ -39,10 +39,10 @@ class Home extends CI_Controller
 		$this->load->model('content_model');
 
 		//load all necessary model 
-		$sliders = $this->content_model->get_sliders();
-		$posts = $this->content_model->get_post_front($this->settings->info->post_front_num);
+		// $sliders = $this->content_model->get_sliders();
+		// $posts = $this->content_model->get_post_front($this->settings->info->post_front_num);
 
-		$post_num = 3;  
+		// $post_num = 3;  
 
 
 
@@ -52,10 +52,10 @@ class Home extends CI_Controller
 		
 		//echo '<pre>'; print_r( $tourOptions );die; //test
 		$this->templatefront->loadContent('frontpage/home_view', array(
-			"og_image" => "https://bossforexsignal.com/theme_costume//images/slider/slider-01.jpg",
- 			"og_title" => "BossForexSignal",
- 			"og_desc" => "Forex Signal Provider",
- 			"og_url" => "https://bossforexsignal.com",
+			"og_image" => "",
+ 			"og_title" => "",
+ 			"og_desc" => "",
+ 			"og_url" => "",
  			"menu" => $menu,
  			"submenu" => $submenu
 			));
@@ -65,13 +65,6 @@ class Home extends CI_Controller
 	public function training($id)
 	{
 		
-		// $contentDir = base_url(). '/theme_costume/static_content/';
-		// $tourDetailFiles = $contentDir . 'tour-details.json';
-		// $tourDetails = file_get_contents($tourDetailFiles);
-		// if (!empty($tourDetails)) $tourDetails = json_decode($tourDetails,TRUE);
-
-		// //get Tour Details
-		// $selectTour = $tourDetails[$id];
 		if($id=="1"){
 			$page="frontpage/training/reg_acls";
 		}elseif($id=="2"){
